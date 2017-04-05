@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "AMapFoundationKit/AMapServices.h"
 #import "Personal.h"
+#import "SearchViewController.h"
 
 @interface AppDelegate ()
 
@@ -22,6 +23,11 @@
     
     // 高德
     [AMapServices sharedServices].apiKey = KamapKey;
+    
+    SearchViewController *searchVC = [[SearchViewController alloc] init];
+//    [[UIApplication sharedApplication].keyWindow setRootViewController:searchVC];
+    [self.window setRootViewController:searchVC];
+    
     return YES;
 }
 

@@ -15,6 +15,12 @@
 		8B3070031E949ACB0072B35C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B3070011E949ACB0072B35C /* LaunchScreen.storyboard */; };
 		8B30700E1E949ACB0072B35C /* ____Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B30700D1E949ACB0072B35C /* ____Tests.m */; };
 		8B3070191E949ACB0072B35C /* ____UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3070181E949ACB0072B35C /* ____UITests.m */; };
+		8B3070291E94C1860072B35C /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3070281E94C1860072B35C /* SearchViewController.m */; };
+		8B30702E1E94D4200072B35C /* SearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B30702D1E94D4200072B35C /* SearchView.m */; };
+		8B3070341E94F9F50072B35C /* TransitModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3070331E94F9F50072B35C /* TransitModel.m */; };
+		8B3070371E94FA910072B35C /* RouteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3070361E94FA910072B35C /* RouteModel.m */; };
+		8B30703A1E94FB6B0072B35C /* MapSegmentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3070391E94FB6B0072B35C /* MapSegmentModel.m */; };
+		8B3070401E94FD150072B35C /* MapWalkingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B30703F1E94FD150072B35C /* MapWalkingModel.m */; };
 		CBD9C1EDF56E9D8EFEF88468 /* libPods-路线规划.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9348F6DA268F85D310C6470 /* libPods-路线规划.a */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +59,18 @@
 		8B3070181E949ACB0072B35C /* ____UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "____UITests.m"; sourceTree = "<group>"; };
 		8B30701A1E949ACB0072B35C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B3070261E94B2120072B35C /* Personal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Personal.h; sourceTree = "<group>"; };
+		8B3070271E94C1860072B35C /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		8B3070281E94C1860072B35C /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		8B30702C1E94D4200072B35C /* SearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchView.h; sourceTree = "<group>"; };
+		8B30702D1E94D4200072B35C /* SearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchView.m; sourceTree = "<group>"; };
+		8B3070321E94F9F50072B35C /* TransitModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransitModel.h; sourceTree = "<group>"; };
+		8B3070331E94F9F50072B35C /* TransitModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransitModel.m; sourceTree = "<group>"; };
+		8B3070351E94FA910072B35C /* RouteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteModel.h; sourceTree = "<group>"; };
+		8B3070361E94FA910072B35C /* RouteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteModel.m; sourceTree = "<group>"; };
+		8B3070381E94FB6B0072B35C /* MapSegmentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapSegmentModel.h; sourceTree = "<group>"; };
+		8B3070391E94FB6B0072B35C /* MapSegmentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapSegmentModel.m; sourceTree = "<group>"; };
+		8B30703E1E94FD150072B35C /* MapWalkingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapWalkingModel.h; sourceTree = "<group>"; };
+		8B30703F1E94FD150072B35C /* MapWalkingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapWalkingModel.m; sourceTree = "<group>"; };
 		B2158DFDE25BFDF8B72B8984 /* Pods-路线规划.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-路线规划.debug.xcconfig"; path = "Pods/Target Support Files/Pods-路线规划/Pods-路线规划.debug.xcconfig"; sourceTree = "<group>"; };
 		C16EB73FBC8B5A8BB3348BF5 /* Pods-路线规划.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-路线规划.release.xcconfig"; path = "Pods/Target Support Files/Pods-路线规划/Pods-路线规划.release.xcconfig"; sourceTree = "<group>"; };
 		C9348F6DA268F85D310C6470 /* libPods-路线规划.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-路线规划.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,9 +144,14 @@
 		8B306FF21E949ACB0072B35C /* 路线规划 */ = {
 			isa = PBXGroup;
 			children = (
+				8B3070311E94F9B00072B35C /* Model */,
 				8B306FF61E949ACB0072B35C /* AppDelegate.h */,
 				8B306FF71E949ACB0072B35C /* AppDelegate.m */,
 				8B3070261E94B2120072B35C /* Personal.h */,
+				8B3070271E94C1860072B35C /* SearchViewController.h */,
+				8B3070281E94C1860072B35C /* SearchViewController.m */,
+				8B30702C1E94D4200072B35C /* SearchView.h */,
+				8B30702D1E94D4200072B35C /* SearchView.m */,
 				8B306FF91E949ACB0072B35C /* ViewController.h */,
 				8B306FFA1E949ACB0072B35C /* ViewController.m */,
 				8B306FFC1E949ACB0072B35C /* Main.storyboard */,
@@ -164,6 +187,21 @@
 				8B30701A1E949ACB0072B35C /* Info.plist */,
 			);
 			path = "路线规划UITests";
+			sourceTree = "<group>";
+		};
+		8B3070311E94F9B00072B35C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8B3070321E94F9F50072B35C /* TransitModel.h */,
+				8B3070331E94F9F50072B35C /* TransitModel.m */,
+				8B3070351E94FA910072B35C /* RouteModel.h */,
+				8B3070361E94FA910072B35C /* RouteModel.m */,
+				8B3070381E94FB6B0072B35C /* MapSegmentModel.h */,
+				8B3070391E94FB6B0072B35C /* MapSegmentModel.m */,
+				8B30703E1E94FD150072B35C /* MapWalkingModel.h */,
+				8B30703F1E94FD150072B35C /* MapWalkingModel.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,6 +391,12 @@
 			files = (
 				8B306FFB1E949ACB0072B35C /* ViewController.m in Sources */,
 				8B306FF81E949ACB0072B35C /* AppDelegate.m in Sources */,
+				8B3070291E94C1860072B35C /* SearchViewController.m in Sources */,
+				8B3070371E94FA910072B35C /* RouteModel.m in Sources */,
+				8B3070341E94F9F50072B35C /* TransitModel.m in Sources */,
+				8B30702E1E94D4200072B35C /* SearchView.m in Sources */,
+				8B30703A1E94FB6B0072B35C /* MapSegmentModel.m in Sources */,
+				8B3070401E94FD150072B35C /* MapWalkingModel.m in Sources */,
 				8B306FF51E949ACB0072B35C /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
