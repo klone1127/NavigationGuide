@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D3D98E91E954431001A16C7 /* TransitTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3D98E71E954431001A16C7 /* TransitTableViewCell.m */; };
+		7D3D98EA1E954431001A16C7 /* TransitTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D3D98E81E954431001A16C7 /* TransitTableViewCell.xib */; };
+		7D3D98F01E954544001A16C7 /* TransitResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3D98EF1E954544001A16C7 /* TransitResultViewController.m */; };
+		7D3D98F41E9546A2001A16C7 /* UIColor+Flat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3D98F31E9546A2001A16C7 /* UIColor+Flat.m */; };
+		7D3D98F91E955083001A16C7 /* TransitGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3D98F81E955083001A16C7 /* TransitGuideViewController.m */; };
 		8B306FF51E949ACB0072B35C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B306FF41E949ACB0072B35C /* main.m */; };
 		8B306FF81E949ACB0072B35C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B306FF71E949ACB0072B35C /* AppDelegate.m */; };
 		8B306FFB1E949ACB0072B35C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B306FFA1E949ACB0072B35C /* ViewController.m */; };
@@ -17,14 +22,6 @@
 		8B3070191E949ACB0072B35C /* ____UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3070181E949ACB0072B35C /* ____UITests.m */; };
 		8B3070291E94C1860072B35C /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3070281E94C1860072B35C /* SearchViewController.m */; };
 		8B30702E1E94D4200072B35C /* SearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B30702D1E94D4200072B35C /* SearchView.m */; };
-		8B3070341E94F9F50072B35C /* TransitModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3070331E94F9F50072B35C /* TransitModel.m */; };
-		8B3070371E94FA910072B35C /* RouteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3070361E94FA910072B35C /* RouteModel.m */; };
-		8B30703A1E94FB6B0072B35C /* MapSegmentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3070391E94FB6B0072B35C /* MapSegmentModel.m */; };
-		8B3070401E94FD150072B35C /* MapWalkingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B30703F1E94FD150072B35C /* MapWalkingModel.m */; };
-		8B3070431E94FDB00072B35C /* MapGeoPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3070421E94FDB00072B35C /* MapGeoPoint.m */; };
-		8B3070461E94FE7B0072B35C /* MapStepModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3070451E94FE7B0072B35C /* MapStepModel.m */; };
-		8B3070491E94FF0F0072B35C /* MapBusLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3070481E94FF0F0072B35C /* MapBusLineModel.m */; };
-		8B30704C1E94FFBD0072B35C /* MapBusStopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B30704B1E94FFBD0072B35C /* MapBusStopModel.m */; };
 		CBD9C1EDF56E9D8EFEF88468 /* libPods-路线规划.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9348F6DA268F85D310C6470 /* libPods-路线规划.a */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +43,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7D3D98E61E954431001A16C7 /* TransitTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransitTableViewCell.h; sourceTree = "<group>"; };
+		7D3D98E71E954431001A16C7 /* TransitTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransitTableViewCell.m; sourceTree = "<group>"; };
+		7D3D98E81E954431001A16C7 /* TransitTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransitTableViewCell.xib; sourceTree = "<group>"; };
+		7D3D98EE1E954544001A16C7 /* TransitResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransitResultViewController.h; sourceTree = "<group>"; };
+		7D3D98EF1E954544001A16C7 /* TransitResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransitResultViewController.m; sourceTree = "<group>"; };
+		7D3D98F21E9546A2001A16C7 /* UIColor+Flat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Flat.h"; sourceTree = "<group>"; };
+		7D3D98F31E9546A2001A16C7 /* UIColor+Flat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Flat.m"; sourceTree = "<group>"; };
+		7D3D98F61E954778001A16C7 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		7D3D98F71E955083001A16C7 /* TransitGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransitGuideViewController.h; sourceTree = "<group>"; };
+		7D3D98F81E955083001A16C7 /* TransitGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransitGuideViewController.m; sourceTree = "<group>"; };
 		8B306FF01E949ACB0072B35C /* 路线规划.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "路线规划.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B306FF41E949ACB0072B35C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8B306FF61E949ACB0072B35C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -67,22 +74,6 @@
 		8B3070281E94C1860072B35C /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		8B30702C1E94D4200072B35C /* SearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchView.h; sourceTree = "<group>"; };
 		8B30702D1E94D4200072B35C /* SearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchView.m; sourceTree = "<group>"; };
-		8B3070321E94F9F50072B35C /* TransitModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransitModel.h; sourceTree = "<group>"; };
-		8B3070331E94F9F50072B35C /* TransitModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransitModel.m; sourceTree = "<group>"; };
-		8B3070351E94FA910072B35C /* RouteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteModel.h; sourceTree = "<group>"; };
-		8B3070361E94FA910072B35C /* RouteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteModel.m; sourceTree = "<group>"; };
-		8B3070381E94FB6B0072B35C /* MapSegmentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapSegmentModel.h; sourceTree = "<group>"; };
-		8B3070391E94FB6B0072B35C /* MapSegmentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapSegmentModel.m; sourceTree = "<group>"; };
-		8B30703E1E94FD150072B35C /* MapWalkingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapWalkingModel.h; sourceTree = "<group>"; };
-		8B30703F1E94FD150072B35C /* MapWalkingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapWalkingModel.m; sourceTree = "<group>"; };
-		8B3070411E94FDB00072B35C /* MapGeoPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapGeoPoint.h; sourceTree = "<group>"; };
-		8B3070421E94FDB00072B35C /* MapGeoPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapGeoPoint.m; sourceTree = "<group>"; };
-		8B3070441E94FE7B0072B35C /* MapStepModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapStepModel.h; sourceTree = "<group>"; };
-		8B3070451E94FE7B0072B35C /* MapStepModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapStepModel.m; sourceTree = "<group>"; };
-		8B3070471E94FF0F0072B35C /* MapBusLineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapBusLineModel.h; sourceTree = "<group>"; };
-		8B3070481E94FF0F0072B35C /* MapBusLineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapBusLineModel.m; sourceTree = "<group>"; };
-		8B30704A1E94FFBD0072B35C /* MapBusStopModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapBusStopModel.h; sourceTree = "<group>"; };
-		8B30704B1E94FFBD0072B35C /* MapBusStopModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapBusStopModel.m; sourceTree = "<group>"; };
 		B2158DFDE25BFDF8B72B8984 /* Pods-路线规划.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-路线规划.debug.xcconfig"; path = "Pods/Target Support Files/Pods-路线规划/Pods-路线规划.debug.xcconfig"; sourceTree = "<group>"; };
 		C16EB73FBC8B5A8BB3348BF5 /* Pods-路线规划.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-路线规划.release.xcconfig"; path = "Pods/Target Support Files/Pods-路线规划/Pods-路线规划.release.xcconfig"; sourceTree = "<group>"; };
 		C9348F6DA268F85D310C6470 /* libPods-路线规划.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-路线规划.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,6 +122,27 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		7D3D98E51E9543DC001A16C7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8B30702C1E94D4200072B35C /* SearchView.h */,
+				8B30702D1E94D4200072B35C /* SearchView.m */,
+				7D3D98E61E954431001A16C7 /* TransitTableViewCell.h */,
+				7D3D98E71E954431001A16C7 /* TransitTableViewCell.m */,
+				7D3D98E81E954431001A16C7 /* TransitTableViewCell.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		7D3D98F11E95468D001A16C7 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				7D3D98F21E9546A2001A16C7 /* UIColor+Flat.h */,
+				7D3D98F31E9546A2001A16C7 /* UIColor+Flat.m */,
+			);
+			name = Category;
+			sourceTree = "<group>";
+		};
 		8B306FE71E949ACB0072B35C = {
 			isa = PBXGroup;
 			children = (
@@ -156,14 +168,19 @@
 		8B306FF21E949ACB0072B35C /* 路线规划 */ = {
 			isa = PBXGroup;
 			children = (
+				7D3D98F11E95468D001A16C7 /* Category */,
+				7D3D98E51E9543DC001A16C7 /* View */,
 				8B3070311E94F9B00072B35C /* Model */,
 				8B306FF61E949ACB0072B35C /* AppDelegate.h */,
 				8B306FF71E949ACB0072B35C /* AppDelegate.m */,
 				8B3070261E94B2120072B35C /* Personal.h */,
+				7D3D98F71E955083001A16C7 /* TransitGuideViewController.h */,
+				7D3D98F81E955083001A16C7 /* TransitGuideViewController.m */,
 				8B3070271E94C1860072B35C /* SearchViewController.h */,
 				8B3070281E94C1860072B35C /* SearchViewController.m */,
-				8B30702C1E94D4200072B35C /* SearchView.h */,
-				8B30702D1E94D4200072B35C /* SearchView.m */,
+				7D3D98EE1E954544001A16C7 /* TransitResultViewController.h */,
+				7D3D98EF1E954544001A16C7 /* TransitResultViewController.m */,
+				7D3D98F61E954778001A16C7 /* PrefixHeader.pch */,
 				8B306FF91E949ACB0072B35C /* ViewController.h */,
 				8B306FFA1E949ACB0072B35C /* ViewController.m */,
 				8B306FFC1E949ACB0072B35C /* Main.storyboard */,
@@ -204,22 +221,6 @@
 		8B3070311E94F9B00072B35C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8B3070321E94F9F50072B35C /* TransitModel.h */,
-				8B3070331E94F9F50072B35C /* TransitModel.m */,
-				8B3070351E94FA910072B35C /* RouteModel.h */,
-				8B3070361E94FA910072B35C /* RouteModel.m */,
-				8B3070381E94FB6B0072B35C /* MapSegmentModel.h */,
-				8B3070391E94FB6B0072B35C /* MapSegmentModel.m */,
-				8B30703E1E94FD150072B35C /* MapWalkingModel.h */,
-				8B30703F1E94FD150072B35C /* MapWalkingModel.m */,
-				8B3070411E94FDB00072B35C /* MapGeoPoint.h */,
-				8B3070421E94FDB00072B35C /* MapGeoPoint.m */,
-				8B3070441E94FE7B0072B35C /* MapStepModel.h */,
-				8B3070451E94FE7B0072B35C /* MapStepModel.m */,
-				8B3070471E94FF0F0072B35C /* MapBusLineModel.h */,
-				8B3070481E94FF0F0072B35C /* MapBusLineModel.m */,
-				8B30704A1E94FFBD0072B35C /* MapBusStopModel.h */,
-				8B30704B1E94FFBD0072B35C /* MapBusStopModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -335,6 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B3070031E949ACB0072B35C /* LaunchScreen.storyboard in Resources */,
+				7D3D98EA1E954431001A16C7 /* TransitTableViewCell.xib in Resources */,
 				8B3070001E949ACB0072B35C /* Assets.xcassets in Resources */,
 				8B306FFE1E949ACB0072B35C /* Main.storyboard in Resources */,
 			);
@@ -409,18 +411,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D3D98F41E9546A2001A16C7 /* UIColor+Flat.m in Sources */,
 				8B306FFB1E949ACB0072B35C /* ViewController.m in Sources */,
-				8B3070461E94FE7B0072B35C /* MapStepModel.m in Sources */,
-				8B3070431E94FDB00072B35C /* MapGeoPoint.m in Sources */,
 				8B306FF81E949ACB0072B35C /* AppDelegate.m in Sources */,
 				8B3070291E94C1860072B35C /* SearchViewController.m in Sources */,
-				8B30704C1E94FFBD0072B35C /* MapBusStopModel.m in Sources */,
-				8B3070371E94FA910072B35C /* RouteModel.m in Sources */,
-				8B3070341E94F9F50072B35C /* TransitModel.m in Sources */,
+				7D3D98F91E955083001A16C7 /* TransitGuideViewController.m in Sources */,
+				7D3D98E91E954431001A16C7 /* TransitTableViewCell.m in Sources */,
+				7D3D98F01E954544001A16C7 /* TransitResultViewController.m in Sources */,
 				8B30702E1E94D4200072B35C /* SearchView.m in Sources */,
-				8B30703A1E94FB6B0072B35C /* MapSegmentModel.m in Sources */,
-				8B3070491E94FF0F0072B35C /* MapBusLineModel.m in Sources */,
-				8B3070401E94FD150072B35C /* MapWalkingModel.m in Sources */,
 				8B306FF51E949ACB0072B35C /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -504,8 +502,11 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/路线规划/PrefixHeader.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -551,7 +552,10 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/路线规划/PrefixHeader.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

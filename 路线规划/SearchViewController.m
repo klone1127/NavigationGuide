@@ -9,8 +9,8 @@
 #import "SearchViewController.h"
 #import "AMapSearchKit/AMapSearchKit.h"
 #import <MAMapKit/MAMapKit.h>
-
 #import "SearchView.h"
+#import "TransitResultViewController.h"
 
 #define kSearchViewID         @"searchView"
 
@@ -23,8 +23,10 @@
 
 @property (assign, nonatomic) CLLocationCoordinate2D startCoordinate; //起始点经纬度
 @property (assign, nonatomic) CLLocationCoordinate2D destinationCoordinate; //终点经纬度
-
+@property (strong, nonatomic) AMapRoute         *route;  //路径规划信息
+@property (copy, nonatomic) NSArray             *routeArray;  //规划的路径数组
 @property (nonatomic, strong)SearchView         *searchView;
+
 
 @end
 
@@ -108,9 +110,17 @@
 - (void)onRouteSearchDone:(AMapRouteSearchBaseRequest *)request response:(AMapRouteSearchResponse *)response {
     NSLog(@"routeSearchDone request:%@, response:%@", request, response);
     if (response.count == 0) { return; }
-    
+
     // 解析数据
-    NSLog(@"");
+    self.route = nil;
+    self.routeArray = nil;
+    self.route = response.route;
+    self.routeArray = response.route.transits;
+
+    TransitResultViewController *TRVC = [[TransitResultViewController alloc] init];
+    TRVC.routerCount = response.count;
+    TRVC.transitArray = [NSMutableArray arrayWithArray:response.route.transits];
+    [self.navigationController pushViewController:TRVC animated:YES];
 }
 
 #pragma mark - textfield Delegate
