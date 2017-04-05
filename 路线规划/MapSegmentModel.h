@@ -7,24 +7,26 @@
 //
 
 #import <JSONModel/JSONModel.h>
+#import "MapWalkingModel.h"
+#import "MapBusLineModel.h"
 
 @interface MapSegmentModel : JSONModel
 
 ///此路段步行导航信息
-@property (nonatomic, strong) AMapWalking  *walking;
+@property (nonatomic, strong) MapWalkingModel  *walking;
 ///此路段可供选择的不同公交线路 AMapBusLine 数组
-@property (nonatomic, strong) NSArray<AMapBusLine *> *buslines;
+@property (nonatomic, strong) NSArray<MapBusLineModel *> *buslines;
 ///出租车信息，跨城时有效
-@property (nonatomic, strong) AMapTaxi     *taxi;
-///火车信息，跨城时有效
-@property (nonatomic, strong) AMapRailway  *railway;
+//@property (nonatomic, strong) AMapTaxi     *taxi;
+/////火车信息，跨城时有效
+//@property (nonatomic, strong) AMapRailway  *railway;
 ///入口名称
 @property (nonatomic, copy)   NSString     *enterName;
 ///入口经纬度
-@property (nonatomic, copy)   AMapGeoPoint *enterLocation;
+@property (nonatomic, copy)   MapGeoPoint *enterLocation;
 ///出口名称
 @property (nonatomic, copy)   NSString     *exitName;
 ///出口经纬度
-@property (nonatomic, copy)   AMapGeoPoint *exitLocation;
+@property (nonatomic, copy)   MapGeoPoint *exitLocation;
 
 @end

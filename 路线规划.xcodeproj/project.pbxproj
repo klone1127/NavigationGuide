@@ -21,6 +21,10 @@
 		8B3070371E94FA910072B35C /* RouteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3070361E94FA910072B35C /* RouteModel.m */; };
 		8B30703A1E94FB6B0072B35C /* MapSegmentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3070391E94FB6B0072B35C /* MapSegmentModel.m */; };
 		8B3070401E94FD150072B35C /* MapWalkingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B30703F1E94FD150072B35C /* MapWalkingModel.m */; };
+		8B3070431E94FDB00072B35C /* MapGeoPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3070421E94FDB00072B35C /* MapGeoPoint.m */; };
+		8B3070461E94FE7B0072B35C /* MapStepModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3070451E94FE7B0072B35C /* MapStepModel.m */; };
+		8B3070491E94FF0F0072B35C /* MapBusLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3070481E94FF0F0072B35C /* MapBusLineModel.m */; };
+		8B30704C1E94FFBD0072B35C /* MapBusStopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B30704B1E94FFBD0072B35C /* MapBusStopModel.m */; };
 		CBD9C1EDF56E9D8EFEF88468 /* libPods-路线规划.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9348F6DA268F85D310C6470 /* libPods-路线规划.a */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +75,14 @@
 		8B3070391E94FB6B0072B35C /* MapSegmentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapSegmentModel.m; sourceTree = "<group>"; };
 		8B30703E1E94FD150072B35C /* MapWalkingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapWalkingModel.h; sourceTree = "<group>"; };
 		8B30703F1E94FD150072B35C /* MapWalkingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapWalkingModel.m; sourceTree = "<group>"; };
+		8B3070411E94FDB00072B35C /* MapGeoPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapGeoPoint.h; sourceTree = "<group>"; };
+		8B3070421E94FDB00072B35C /* MapGeoPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapGeoPoint.m; sourceTree = "<group>"; };
+		8B3070441E94FE7B0072B35C /* MapStepModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapStepModel.h; sourceTree = "<group>"; };
+		8B3070451E94FE7B0072B35C /* MapStepModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapStepModel.m; sourceTree = "<group>"; };
+		8B3070471E94FF0F0072B35C /* MapBusLineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapBusLineModel.h; sourceTree = "<group>"; };
+		8B3070481E94FF0F0072B35C /* MapBusLineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapBusLineModel.m; sourceTree = "<group>"; };
+		8B30704A1E94FFBD0072B35C /* MapBusStopModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapBusStopModel.h; sourceTree = "<group>"; };
+		8B30704B1E94FFBD0072B35C /* MapBusStopModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapBusStopModel.m; sourceTree = "<group>"; };
 		B2158DFDE25BFDF8B72B8984 /* Pods-路线规划.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-路线规划.debug.xcconfig"; path = "Pods/Target Support Files/Pods-路线规划/Pods-路线规划.debug.xcconfig"; sourceTree = "<group>"; };
 		C16EB73FBC8B5A8BB3348BF5 /* Pods-路线规划.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-路线规划.release.xcconfig"; path = "Pods/Target Support Files/Pods-路线规划/Pods-路线规划.release.xcconfig"; sourceTree = "<group>"; };
 		C9348F6DA268F85D310C6470 /* libPods-路线规划.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-路线规划.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -200,6 +212,14 @@
 				8B3070391E94FB6B0072B35C /* MapSegmentModel.m */,
 				8B30703E1E94FD150072B35C /* MapWalkingModel.h */,
 				8B30703F1E94FD150072B35C /* MapWalkingModel.m */,
+				8B3070411E94FDB00072B35C /* MapGeoPoint.h */,
+				8B3070421E94FDB00072B35C /* MapGeoPoint.m */,
+				8B3070441E94FE7B0072B35C /* MapStepModel.h */,
+				8B3070451E94FE7B0072B35C /* MapStepModel.m */,
+				8B3070471E94FF0F0072B35C /* MapBusLineModel.h */,
+				8B3070481E94FF0F0072B35C /* MapBusLineModel.m */,
+				8B30704A1E94FFBD0072B35C /* MapBusStopModel.h */,
+				8B30704B1E94FFBD0072B35C /* MapBusStopModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -390,12 +410,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B306FFB1E949ACB0072B35C /* ViewController.m in Sources */,
+				8B3070461E94FE7B0072B35C /* MapStepModel.m in Sources */,
+				8B3070431E94FDB00072B35C /* MapGeoPoint.m in Sources */,
 				8B306FF81E949ACB0072B35C /* AppDelegate.m in Sources */,
 				8B3070291E94C1860072B35C /* SearchViewController.m in Sources */,
+				8B30704C1E94FFBD0072B35C /* MapBusStopModel.m in Sources */,
 				8B3070371E94FA910072B35C /* RouteModel.m in Sources */,
 				8B3070341E94F9F50072B35C /* TransitModel.m in Sources */,
 				8B30702E1E94D4200072B35C /* SearchView.m in Sources */,
 				8B30703A1E94FB6B0072B35C /* MapSegmentModel.m in Sources */,
+				8B3070491E94FF0F0072B35C /* MapBusLineModel.m in Sources */,
 				8B3070401E94FD150072B35C /* MapWalkingModel.m in Sources */,
 				8B306FF51E949ACB0072B35C /* main.m in Sources */,
 			);
