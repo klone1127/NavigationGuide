@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "AMapFoundationKit/AMapServices.h"
+#import "Personal.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +19,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    // 高德
+    [AMapServices sharedServices].apiKey = KamapKey;
     return YES;
 }
 
