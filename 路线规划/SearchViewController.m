@@ -66,7 +66,7 @@
 - (void)finishLocationChange:(NSNotification *)not {
 //    NSLog(@"finish not:%@", not.userInfo);
     
-    [self geoWithText:self.searchView.finishLocation.text];
+//    [self geoWithText:self.searchView.finishLocation.text];
 }
 
 #pragma mark - amapSearch Delegate
@@ -119,6 +119,7 @@
 
     TransitResultViewController *TRVC = [[TransitResultViewController alloc] init];
     TRVC.routerCount = response.count;
+
     TRVC.transitArray = [NSMutableArray arrayWithArray:response.route.transits];
     [self.navigationController pushViewController:TRVC animated:YES];
 }

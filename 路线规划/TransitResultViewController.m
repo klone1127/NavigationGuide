@@ -8,12 +8,14 @@
 
 #import "TransitResultViewController.h"
 #import "TransitTableViewCell.h"
+#import <AMapSearchKit/AMapSearchKit.h>
 
 #define kTransitTableViewCellID  @"transitTableViewCell"
 
 @interface TransitResultViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong)UITableView    *transitResultTableView;
+@property (strong, nonatomic)AMapTransit   *transit;  //公交换乘方案的详细信息
 
 @end
 
@@ -47,16 +49,50 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTransitTableViewCellID];
+    TransitTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTransitTableViewCellID];
     if (!cell) {
         NSArray *cellArray = [[NSBundle mainBundle] loadNibNamed:@"TransitTableViewCell" owner:nil options:nil];
         cell = [cellArray firstObject];
     }
     
-    
     self.transitResultTableView.rowHeight = cell.frame.size.height;
     
+    self.transit = self.transitArray[indexPath.row];
+    
+    NSString *time = [self showTimeWithSec:self.transit.duration];
+    cell.transitsInfoLabel.text = [NSString stringWithFormat:@"%@ · ", time];
+    
     return cell;
+}
+
+- (NSString *)showTimeWithSec:(NSInteger)duration {
+    if (duration < 60) {
+        return [NSString stringWithFormat:@"%ld秒", duration];
+    } else if(duration >= 60 && duration < 3600) {
+        NSInteger min = duration / 60;
+        NSInteger sec = duration % 60;
+        NSString *showTime;
+        if (sec == 0) {
+            showTime = [NSString stringWithFormat:@"%ld分钟", min];
+        } else {
+            showTime = [NSString stringWithFormat:@"%ld分钟%ld秒", min, sec];
+        }
+        return showTime;
+    } else {
+        NSInteger hour = duration / 3600;
+        NSInteger min = duration / 60;
+        NSInteger sec = duration % 60;
+        NSString *showTime;
+        if (min == 0 && sec == 0) {
+            showTime = [NSString stringWithFormat:@"%ld小时", hour];
+        } else if (min == 0 && sec != 0) {
+            showTime = [NSString stringWithFormat:@"%ld小时%ld分钟%ld秒", hour, min, sec];
+        } else if (min != 0 && sec == 0) {
+            showTime = [NSString stringWithFormat:@"%ld小时%ld分钟", hour, min];
+        }
+
+        return showTime;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

@@ -15,6 +15,5 @@
 @property (nonatomic, assign)NSInteger      routerCount;
 @property (strong, nonatomic) AMapRoute     *route;
 @property (nonatomic, strong)NSMutableArray *transitArray; //公交换乘方案的详细信息 数组
-@property (strong, nonatomic) AMapTransit   *transit;  //公交换乘方案的详细信息
 
 @end
