@@ -10,4 +10,18 @@
 
 @interface LocationView : UIView
 
+@property (nonatomic, strong)UILabel    *originLocation;
+@property (nonatomic, strong)UILabel    *destinationLocation;
+
+//@property (nonatomic, copy)NSString     *originWalkDistance;
+//@property (nonatomic, copy)NSString     *destinationWalkDistance;
+
+// 初始位置
+- (void)originLocation:(NSString *)location;
+//- (void)showOriginLocationView:(NSString *)location walkDistance:(NSString *)distance;
+
+// 结束位置
+- (void)destinationLocation:(NSString *)location;
+//- (void)showDestionationLocationView:(NSString *)location walkDistance:(NSString *)distance;
+
 @end

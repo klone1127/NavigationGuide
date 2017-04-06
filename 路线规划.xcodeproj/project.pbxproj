@@ -22,6 +22,14 @@
 		8B3070191E949ACB0072B35C /* ____UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3070181E949ACB0072B35C /* ____UITests.m */; };
 		8B3070291E94C1860072B35C /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3070281E94C1860072B35C /* SearchViewController.m */; };
 		8B30702E1E94D4200072B35C /* SearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B30702D1E94D4200072B35C /* SearchView.m */; };
+		8B3070501E95E90F0072B35C /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B30704F1E95E90F0072B35C /* BaseViewController.m */; };
+		8B3070531E95EAC30072B35C /* RouteMapDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3070521E95EAC30072B35C /* RouteMapDetailViewController.m */; };
+		8B3070561E95EC1A0072B35C /* LocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3070551E95EC1A0072B35C /* LocationView.m */; };
+		8B30705F1E9620710072B35C /* WalkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B30705D1E9620710072B35C /* WalkCell.m */; };
+		8B3070601E9620710072B35C /* WalkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B30705E1E9620710072B35C /* WalkCell.xib */; };
+		8B3070651E96220A0072B35C /* BusLineDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3070631E96220A0072B35C /* BusLineDetailCell.m */; };
+		8B3070661E96220A0072B35C /* BusLineDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B3070641E96220A0072B35C /* BusLineDetailCell.xib */; };
+		8B30706A1E9634990072B35C /* ReGoecode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3070691E9634990072B35C /* ReGoecode.m */; };
 		CBD9C1EDF56E9D8EFEF88468 /* libPods-路线规划.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9348F6DA268F85D310C6470 /* libPods-路线规划.a */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +82,20 @@
 		8B3070281E94C1860072B35C /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		8B30702C1E94D4200072B35C /* SearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchView.h; sourceTree = "<group>"; };
 		8B30702D1E94D4200072B35C /* SearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchView.m; sourceTree = "<group>"; };
+		8B30704E1E95E90F0072B35C /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		8B30704F1E95E90F0072B35C /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		8B3070511E95EAC30072B35C /* RouteMapDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteMapDetailViewController.h; sourceTree = "<group>"; };
+		8B3070521E95EAC30072B35C /* RouteMapDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteMapDetailViewController.m; sourceTree = "<group>"; };
+		8B3070541E95EC1A0072B35C /* LocationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationView.h; sourceTree = "<group>"; };
+		8B3070551E95EC1A0072B35C /* LocationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationView.m; sourceTree = "<group>"; };
+		8B30705C1E9620710072B35C /* WalkCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalkCell.h; sourceTree = "<group>"; };
+		8B30705D1E9620710072B35C /* WalkCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalkCell.m; sourceTree = "<group>"; };
+		8B30705E1E9620710072B35C /* WalkCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WalkCell.xib; sourceTree = "<group>"; };
+		8B3070621E96220A0072B35C /* BusLineDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusLineDetailCell.h; sourceTree = "<group>"; };
+		8B3070631E96220A0072B35C /* BusLineDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusLineDetailCell.m; sourceTree = "<group>"; };
+		8B3070641E96220A0072B35C /* BusLineDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusLineDetailCell.xib; sourceTree = "<group>"; };
+		8B3070681E9634990072B35C /* ReGoecode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReGoecode.h; sourceTree = "<group>"; };
+		8B3070691E9634990072B35C /* ReGoecode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReGoecode.m; sourceTree = "<group>"; };
 		B2158DFDE25BFDF8B72B8984 /* Pods-路线规划.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-路线规划.debug.xcconfig"; path = "Pods/Target Support Files/Pods-路线规划/Pods-路线规划.debug.xcconfig"; sourceTree = "<group>"; };
 		C16EB73FBC8B5A8BB3348BF5 /* Pods-路线规划.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-路线规划.release.xcconfig"; path = "Pods/Target Support Files/Pods-路线规划/Pods-路线规划.release.xcconfig"; sourceTree = "<group>"; };
 		C9348F6DA268F85D310C6470 /* libPods-路线规划.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-路线规划.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,11 +147,14 @@
 		7D3D98E51E9543DC001A16C7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8B3070611E96218D0072B35C /* RouteMapDetail */,
 				8B30702C1E94D4200072B35C /* SearchView.h */,
 				8B30702D1E94D4200072B35C /* SearchView.m */,
 				7D3D98E61E954431001A16C7 /* TransitTableViewCell.h */,
 				7D3D98E71E954431001A16C7 /* TransitTableViewCell.m */,
 				7D3D98E81E954431001A16C7 /* TransitTableViewCell.xib */,
+				8B3070541E95EC1A0072B35C /* LocationView.h */,
+				8B3070551E95EC1A0072B35C /* LocationView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -168,6 +193,7 @@
 		8B306FF21E949ACB0072B35C /* 路线规划 */ = {
 			isa = PBXGroup;
 			children = (
+				8B3070671E9634750072B35C /* Tools */,
 				8B30704D1E95E84B0072B35C /* Controller */,
 				7D3D98F11E95468D001A16C7 /* Category */,
 				7D3D98E51E9543DC001A16C7 /* View */,
@@ -229,8 +255,34 @@
 				8B3070281E94C1860072B35C /* SearchViewController.m */,
 				7D3D98EE1E954544001A16C7 /* TransitResultViewController.h */,
 				7D3D98EF1E954544001A16C7 /* TransitResultViewController.m */,
+				8B30704E1E95E90F0072B35C /* BaseViewController.h */,
+				8B30704F1E95E90F0072B35C /* BaseViewController.m */,
+				8B3070511E95EAC30072B35C /* RouteMapDetailViewController.h */,
+				8B3070521E95EAC30072B35C /* RouteMapDetailViewController.m */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		8B3070611E96218D0072B35C /* RouteMapDetail */ = {
+			isa = PBXGroup;
+			children = (
+				8B30705C1E9620710072B35C /* WalkCell.h */,
+				8B30705D1E9620710072B35C /* WalkCell.m */,
+				8B30705E1E9620710072B35C /* WalkCell.xib */,
+				8B3070621E96220A0072B35C /* BusLineDetailCell.h */,
+				8B3070631E96220A0072B35C /* BusLineDetailCell.m */,
+				8B3070641E96220A0072B35C /* BusLineDetailCell.xib */,
+			);
+			name = RouteMapDetail;
+			sourceTree = "<group>";
+		};
+		8B3070671E9634750072B35C /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				8B3070681E9634990072B35C /* ReGoecode.h */,
+				8B3070691E9634990072B35C /* ReGoecode.m */,
+			);
+			name = Tools;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -346,6 +398,8 @@
 				8B3070031E949ACB0072B35C /* LaunchScreen.storyboard in Resources */,
 				7D3D98EA1E954431001A16C7 /* TransitTableViewCell.xib in Resources */,
 				8B3070001E949ACB0072B35C /* Assets.xcassets in Resources */,
+				8B3070661E96220A0072B35C /* BusLineDetailCell.xib in Resources */,
+				8B3070601E9620710072B35C /* WalkCell.xib in Resources */,
 				8B306FFE1E949ACB0072B35C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -420,14 +474,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D3D98F41E9546A2001A16C7 /* UIColor+Flat.m in Sources */,
+				8B3070501E95E90F0072B35C /* BaseViewController.m in Sources */,
+				8B3070531E95EAC30072B35C /* RouteMapDetailViewController.m in Sources */,
 				8B306FFB1E949ACB0072B35C /* ViewController.m in Sources */,
 				8B306FF81E949ACB0072B35C /* AppDelegate.m in Sources */,
 				8B3070291E94C1860072B35C /* SearchViewController.m in Sources */,
 				7D3D98F91E955083001A16C7 /* TransitGuideViewController.m in Sources */,
 				7D3D98E91E954431001A16C7 /* TransitTableViewCell.m in Sources */,
 				7D3D98F01E954544001A16C7 /* TransitResultViewController.m in Sources */,
+				8B3070561E95EC1A0072B35C /* LocationView.m in Sources */,
 				8B30702E1E94D4200072B35C /* SearchView.m in Sources */,
 				8B306FF51E949ACB0072B35C /* main.m in Sources */,
+				8B30705F1E9620710072B35C /* WalkCell.m in Sources */,
+				8B30706A1E9634990072B35C /* ReGoecode.m in Sources */,
+				8B3070651E96220A0072B35C /* BusLineDetailCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

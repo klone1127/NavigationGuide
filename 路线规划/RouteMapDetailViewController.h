@@ -7,7 +7,14 @@
 //
 
 #import "BaseViewController.h"
+@class AMapTransit;
+@class AMapRoute;
 
 @interface RouteMapDetailViewController : BaseViewController
 
+@property (nonatomic, copy)NSString             *originLocation;
+@property (nonatomic, copy)NSString             *destinationLocation;
+
+@property (nonatomic, strong)AMapRoute          *mapRoute;
+@property (nonatomic, strong)AMapTransit        *mapTransit;
 @end

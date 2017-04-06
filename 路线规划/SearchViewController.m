@@ -18,9 +18,6 @@
 
 @property (nonatomic, strong)AMapSearchAPI                  *mapSearch;
 
-//@property (strong, nonatomic) MAPointAnnotation *startAnnotation;
-//@property (strong, nonatomic) MAPointAnnotation *destinationAnnotation;
-
 @property (assign, nonatomic) CLLocationCoordinate2D startCoordinate; //起始点经纬度
 @property (assign, nonatomic) CLLocationCoordinate2D destinationCoordinate; //终点经纬度
 @property (strong, nonatomic) AMapRoute         *route;  //路径规划信息
@@ -58,7 +55,6 @@
 }
 
 - (void)startLocationChange:(NSNotification *)not {
-//    NSLog(@"start text:%@", self.searchView.startLocation.text);
     // 获取地理编码
     [self geoWithText:self.searchView.startLocation.text];
 }
@@ -106,7 +102,7 @@
     NSLog(@"tips request:%@, response:%@",request, response);
 }
 
-// 线路规划
+#pragma mark - 线路规划
 - (void)onRouteSearchDone:(AMapRouteSearchBaseRequest *)request response:(AMapRouteSearchResponse *)response {
     NSLog(@"routeSearchDone request:%@, response:%@", request, response);
     if (response.count == 0) { return; }
@@ -119,7 +115,9 @@
 
     TransitResultViewController *TRVC = [[TransitResultViewController alloc] init];
     TRVC.routerCount = response.count;
-
+    TRVC.route = self.route;
+    TRVC.originLocation = self.searchView.startLocation.text;
+    TRVC.destinationLocation = self.searchView.finishLocation.text;
     TRVC.transitArray = [NSMutableArray arrayWithArray:response.route.transits];
     [self.navigationController pushViewController:TRVC animated:YES];
 }
@@ -145,6 +143,10 @@
     }
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UITextFieldTextDidEndEditingNotification" object:self.searchView.finishLocation];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UITextFieldTextDidEndEditingNotification" object:self.searchView.startLocation];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

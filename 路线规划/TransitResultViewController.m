@@ -9,6 +9,7 @@
 #import "TransitResultViewController.h"
 #import "TransitTableViewCell.h"
 #import <AMapSearchKit/AMapSearchKit.h>
+#import "RouteMapDetailViewController.h"
 
 #define kTransitTableViewCellID  @"transitTableViewCell"
 
@@ -48,7 +49,6 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-   
     return self.transitArray.count;
 }
 
@@ -66,7 +66,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+    self.transit = self.transitArray[indexPath.row];
+
+    RouteMapDetailViewController *routeVC = [[RouteMapDetailViewController alloc] init];
+    routeVC.mapRoute = self.route;
+    routeVC.mapTransit = self.transit;
+    routeVC.originLocation = self.originLocation;
+    routeVC.destinationLocation = self.destinationLocation;
+    [self.navigationController pushViewController:routeVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
