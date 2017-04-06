@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AMapSearchKit/AMapSearchKit.h>
 
 @interface TransitTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *transitsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *transitsInfoLabel;
+
+- (void)configDataWithTranditsModel:(AMapTransit *)transit;
 
 @end
