@@ -23,6 +23,8 @@
 @property (nonatomic, strong)UITableView        *detailTableView;
 @property (nonatomic, strong)AMapSegment        *mapSegment;
 
+@property (nonatomic, strong)NSMutableArray     *dataSource;
+
 @end
 
 @implementation RouteMapDetailViewController
@@ -31,13 +33,32 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     // Do any additional setup after loading the view.
+    self.dataSource = [NSMutableArray arrayWithCapacity:0];
     [self initDetailTableView];
+    [self initData];
     
 }
 
-//- (void)getOriginLocationAndDestinationLocation:(CLLocationCoordinate2D)locationCoordinate {
-//    
-//}
+- (void)initData {
+    
+    for (AMapSegment *segments in self.mapTransit.segments) {
+        
+        if (segments.walking.distance) {
+            // 添加步行到 数据源
+            [self.dataSource addObjectsFromArray:segments.walking.steps];
+        }
+        
+        if ([segments.buslines firstObject].name) {
+            // 区分 公交/地铁
+//          if  ([segments.buslines firstObject].type = "地铁线路") {}
+            // 添加公交到数据源
+            [self.dataSource addObjectsFromArray:segments.buslines];
+        }
+        
+    }
+//    [self.detailTableView reloadData];
+    
+}
 
 - (void)initDetailTableView {
     self.detailTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStylePlain];
@@ -61,6 +82,7 @@
     
     self.mapSegment = self.mapTransit.segments[indexPath.row];
     
+    // 根据类名区分 [self.dataSource[indexPath.row] isKindOfClass:[AMapStep class]]
     
     NSLog(@"****************************");
 //    NSLog(@"\n%@", );
