@@ -15,6 +15,16 @@
     // Initialization code
 }
 
+- (void)configBusLineDetailCell:(AMapBusLine *)busLine {
+    self.busNameLabel.text = busLine.name;
+    self.originStationLabel.text = busLine.departureStop.name;
+    self.destinationStationLabel.text = busLine.arrivalStop.name;
+    self.otherBusLineBut.hidden = YES;
+    self.anotherLineTipsLabel.hidden = YES;
+    
+    [self.showStationDetailBut setAttributedTitle:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%ld站", busLine.viaBusStops.count + 1]] forState:UIControlStateNormal];
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

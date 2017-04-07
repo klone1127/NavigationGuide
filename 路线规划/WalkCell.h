@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AMapSearchKit/AMapSearchKit.h>
 
 @interface WalkCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *walkDetailLabel;
+
+- (void)configWalkCell:(AMapStep *)mapStep;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AMapSearchKit/AMapSearchKit.h>
 
 @interface BusLineDetailCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *busNameLabel;
@@ -16,4 +17,5 @@
 @property (weak, nonatomic) IBOutlet UIButton *showStationDetailBut;
 @property (weak, nonatomic) IBOutlet UILabel *anotherLineTipsLabel;
 
+- (void)configBusLineDetailCell:(AMapBusLine *)busLine;
 @end

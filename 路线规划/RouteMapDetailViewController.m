@@ -98,7 +98,6 @@
     
     if ([self.dataSource[indexPath.row] isKindOfClass:[AMapStep class]]) {
         AMapStep *mapStep = self.dataSource[indexPath.row];
-        NSLog(@"AMapStep 行走指示:%@ 所需：%ld s", mapStep.instruction, mapStep.duration);
         
         WalkCell *cell = [tableView dequeueReusableCellWithIdentifier:kWalkCellID];
         if (!cell) {
@@ -106,8 +105,7 @@
             cell = [cellArray firstObject];
         }
         self.detailTableView.rowHeight = cell.frame.size.height;
-        
-        cell.walkDetailLabel.text = [NSString stringWithFormat:@"%@ 约%@", mapStep.instruction, [NSDate showTimeWithSec:mapStep.duration]];
+        [cell configWalkCell:mapStep];
         return cell;
     }
     
@@ -123,21 +121,14 @@
         
         self.detailTableView.rowHeight = cell.frame.size.height;
         // 需要获取对应的 公交，然后做数据展示
-        cell.busNameLabel.text = busLine.name;
-        cell.originStationLabel.text = busLine.startStop;
-        cell.destinationStationLabel.text = busLine.endStop;
-        cell.otherBusLineBut.hidden = YES;
-        cell.anotherLineTipsLabel.hidden = YES;
-        
-        [cell.showStationDetailBut setAttributedTitle:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%ld站", busLine.viaBusStops.count + 1]] forState:UIControlStateNormal];
-
-//        cell.showStationDetailBut setTitle:self.mapSegment forState:<#(UIControlState)#>
+        [cell configBusLineDetailCell:busLine];
+#warning TODO - 点击使用 Block 封装
+        [cell.showStationDetailBut addTarget:self action:@selector(ShowMoreStation:) forControlEvents:UIControlEventTouchUpInside];
         return cell;
         
     } else {
         return nil;
     }
-    
     
 }
 
@@ -159,6 +150,16 @@
     LocationView *footerView = [[LocationView alloc] initWithFrame:CGRectMake(0, 0, self.detailTableView.frame.size.width, 40)];
     [footerView destinationLocation:self.destinationLocation];
     return footerView;
+}
+
+- (void)ShowMoreStation:(UIButton *)sender {
+//    BusLineDetailCell
+    UITableViewCell *cell = (UITableViewCell *)sender.superview.superview;
+    NSIndexPath *indexPath = [self.detailTableView indexPathForCell:cell];
+    NSIndexPath *index1 = [NSIndexPath indexPathForItem:indexPath.row inSection:0];
+    BusLineDetailCell *busLineDetailCell = [self.detailTableView cellForRowAtIndexPath:index1];
+    NSLog(@"cell:%@", busLineDetailCell);
+    NSLog(@"显示更多数据");
 }
 
 - (void)didReceiveMemoryWarning {

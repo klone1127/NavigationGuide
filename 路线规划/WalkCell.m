@@ -15,6 +15,10 @@
     // Initialization code
 }
 
+- (void)configWalkCell:(AMapStep *)mapStep {
+    self.walkDetailLabel.text = [NSString stringWithFormat:@"%@ 约%@", mapStep.instruction, [NSDate showTimeWithSec:mapStep.duration]];
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

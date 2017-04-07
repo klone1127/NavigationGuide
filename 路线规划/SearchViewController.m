@@ -159,12 +159,13 @@
     [self.mapSearch AMapGeocodeSearch:geo];
 }
 
-// 发起路线规划
+#pragma mark - 发起路线规划
 - (void)transitRouteSearchWithStartCoordinate:(CLLocationCoordinate2D)startCoordinate DestinationCoordinate:(CLLocationCoordinate2D)destinationCoordinate {
     AMapTransitRouteSearchRequest *navi = [[AMapTransitRouteSearchRequest alloc] init];
 
     navi.nightflag = YES;
     navi.requireExtension = YES;
+    navi.city = @"郑州市";
 
     /* 出发点. */
     navi.origin = [AMapGeoPoint locationWithLatitude:startCoordinate.latitude

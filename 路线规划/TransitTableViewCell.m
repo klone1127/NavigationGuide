@@ -41,7 +41,7 @@
         }
     }
     
-    resultString = [buslineArray componentsJoinedByString:@" / "];
+    resultString = [buslineArray componentsJoinedByString:@" -> "];
     return resultString;
 }
 
