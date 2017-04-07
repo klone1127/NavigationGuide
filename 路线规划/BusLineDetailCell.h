@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *otherBusLineBut;
 @property (weak, nonatomic) IBOutlet UILabel *destinationStationLabel;
 @property (weak, nonatomic) IBOutlet UIButton *showStationDetailBut;
+@property (weak, nonatomic) IBOutlet UILabel *anotherLineTipsLabel;
 
 @end

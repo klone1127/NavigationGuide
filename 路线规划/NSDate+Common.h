@@ -10,4 +10,17 @@
 
 @interface NSDate (Common)
 
+/**
+ 
+ 格式化时间显示
+ 
+ @param duration 单位 s
+ 
+ @return h/m/s
+ 
+ */
+
++ (NSString *)showTimeWithSec:(NSInteger)duration;
+
+
 @end

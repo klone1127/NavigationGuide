@@ -14,6 +14,8 @@
 #define kTop                10
 #define kLocationTextH      30
 
+#define kPointImageW        20
+
 @implementation LocationView
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -46,7 +48,7 @@
     
     [originImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(11);
-        make.width.height.mas_equalTo(30);
+        make.width.height.mas_equalTo(kPointImageW);
         make.centerY.equalTo(self.mas_centerY);
     }];
 }

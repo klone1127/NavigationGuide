@@ -13,7 +13,6 @@
 //#import "ReGoecode.h"
 #import <AMapSearchKit/AMapSearchKit.h>
 
-#import <objc/objc-runtime.h>
 
 #define kWalkCellID     @"walkCell"
 #define kBusLineDetailCellID      @"busLineDetailCell"
@@ -24,6 +23,8 @@
 @property (nonatomic, strong)AMapSegment        *mapSegment;
 
 @property (nonatomic, strong)NSMutableArray     *dataSource;
+
+@property (nonatomic, strong)NSMutableArray     *transBusLineArray;         // 存放可转程的公交数组
 
 @end
 
@@ -41,21 +42,33 @@
 
 - (void)initData {
     
-    for (AMapSegment *segments in self.mapTransit.segments) {
+    [self.dataSource removeAllObjects];
+    
+    for (int i = 0; i < self.mapTransit.segments.count; i++) {
+        AMapSegment *segments = self.mapTransit.segments[i];
         
+        AMapBusLine *firstBusline = [segments.buslines firstObject];
+        NSLog(@"segments.walking.steps:%@", segments.walking.steps);
+        NSLog(@"segments.buslines:%@", segments.buslines);
+
         if (segments.walking.distance) {
             // 添加步行到 数据源
             [self.dataSource addObjectsFromArray:segments.walking.steps];
+            NSLog(@"步行路线加进去了");
         }
-        
-        if ([segments.buslines firstObject].name) {
+
+        if (firstBusline.name) {
             // 区分 公交/地铁
 //          if  ([segments.buslines firstObject].type = "地铁线路") {}
             // 添加公交到数据源
-            [self.dataSource addObjectsFromArray:segments.buslines];
+            [self.dataSource addObject:firstBusline];
+//            [self.dataSource addObjectsFromArray:segments.buslines];
+            NSLog(@"公交/地铁 加进去了");
         }
-        
     }
+    
+    NSLog(@"dataSource:%@", self.dataSource);
+    
 //    [self.detailTableView reloadData];
     
 }
@@ -70,52 +83,61 @@
     [self.detailTableView registerNib:[UINib nibWithNibName:@"WalkCell" bundle:nil] forCellReuseIdentifier:kWalkCellID];
     [self.detailTableView registerNib:[UINib nibWithNibName:@"BusLineDetailCell" bundle:nil] forCellReuseIdentifier:kBusLineDetailCellID];
     
-    
+    self.detailTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // 转公交的 次数
-    return self.mapTransit.segments.count;
+    return self.dataSource.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    self.mapSegment = self.mapTransit.segments[indexPath.row];
-    
+    NSLog(@"****************************");
     // 根据类名区分 [self.dataSource[indexPath.row] isKindOfClass:[AMapStep class]]
     
-    NSLog(@"****************************");
-//    NSLog(@"\n%@", );
-    // 判断时要根据 walking model 数组中走的路线
-//    if (self.mapSegment.walking.distance != 0) {
-//        WalkCell *cell = [tableView dequeueReusableCellWithIdentifier:kWalkCellID];
-//        if (!cell) {
-//            NSArray *cellArray = [[NSBundle mainBundle] loadNibNamed:@"WalkCell" owner:nil options:nil];
-//            cell = [cellArray firstObject];
-//        }
-//        self.detailTableView.rowHeight = cell.frame.size.height;
-////        NSString *walkDistance = [NSString stringWithFormat:@"%@, %@", self.mapSegment.walking];
-//        cell.walkDetailLabel.text = @"步行215米";
-//        return cell;
-//    } else if (self.mapSegment.railway.uid !=nil) {
-//        // 这里显示含有地铁的 cell
-//        return nil;
-//    } else {
+    if ([self.dataSource[indexPath.row] isKindOfClass:[AMapStep class]]) {
+        AMapStep *mapStep = self.dataSource[indexPath.row];
+        NSLog(@"AMapStep 行走指示:%@ 所需：%ld s", mapStep.instruction, mapStep.duration);
+        
+        WalkCell *cell = [tableView dequeueReusableCellWithIdentifier:kWalkCellID];
+        if (!cell) {
+            NSArray *cellArray = [[NSBundle mainBundle] loadNibNamed:@"WalkCell" owner:nil options:nil];
+            cell = [cellArray firstObject];
+        }
+        self.detailTableView.rowHeight = cell.frame.size.height;
+        
+        cell.walkDetailLabel.text = [NSString stringWithFormat:@"%@ 约%@", mapStep.instruction, [NSDate showTimeWithSec:mapStep.duration]];
+        return cell;
+    }
+    
+    if ([self.dataSource[indexPath.row] isKindOfClass:[AMapBusLine class]]) {
+        AMapBusLine *busLine = self.dataSource[indexPath.row];
+        NSLog(@"busLine :%@", busLine.name);
+        
         BusLineDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:kBusLineDetailCellID];
         if (!cell) {
             NSArray *cellArray = [[NSBundle mainBundle] loadNibNamed:@"BusLineDetailCell" owner:nil options:nil];
             cell = [cellArray firstObject];
         }
-    
+        
         self.detailTableView.rowHeight = cell.frame.size.height;
         // 需要获取对应的 公交，然后做数据展示
-//        cell.busNameLabel.text = self.mapSegment.buslines[indexPath.row].
-        cell.originStationLabel.text = self.mapSegment.enterName;
-        cell.destinationStationLabel.text = self.mapSegment.exitName;
-//        cell.otherBusLineBut setTitle:<#(nullable NSString *)#> forState:<#(UIControlState)#>
+        cell.busNameLabel.text = busLine.name;
+        cell.originStationLabel.text = busLine.startStop;
+        cell.destinationStationLabel.text = busLine.endStop;
+        cell.otherBusLineBut.hidden = YES;
+        cell.anotherLineTipsLabel.hidden = YES;
+        
+        [cell.showStationDetailBut setAttributedTitle:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%ld站", busLine.viaBusStops.count + 1]] forState:UIControlStateNormal];
+
 //        cell.showStationDetailBut setTitle:self.mapSegment forState:<#(UIControlState)#>
         return cell;
-//    }
+        
+    } else {
+        return nil;
+    }
+    
     
 }
 

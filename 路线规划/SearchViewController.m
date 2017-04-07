@@ -80,14 +80,14 @@
     CGFloat longitude = [response.geocodes firstObject].location.longitude;
     
     if ([request.address isEqualToString:self.searchView.startLocation.text]) {
-        NSLog(@"编码前的起始地址：%@， 响应的编码为:%@", request.address, response.geocodes);
+//        NSLog(@"编码前的起始地址：%@， 响应的编码为:%@", request.address, response.geocodes);
         self.startCoordinate = CLLocationCoordinate2DMake(latitude, longitude);
         
     } else if ([request.address isEqualToString:self.searchView.finishLocation.text]) {
-        NSLog(@"编码前的结束地址：%@， 响应的编码为:%@", request.address, response.geocodes);
+//        NSLog(@"编码前的结束地址：%@， 响应的编码为:%@", request.address, response.geocodes);
         self.destinationCoordinate = CLLocationCoordinate2DMake(latitude, longitude);
     } else {
-        NSLog(@"编码前的地址：%@， 响应的编码为:%@", request.address, response.geocodes);
+//        NSLog(@"编码前的地址：%@， 响应的编码为:%@", request.address, response.geocodes);
     }
     
     if ((self.startCoordinate.latitude != 0) && (self.destinationCoordinate.latitude != 0)) {

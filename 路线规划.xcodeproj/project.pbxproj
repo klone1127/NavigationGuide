@@ -30,6 +30,7 @@
 		8B3070651E96220A0072B35C /* BusLineDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3070631E96220A0072B35C /* BusLineDetailCell.m */; };
 		8B3070661E96220A0072B35C /* BusLineDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B3070641E96220A0072B35C /* BusLineDetailCell.xib */; };
 		8B30706A1E9634990072B35C /* ReGoecode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3070691E9634990072B35C /* ReGoecode.m */; };
+		8B3070711E972D850072B35C /* NSDate+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3070701E972D850072B35C /* NSDate+Common.m */; };
 		CBD9C1EDF56E9D8EFEF88468 /* libPods-路线规划.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9348F6DA268F85D310C6470 /* libPods-路线规划.a */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +97,8 @@
 		8B3070641E96220A0072B35C /* BusLineDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusLineDetailCell.xib; sourceTree = "<group>"; };
 		8B3070681E9634990072B35C /* ReGoecode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReGoecode.h; sourceTree = "<group>"; };
 		8B3070691E9634990072B35C /* ReGoecode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReGoecode.m; sourceTree = "<group>"; };
+		8B30706F1E972D850072B35C /* NSDate+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Common.h"; sourceTree = "<group>"; };
+		8B3070701E972D850072B35C /* NSDate+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Common.m"; sourceTree = "<group>"; };
 		B2158DFDE25BFDF8B72B8984 /* Pods-路线规划.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-路线规划.debug.xcconfig"; path = "Pods/Target Support Files/Pods-路线规划/Pods-路线规划.debug.xcconfig"; sourceTree = "<group>"; };
 		C16EB73FBC8B5A8BB3348BF5 /* Pods-路线规划.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-路线规划.release.xcconfig"; path = "Pods/Target Support Files/Pods-路线规划/Pods-路线规划.release.xcconfig"; sourceTree = "<group>"; };
 		C9348F6DA268F85D310C6470 /* libPods-路线规划.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-路线规划.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,6 +167,8 @@
 			children = (
 				7D3D98F21E9546A2001A16C7 /* UIColor+Flat.h */,
 				7D3D98F31E9546A2001A16C7 /* UIColor+Flat.m */,
+				8B30706F1E972D850072B35C /* NSDate+Common.h */,
+				8B3070701E972D850072B35C /* NSDate+Common.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -486,6 +491,7 @@
 				8B30702E1E94D4200072B35C /* SearchView.m in Sources */,
 				8B306FF51E949ACB0072B35C /* main.m in Sources */,
 				8B30705F1E9620710072B35C /* WalkCell.m in Sources */,
+				8B3070711E972D850072B35C /* NSDate+Common.m in Sources */,
 				8B30706A1E9634990072B35C /* ReGoecode.m in Sources */,
 				8B3070651E96220A0072B35C /* BusLineDetailCell.m in Sources */,
 			);

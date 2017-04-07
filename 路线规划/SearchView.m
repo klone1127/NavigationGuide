@@ -9,6 +9,9 @@
 #import "SearchView.h"
 #import "Masonry.h"
 
+#define kLineImageW     20
+#define kLineImageH     kLineImageW
+
 @implementation SearchView
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -30,10 +33,10 @@
     
     
     [lineImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(15);
-        make.width.mas_equalTo(20);
-        make.height.mas_equalTo(20);
-        make.top.equalTo(self.mas_centerY).with.offset(-(20/2.0));
+        make.left.mas_equalTo(11);
+        make.width.mas_equalTo(kLineImageW);
+        make.height.mas_equalTo(kLineImageW);
+        make.top.equalTo(self.mas_centerY).with.offset(-(kLineImageW/2.0));
     }];
     
 #pragma mark - startView
