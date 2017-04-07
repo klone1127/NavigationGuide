@@ -26,6 +26,10 @@
 
 @property (nonatomic, strong)NSMutableArray     *transBusLineArray;         // 存放可转程的公交数组
 
+@property (nonatomic, assign)BOOL               isClick;
+@property (nonatomic, strong)NSMutableArray     *busStopsArray;             // 存放停靠站点
+
+
 @end
 
 @implementation RouteMapDetailViewController
@@ -35,8 +39,10 @@
     self.view.backgroundColor = [UIColor whiteColor];
     // Do any additional setup after loading the view.
     self.dataSource = [NSMutableArray arrayWithCapacity:0];
+    self.busStopsArray = [NSMutableArray arrayWithCapacity:0];
     [self initDetailTableView];
     [self initData];
+    self.isClick = NO;
     
 }
 
@@ -44,6 +50,7 @@
     
     [self.dataSource removeAllObjects];
     
+#warning TODO - 封装 for 循环
     for (int i = 0; i < self.mapTransit.segments.count; i++) {
         AMapSegment *segments = self.mapTransit.segments[i];
         
@@ -58,11 +65,10 @@
         }
 
         if (firstBusline.name) {
-            // 区分 公交/地铁
+#warning TODO - 区分 公交/地铁
 //          if  ([segments.buslines firstObject].type = "地铁线路") {}
             // 添加公交到数据源
             [self.dataSource addObject:firstBusline];
-//            [self.dataSource addObjectsFromArray:segments.buslines];
             NSLog(@"公交/地铁 加进去了");
         }
     }
@@ -93,7 +99,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSLog(@"****************************");
     // 根据类名区分 [self.dataSource[indexPath.row] isKindOfClass:[AMapStep class]]
     
     if ([self.dataSource[indexPath.row] isKindOfClass:[AMapStep class]]) {
@@ -159,7 +164,38 @@
     NSIndexPath *index1 = [NSIndexPath indexPathForItem:indexPath.row inSection:0];
     BusLineDetailCell *busLineDetailCell = [self.detailTableView cellForRowAtIndexPath:index1];
     NSLog(@"cell:%@", busLineDetailCell);
-    NSLog(@"显示更多数据");
+    
+    AMapBusLine *busLine = self.dataSource[index1.row];
+    
+    // 按位置插入
+    if ([self.dataSource containsObject:[busLine.viaBusStops firstObject]]) {
+        [self.dataSource removeObjectsInArray:busLine.viaBusStops];
+        self.isClick = NO;
+    } else {
+        NSUInteger busLineIndex = [self.dataSource indexOfObject:busLine];
+        if (self.dataSource.count == busLineIndex) {
+            [self.dataSource addObjectsFromArray:busLine.viaBusStops];
+        } else {
+//            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(busLineIndex + 1, busLine.viaBusStops.count)];
+//            [self.dataSource insertObjects:busLine.viaBusStops atIndexes:indexSet];
+#warning TODO - 改使用循环插入的方式
+        }
+        self.isClick = YES;
+    }
+    
+//    if (self.isClick == NO) {
+//        // 站点显示展开
+//        self.isClick = YES;
+//        if (![self.dataSource containsObject:[busLine.busStops firstObject]]) {
+//            
+//        }
+//    } else {
+//        // 站点显示关闭
+//        self.isClick = NO;
+//    }
+    
+    
+    NSLog(@"data:%@", busLine);
 }
 
 - (void)didReceiveMemoryWarning {

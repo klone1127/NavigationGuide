@@ -17,7 +17,6 @@ typedef void(^GeoCodeResponseBlock)(NSString *address);
 /**
  逆地理编码
 
- @param coordinate
  */
 - (void)reGeocodeWithCoordinate:(CLLocationCoordinate2D)coordinate;
 

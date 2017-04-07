@@ -49,6 +49,7 @@
     self.searchView.startLocation.delegate = self;
     self.searchView.finishLocation.delegate = self;
     self.searchView.finishLocation.returnKeyType = UIReturnKeyDone;
+    self.searchView.startLocation.returnKeyType = UIReturnKeyDone;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startLocationChange:) name:@"UITextFieldTextDidEndEditingNotification" object:self.searchView.startLocation];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishLocationChange:) name:@"UITextFieldTextDidEndEditingNotification" object:self.searchView.finishLocation];
@@ -61,7 +62,7 @@
 
 - (void)finishLocationChange:(NSNotification *)not {
 //    NSLog(@"finish not:%@", not.userInfo);
-    
+#warning TODO - 添加输入提示位置
 //    [self geoWithText:self.searchView.finishLocation.text];
 }
 
