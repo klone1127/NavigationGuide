@@ -27,12 +27,16 @@
 		8B3070561E95EC1A0072B35C /* LocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3070551E95EC1A0072B35C /* LocationView.m */; };
 		8B30705F1E9620710072B35C /* WalkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B30705D1E9620710072B35C /* WalkCell.m */; };
 		8B3070601E9620710072B35C /* WalkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B30705E1E9620710072B35C /* WalkCell.xib */; };
-		8B3070651E96220A0072B35C /* BusLineDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3070631E96220A0072B35C /* BusLineDetailCell.m */; };
-		8B3070661E96220A0072B35C /* BusLineDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B3070641E96220A0072B35C /* BusLineDetailCell.xib */; };
 		8B30706A1E9634990072B35C /* ReGoecode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3070691E9634990072B35C /* ReGoecode.m */; };
 		8B3070711E972D850072B35C /* NSDate+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3070701E972D850072B35C /* NSDate+Common.m */; };
 		8BA9E2561E976AEE00F7A6E2 /* StationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA9E2541E976AEE00F7A6E2 /* StationCell.m */; };
 		8BA9E2571E976AEE00F7A6E2 /* StationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA9E2551E976AEE00F7A6E2 /* StationCell.xib */; };
+		8BA9E25C1E98754400F7A6E2 /* StartStopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA9E25A1E98754400F7A6E2 /* StartStopCell.m */; };
+		8BA9E25D1E98754400F7A6E2 /* StartStopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA9E25B1E98754400F7A6E2 /* StartStopCell.xib */; };
+		8BA9E2611E98756500F7A6E2 /* DestinationStopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA9E25F1E98756500F7A6E2 /* DestinationStopCell.m */; };
+		8BA9E2621E98756500F7A6E2 /* DestinationStopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA9E2601E98756500F7A6E2 /* DestinationStopCell.xib */; };
+		8BA9E2651E987C4B00F7A6E2 /* StartStopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA9E2641E987C4B00F7A6E2 /* StartStopModel.m */; };
+		8BA9E2681E987C5E00F7A6E2 /* DestinationStopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA9E2671E987C5E00F7A6E2 /* DestinationStopModel.m */; };
 		CBD9C1EDF56E9D8EFEF88468 /* libPods-路线规划.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9348F6DA268F85D310C6470 /* libPods-路线规划.a */; };
 /* End PBXBuildFile section */
 
@@ -94,9 +98,6 @@
 		8B30705C1E9620710072B35C /* WalkCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalkCell.h; sourceTree = "<group>"; };
 		8B30705D1E9620710072B35C /* WalkCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalkCell.m; sourceTree = "<group>"; };
 		8B30705E1E9620710072B35C /* WalkCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WalkCell.xib; sourceTree = "<group>"; };
-		8B3070621E96220A0072B35C /* BusLineDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusLineDetailCell.h; sourceTree = "<group>"; };
-		8B3070631E96220A0072B35C /* BusLineDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusLineDetailCell.m; sourceTree = "<group>"; };
-		8B3070641E96220A0072B35C /* BusLineDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusLineDetailCell.xib; sourceTree = "<group>"; };
 		8B3070681E9634990072B35C /* ReGoecode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReGoecode.h; sourceTree = "<group>"; };
 		8B3070691E9634990072B35C /* ReGoecode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReGoecode.m; sourceTree = "<group>"; };
 		8B30706F1E972D850072B35C /* NSDate+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Common.h"; sourceTree = "<group>"; };
@@ -104,6 +105,16 @@
 		8BA9E2531E976AEE00F7A6E2 /* StationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationCell.h; sourceTree = "<group>"; };
 		8BA9E2541E976AEE00F7A6E2 /* StationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationCell.m; sourceTree = "<group>"; };
 		8BA9E2551E976AEE00F7A6E2 /* StationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StationCell.xib; sourceTree = "<group>"; };
+		8BA9E2591E98754400F7A6E2 /* StartStopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartStopCell.h; sourceTree = "<group>"; };
+		8BA9E25A1E98754400F7A6E2 /* StartStopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartStopCell.m; sourceTree = "<group>"; };
+		8BA9E25B1E98754400F7A6E2 /* StartStopCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartStopCell.xib; sourceTree = "<group>"; };
+		8BA9E25E1E98756500F7A6E2 /* DestinationStopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DestinationStopCell.h; sourceTree = "<group>"; };
+		8BA9E25F1E98756500F7A6E2 /* DestinationStopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DestinationStopCell.m; sourceTree = "<group>"; };
+		8BA9E2601E98756500F7A6E2 /* DestinationStopCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DestinationStopCell.xib; sourceTree = "<group>"; };
+		8BA9E2631E987C4B00F7A6E2 /* StartStopModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartStopModel.h; sourceTree = "<group>"; };
+		8BA9E2641E987C4B00F7A6E2 /* StartStopModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartStopModel.m; sourceTree = "<group>"; };
+		8BA9E2661E987C5E00F7A6E2 /* DestinationStopModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DestinationStopModel.h; sourceTree = "<group>"; };
+		8BA9E2671E987C5E00F7A6E2 /* DestinationStopModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DestinationStopModel.m; sourceTree = "<group>"; };
 		B2158DFDE25BFDF8B72B8984 /* Pods-路线规划.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-路线规划.debug.xcconfig"; path = "Pods/Target Support Files/Pods-路线规划/Pods-路线规划.debug.xcconfig"; sourceTree = "<group>"; };
 		C16EB73FBC8B5A8BB3348BF5 /* Pods-路线规划.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-路线规划.release.xcconfig"; path = "Pods/Target Support Files/Pods-路线规划/Pods-路线规划.release.xcconfig"; sourceTree = "<group>"; };
 		C9348F6DA268F85D310C6470 /* libPods-路线规划.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-路线规划.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -252,6 +263,10 @@
 		8B3070311E94F9B00072B35C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8BA9E2631E987C4B00F7A6E2 /* StartStopModel.h */,
+				8BA9E2641E987C4B00F7A6E2 /* StartStopModel.m */,
+				8BA9E2661E987C5E00F7A6E2 /* DestinationStopModel.h */,
+				8BA9E2671E987C5E00F7A6E2 /* DestinationStopModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -279,12 +294,15 @@
 				8B30705C1E9620710072B35C /* WalkCell.h */,
 				8B30705D1E9620710072B35C /* WalkCell.m */,
 				8B30705E1E9620710072B35C /* WalkCell.xib */,
-				8B3070621E96220A0072B35C /* BusLineDetailCell.h */,
-				8B3070631E96220A0072B35C /* BusLineDetailCell.m */,
-				8B3070641E96220A0072B35C /* BusLineDetailCell.xib */,
 				8BA9E2531E976AEE00F7A6E2 /* StationCell.h */,
 				8BA9E2541E976AEE00F7A6E2 /* StationCell.m */,
 				8BA9E2551E976AEE00F7A6E2 /* StationCell.xib */,
+				8BA9E2591E98754400F7A6E2 /* StartStopCell.h */,
+				8BA9E25A1E98754400F7A6E2 /* StartStopCell.m */,
+				8BA9E25B1E98754400F7A6E2 /* StartStopCell.xib */,
+				8BA9E25E1E98756500F7A6E2 /* DestinationStopCell.h */,
+				8BA9E25F1E98756500F7A6E2 /* DestinationStopCell.m */,
+				8BA9E2601E98756500F7A6E2 /* DestinationStopCell.xib */,
 			);
 			name = RouteMapDetail;
 			sourceTree = "<group>";
@@ -409,11 +427,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B3070031E949ACB0072B35C /* LaunchScreen.storyboard in Resources */,
+				8BA9E2621E98756500F7A6E2 /* DestinationStopCell.xib in Resources */,
 				7D3D98EA1E954431001A16C7 /* TransitTableViewCell.xib in Resources */,
 				8B3070001E949ACB0072B35C /* Assets.xcassets in Resources */,
-				8B3070661E96220A0072B35C /* BusLineDetailCell.xib in Resources */,
 				8B3070601E9620710072B35C /* WalkCell.xib in Resources */,
 				8BA9E2571E976AEE00F7A6E2 /* StationCell.xib in Resources */,
+				8BA9E25D1E98754400F7A6E2 /* StartStopCell.xib in Resources */,
 				8B306FFE1E949ACB0072B35C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -488,13 +507,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D3D98F41E9546A2001A16C7 /* UIColor+Flat.m in Sources */,
+				8BA9E2681E987C5E00F7A6E2 /* DestinationStopModel.m in Sources */,
 				8B3070501E95E90F0072B35C /* BaseViewController.m in Sources */,
 				8B3070531E95EAC30072B35C /* RouteMapDetailViewController.m in Sources */,
 				8B306FFB1E949ACB0072B35C /* ViewController.m in Sources */,
 				8B306FF81E949ACB0072B35C /* AppDelegate.m in Sources */,
 				8B3070291E94C1860072B35C /* SearchViewController.m in Sources */,
 				7D3D98F91E955083001A16C7 /* TransitGuideViewController.m in Sources */,
+				8BA9E2611E98756500F7A6E2 /* DestinationStopCell.m in Sources */,
+				8BA9E2651E987C4B00F7A6E2 /* StartStopModel.m in Sources */,
 				7D3D98E91E954431001A16C7 /* TransitTableViewCell.m in Sources */,
+				8BA9E25C1E98754400F7A6E2 /* StartStopCell.m in Sources */,
 				8BA9E2561E976AEE00F7A6E2 /* StationCell.m in Sources */,
 				7D3D98F01E954544001A16C7 /* TransitResultViewController.m in Sources */,
 				8B3070561E95EC1A0072B35C /* LocationView.m in Sources */,
@@ -503,7 +526,6 @@
 				8B30705F1E9620710072B35C /* WalkCell.m in Sources */,
 				8B3070711E972D850072B35C /* NSDate+Common.m in Sources */,
 				8B30706A1E9634990072B35C /* ReGoecode.m in Sources */,
-				8B3070651E96220A0072B35C /* BusLineDetailCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

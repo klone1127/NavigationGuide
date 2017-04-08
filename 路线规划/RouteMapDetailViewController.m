@@ -9,15 +9,21 @@
 #import "RouteMapDetailViewController.h"
 #import "LocationView.h"
 #import "WalkCell.h"
-#import "BusLineDetailCell.h"
 //#import "ReGoecode.h"
 #import <AMapSearchKit/AMapSearchKit.h>
 #import "StationCell.h"
 
+#import "DestinationStopModel.h"
+#import "DestinationStopCell.h"
+#import "StartStopModel.h"
+#import "StartStopCell.h"
 
 #define kWalkCellID                 @"walkCell"
 #define kBusLineDetailCellID        @"busLineDetailCell"
 #define kStationCellID              @"stationCell"
+
+#define kStartStopCellID           @"startStopCell"
+#define kDestinationStopCellID      @"destinationStopCell"
 
 @interface RouteMapDetailViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -72,7 +78,11 @@
             // 添加公交到数据源
                 // 拆分公交数据为 始发和到达
             
-            [self.dataSource addObject:firstBusline];
+            StartStopModel *startStopModel = [StartStopModel initStartStopModelWithBusLine:firstBusline];
+            DestinationStopModel *destinationStopModel = [DestinationStopModel initDestinationStopModelWithBusLine:firstBusline];
+            [self.dataSource addObject:startStopModel];
+            [self.dataSource addObject:destinationStopModel];
+//            [self.dataSource addObject:firstBusline];
             NSLog(@"公交/地铁 加进去了");
         }
     }
@@ -93,6 +103,8 @@
     [self.detailTableView registerNib:[UINib nibWithNibName:@"WalkCell" bundle:nil] forCellReuseIdentifier:kWalkCellID];
     [self.detailTableView registerNib:[UINib nibWithNibName:@"BusLineDetailCell" bundle:nil] forCellReuseIdentifier:kBusLineDetailCellID];
     [self.detailTableView registerNib:[UINib nibWithNibName:@"StationCell" bundle:nil] forCellReuseIdentifier:kStationCellID];
+    [self.detailTableView registerNib:[UINib nibWithNibName:@"StartStopCell" bundle:nil] forCellReuseIdentifier:kStartStopCellID];
+    [self.detailTableView registerNib:[UINib nibWithNibName:@"DestinationStopCell" bundle:nil] forCellReuseIdentifier:kDestinationStopCellID];
     
     self.detailTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
@@ -107,7 +119,7 @@
     // 根据类名区分 [self.dataSource[indexPath.row] isKindOfClass:[AMapStep class]]
     
     id currentClass = self.dataSource[indexPath.row];
-    
+#warning TODO - cell 种类太多，重构
     if ([currentClass isKindOfClass:[AMapStep class]]) {
         AMapStep *mapStep = currentClass;
         
@@ -121,24 +133,36 @@
         return cell;
     }
     
-    if ([currentClass isKindOfClass:[AMapBusLine class]]) {
-        AMapBusLine *busLine = currentClass;
-        NSLog(@"busLine :%@", busLine.name);
+    if ([currentClass isKindOfClass:[StartStopModel class]]) {
+        StartStopModel *startStopModel = currentClass;
         
-        BusLineDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:kBusLineDetailCellID];
+        StartStopCell *cell = [tableView dequeueReusableCellWithIdentifier:kStartStopCellID];
         if (!cell) {
-            NSArray *cellArray = [[NSBundle mainBundle] loadNibNamed:@"BusLineDetailCell" owner:nil options:nil];
+            NSArray *cellArray = [[NSBundle mainBundle] loadNibNamed:@"StartStopCell" owner:nil options:nil];
             cell = [cellArray firstObject];
         }
-        
         self.detailTableView.rowHeight = cell.frame.size.height;
-        // 需要获取对应的 公交，然后做数据展示
-        [cell configBusLineDetailCell:busLine];
-#warning TODO - 点击使用 Block 封装
-        [cell.showStationDetailBut addTarget:self action:@selector(ShowMoreStation:) forControlEvents:UIControlEventTouchUpInside];
-        return cell;
         
+        [cell configStartStopCellWithModel:startStopModel];
+        [cell.showStopBtn addTarget:self action:@selector(ShowMoreStation:) forControlEvents:UIControlEventTouchUpInside];
+        return cell;
     }
+    
+    if ([currentClass isKindOfClass:[DestinationStopModel class]]) {
+        DestinationStopModel *model = currentClass;
+        
+        DestinationStopCell *cell = [tableView dequeueReusableCellWithIdentifier:kDestinationStopCellID];
+        if (!cell) {
+            NSArray *cellArray = [[NSBundle mainBundle] loadNibNamed:@"DestinationStopCell" owner:nil options:nil];
+            cell = [cellArray firstObject];
+        }
+        self.detailTableView.rowHeight = cell.frame.size.height;
+        cell.OtherStationLabel.hidden = YES;
+        [cell configCellWithModel:model];
+        return cell;
+    }
+    
+    
     if ([currentClass isKindOfClass:[AMapBusStop class]]) {
         AMapBusStop *busStop = currentClass;
         StationCell *cell = [tableView dequeueReusableCellWithIdentifier:kStationCellID];
@@ -148,7 +172,6 @@
         }
         
         self.detailTableView.rowHeight = cell.frame.size.height;
-        
         cell.stationLabel.text = busStop.name;
         return cell;
         
@@ -183,29 +206,32 @@
     UITableViewCell *cell = (UITableViewCell *)sender.superview.superview;
     NSIndexPath *indexPath = [self.detailTableView indexPathForCell:cell];
     NSIndexPath *index1 = [NSIndexPath indexPathForItem:indexPath.row inSection:0];
-    BusLineDetailCell *busLineDetailCell = [self.detailTableView cellForRowAtIndexPath:index1];
-    NSLog(@"cell:%@", busLineDetailCell);
     
-    AMapBusLine *busLine = self.dataSource[index1.row];
+    StartStopModel *busLine = self.dataSource[index1.row];
     
     // 按位置插入
     if ([self.dataSource containsObject:[busLine.viaBusStops firstObject]]) {
         [self.dataSource removeObjectsInArray:busLine.viaBusStops];
         self.isClick = NO;
+        
+        [UIView animateWithDuration:1.0 animations:^{
+            sender.imageView.transform = CGAffineTransformIdentity;
+        }];
     } else {
         NSUInteger busLineIndex = [self.dataSource indexOfObject:busLine];
         if (self.dataSource.count == busLineIndex) {
             [self.dataSource addObjectsFromArray:busLine.viaBusStops];
         } else {
-//            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(busLineIndex + 1, busLine.viaBusStops.count)];
-//            [self.dataSource insertObjects:busLine.viaBusStops atIndexes:indexSet];
-#warning TODO - 改使用循环插入的方式
             for (int i = 0; i < busLine.viaBusStops.count; i++) {
                 [self.dataSource insertObject:busLine.viaBusStops[i] atIndex:(busLineIndex + 1)];
                 busLineIndex++;
             }
         }
         self.isClick = YES;
+        
+        [UIView animateWithDuration:1 animations:^{
+            sender.imageView.transform = CGAffineTransformMakeRotation(M_PI);
+        }];
     }
     
     [self.detailTableView reloadData];
