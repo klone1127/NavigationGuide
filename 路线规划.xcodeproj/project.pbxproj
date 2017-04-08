@@ -37,6 +37,7 @@
 		8BA9E2621E98756500F7A6E2 /* DestinationStopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA9E2601E98756500F7A6E2 /* DestinationStopCell.xib */; };
 		8BA9E2651E987C4B00F7A6E2 /* StartStopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA9E2641E987C4B00F7A6E2 /* StartStopModel.m */; };
 		8BA9E2681E987C5E00F7A6E2 /* DestinationStopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA9E2671E987C5E00F7A6E2 /* DestinationStopModel.m */; };
+		8BA9E26B1E98B66300F7A6E2 /* NSMutableArray+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA9E26A1E98B66300F7A6E2 /* NSMutableArray+Common.m */; };
 		CBD9C1EDF56E9D8EFEF88468 /* libPods-路线规划.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9348F6DA268F85D310C6470 /* libPods-路线规划.a */; };
 /* End PBXBuildFile section */
 
@@ -115,6 +116,8 @@
 		8BA9E2641E987C4B00F7A6E2 /* StartStopModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartStopModel.m; sourceTree = "<group>"; };
 		8BA9E2661E987C5E00F7A6E2 /* DestinationStopModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DestinationStopModel.h; sourceTree = "<group>"; };
 		8BA9E2671E987C5E00F7A6E2 /* DestinationStopModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DestinationStopModel.m; sourceTree = "<group>"; };
+		8BA9E2691E98B66300F7A6E2 /* NSMutableArray+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Common.h"; sourceTree = "<group>"; };
+		8BA9E26A1E98B66300F7A6E2 /* NSMutableArray+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Common.m"; sourceTree = "<group>"; };
 		B2158DFDE25BFDF8B72B8984 /* Pods-路线规划.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-路线规划.debug.xcconfig"; path = "Pods/Target Support Files/Pods-路线规划/Pods-路线规划.debug.xcconfig"; sourceTree = "<group>"; };
 		C16EB73FBC8B5A8BB3348BF5 /* Pods-路线规划.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-路线规划.release.xcconfig"; path = "Pods/Target Support Files/Pods-路线规划/Pods-路线规划.release.xcconfig"; sourceTree = "<group>"; };
 		C9348F6DA268F85D310C6470 /* libPods-路线规划.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-路线规划.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -185,6 +188,8 @@
 				7D3D98F31E9546A2001A16C7 /* UIColor+Flat.m */,
 				8B30706F1E972D850072B35C /* NSDate+Common.h */,
 				8B3070701E972D850072B35C /* NSDate+Common.m */,
+				8BA9E2691E98B66300F7A6E2 /* NSMutableArray+Common.h */,
+				8BA9E26A1E98B66300F7A6E2 /* NSMutableArray+Common.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -517,6 +522,7 @@
 				8BA9E2611E98756500F7A6E2 /* DestinationStopCell.m in Sources */,
 				8BA9E2651E987C4B00F7A6E2 /* StartStopModel.m in Sources */,
 				7D3D98E91E954431001A16C7 /* TransitTableViewCell.m in Sources */,
+				8BA9E26B1E98B66300F7A6E2 /* NSMutableArray+Common.m in Sources */,
 				8BA9E25C1E98754400F7A6E2 /* StartStopCell.m in Sources */,
 				8BA9E2561E976AEE00F7A6E2 /* StationCell.m in Sources */,
 				7D3D98F01E954544001A16C7 /* TransitResultViewController.m in Sources */,

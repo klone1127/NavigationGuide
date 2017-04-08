@@ -57,40 +57,9 @@
 - (void)initData {
     
     [self.dataSource removeAllObjects];
-    
-#warning TODO - 封装 for 循环
-    for (int i = 0; i < self.mapTransit.segments.count; i++) {
-        AMapSegment *segments = self.mapTransit.segments[i];
-        
-        AMapBusLine *firstBusline = [segments.buslines firstObject];
-        NSLog(@"segments.walking.steps:%@", segments.walking.steps);
-        NSLog(@"segments.buslines:%@", segments.buslines);
-
-        if (segments.walking.distance) {
-            // 添加步行到 数据源
-            [self.dataSource addObjectsFromArray:segments.walking.steps];
-            NSLog(@"步行路线加进去了");
-        }
-
-        if (firstBusline.name) {
-#warning TODO - 区分 公交/地铁
-//          if  ([segments.buslines firstObject].type = "地铁线路") {}
-            // 添加公交到数据源
-                // 拆分公交数据为 始发和到达
-            
-            StartStopModel *startStopModel = [StartStopModel initStartStopModelWithBusLine:firstBusline];
-            DestinationStopModel *destinationStopModel = [DestinationStopModel initDestinationStopModelWithBusLine:firstBusline];
-            [self.dataSource addObject:startStopModel];
-            [self.dataSource addObject:destinationStopModel];
-//            [self.dataSource addObject:firstBusline];
-            NSLog(@"公交/地铁 加进去了");
-        }
-    }
+    [self addObjectsToDataSource];
     
     NSLog(@"dataSource:%@", self.dataSource);
-    
-//    [self.detailTableView reloadData];
-    
 }
 
 - (void)initDetailTableView {
@@ -132,7 +101,7 @@
         [cell configWalkCell:mapStep];
         return cell;
     }
-    
+
     if ([currentClass isKindOfClass:[StartStopModel class]]) {
         StartStopModel *startStopModel = currentClass;
         
@@ -222,10 +191,7 @@
         if (self.dataSource.count == busLineIndex) {
             [self.dataSource addObjectsFromArray:busLine.viaBusStops];
         } else {
-            for (int i = 0; i < busLine.viaBusStops.count; i++) {
-                [self.dataSource insertObject:busLine.viaBusStops[i] atIndex:(busLineIndex + 1)];
-                busLineIndex++;
-            }
+            [self.dataSource insertArray:busLine.viaBusStops atIndex:busLineIndex];
         }
         self.isClick = YES;
         
@@ -238,6 +204,27 @@
     
     
     NSLog(@"data:%@", busLine);
+}
+
+- (void)addObjectsToDataSource {
+    for (int i = 0; i < self.mapTransit.segments.count; i++) {
+        AMapSegment *segments = self.mapTransit.segments[i];
+        AMapBusLine *firstBusline = [segments.buslines firstObject];
+        
+        if (segments.walking.distance) {
+            // 添加步行到 数据源
+            [self.dataSource addObjectsFromArray:segments.walking.steps];
+            NSLog(@"步行路线加进去了");
+        }
+        
+        if (firstBusline.name) {
+            StartStopModel *startStopModel = [StartStopModel initStartStopModelWithBusLine:firstBusline];
+            DestinationStopModel *destinationStopModel = [DestinationStopModel initDestinationStopModelWithBusLine:firstBusline];
+            [self.dataSource addObject:startStopModel];
+            [self.dataSource addObject:destinationStopModel];
+            NSLog(@"公交/地铁 加进去了");
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {
