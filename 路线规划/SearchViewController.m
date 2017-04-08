@@ -42,6 +42,12 @@
     
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.startCoordinate = CLLocationCoordinate2DMake(0, 0);
+    self.destinationCoordinate = CLLocationCoordinate2DMake(0, 0);
+}
+
 - (void)initInputLocationView {
     self.searchView = [[SearchView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 120)];
     [self.view addSubview:_searchView];
@@ -166,7 +172,7 @@
     navi.nightflag = YES;
     navi.requireExtension = YES;
     navi.city = @"郑州市";
-
+    navi.destinationCity = @"郑州市";
     /* 出发点. */
     navi.origin = [AMapGeoPoint locationWithLatitude:startCoordinate.latitude
                                            longitude:startCoordinate.longitude];

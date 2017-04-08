@@ -37,7 +37,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QV9-x2-ruD">
-                        <rect key="frame" x="55" y="37" width="37.5" height="18"/>
+                        <rect key="frame" x="55" y="37" width="225" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="fhE-Hz-8Vj"/>
                         </constraints>
@@ -94,7 +94,7 @@
                 <constraints>
                     <constraint firstItem="QV9-x2-ruD" firstAttribute="top" secondItem="zjL-Ia-8p9" secondAttribute="bottom" constant="6" id="3fU-s8-GwE"/>
                     <constraint firstAttribute="trailingMargin" secondItem="2vu-GI-pbB" secondAttribute="trailing" constant="3" id="6sA-Xg-Xes"/>
-                    <constraint firstItem="BdU-4U-Qma" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="QV9-x2-ruD" secondAttribute="trailing" constant="160.5" id="7c5-yu-mWG"/>
+                    <constraint firstItem="BdU-4U-Qma" firstAttribute="leading" secondItem="QV9-x2-ruD" secondAttribute="trailing" constant="-27" id="7c5-yu-mWG"/>
                     <constraint firstItem="2vu-GI-pbB" firstAttribute="top" secondItem="zjL-Ia-8p9" secondAttribute="bottom" constant="23" id="8ei-gJ-2tH"/>
                     <constraint firstItem="haX-AB-xsB" firstAttribute="leading" secondItem="GMp-1x-I9c" secondAttribute="trailing" constant="26" id="EHF-2S-JNm"/>
                     <constraint firstItem="BdU-4U-Qma" firstAttribute="top" secondItem="zjL-Ia-8p9" secondAttribute="bottom" constant="22" id="Jk8-MW-B86"/>
@@ -126,7 +126,7 @@
                 <outlet property="busTimeLabel" destination="or9-jw-LbS" id="uQ2-Vm-wj1"/>
                 <outlet property="showStopBtn" destination="2vu-GI-pbB" id="mnY-q4-yRq"/>
             </connections>
-            <point key="canvasLocation" x="110" y="35"/>
+            <point key="canvasLocation" x="110" y="34.5"/>
         </tableViewCell>
     </objects>
     <resources>
