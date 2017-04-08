@@ -15,7 +15,16 @@
 @property (weak, nonatomic) IBOutlet UILabel *busTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *StopsCountLabel;
 @property (weak, nonatomic) IBOutlet UIButton *showStopBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *busImageView;
 
 - (void)configStartStopCellWithModel:(StartStopModel *)model;
+
+
+/**
+ 不同交通方式显示颜色不同
+
+ @param type 交通方式
+ */
+- (void)currentTransport:(NSString *)type;
 
 @end

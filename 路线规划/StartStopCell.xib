@@ -30,7 +30,7 @@
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="未展开上" translatesAutoresizingMaskIntoConstraints="NO" id="udO-a6-dRJ">
-                        <rect key="frame" x="4" y="37" width="34" height="51"/>
+                        <rect key="frame" x="4" y="35" width="34" height="51"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="34" id="9mL-Df-8fH"/>
                             <constraint firstAttribute="height" constant="51" id="HK3-ZB-gzm"/>
@@ -45,7 +45,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BdU-4U-Qma">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BdU-4U-Qma">
                         <rect key="frame" x="253" y="53" width="42" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="42" id="kgx-Uf-7da"/>
@@ -113,7 +113,7 @@
                     <constraint firstAttribute="trailing" secondItem="or9-jw-LbS" secondAttribute="trailing" constant="47" id="hyO-2q-oVK"/>
                     <constraint firstAttribute="trailing" secondItem="zjL-Ia-8p9" secondAttribute="trailing" constant="8" id="lxq-jK-rXA"/>
                     <constraint firstItem="D0h-El-Yvb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="q9T-pa-rf8"/>
-                    <constraint firstItem="udO-a6-dRJ" firstAttribute="top" secondItem="zjL-Ia-8p9" secondAttribute="bottom" constant="6" id="qf9-yt-eQm"/>
+                    <constraint firstItem="udO-a6-dRJ" firstAttribute="top" secondItem="zjL-Ia-8p9" secondAttribute="bottom" constant="4" id="qf9-yt-eQm"/>
                     <constraint firstAttribute="bottom" secondItem="D0h-El-Yvb" secondAttribute="bottom" constant="-1" id="z9E-JI-Moz"/>
                     <constraint firstItem="D0h-El-Yvb" firstAttribute="top" secondItem="haX-AB-xsB" secondAttribute="bottom" constant="1" id="zE4-ul-Txe"/>
                 </constraints>
@@ -122,10 +122,11 @@
                 <outlet property="ShowStaionLabel" destination="haX-AB-xsB" id="mGE-iu-mnE"/>
                 <outlet property="StartStopLabel" destination="QV9-x2-ruD" id="XJ8-a1-4qJ"/>
                 <outlet property="StopsCountLabel" destination="BdU-4U-Qma" id="wTZ-MX-mvg"/>
+                <outlet property="busImageView" destination="GMp-1x-I9c" id="8zD-rI-eGI"/>
                 <outlet property="busTimeLabel" destination="or9-jw-LbS" id="uQ2-Vm-wj1"/>
                 <outlet property="showStopBtn" destination="2vu-GI-pbB" id="mnY-q4-yRq"/>
             </connections>
-            <point key="canvasLocation" x="-117" y="51"/>
+            <point key="canvasLocation" x="110" y="35"/>
         </tableViewCell>
     </objects>
     <resources>

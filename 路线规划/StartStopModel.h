@@ -13,6 +13,7 @@
 
 @property (nonatomic, copy)NSString         *staion;
 @property (nonatomic, copy)NSString         *departureStop;
+@property (nonatomic, copy)NSString         *type;      // 交通类型
 @property (nonatomic, copy)NSString         *busTime;
 @property (nonatomic, copy)NSString         *stopCount;
 @property (nonatomic, strong)NSArray<AMapBusStop *>    *viaBusStops;

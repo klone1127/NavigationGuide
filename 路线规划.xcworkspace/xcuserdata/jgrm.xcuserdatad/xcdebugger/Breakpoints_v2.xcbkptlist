@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x8def;&#x7ebf;&#x89c4;&#x5212;/RouteMapDetailViewController.m"
-            timestampString = "513316954.055525"
+            timestampString = "513327681.275387"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "215"
-            endingLineNumber = "215"
+            startingLineNumber = "181"
+            endingLineNumber = "181"
             landmarkName = "-ShowMoreStation:"
             landmarkType = "7">
          </BreakpointContent>
@@ -52,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x8def;&#x7ebf;&#x89c4;&#x5212;/RouteMapDetailViewController.m"
-            timestampString = "513316954.055525"
+            timestampString = "513327681.275387"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "235"
-            endingLineNumber = "235"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
             landmarkName = "-ShowMoreStation:"
             landmarkType = "7">
          </BreakpointContent>
