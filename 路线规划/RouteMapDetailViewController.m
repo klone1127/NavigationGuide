@@ -177,7 +177,7 @@
     NSIndexPath *index1 = [NSIndexPath indexPathForItem:indexPath.row inSection:0];
     
     StartStopModel *busLine = self.dataSource[index1.row];
-    
+#warning TODO - 展开和合并加入动画
     // 按位置插入
     if ([self.dataSource containsObject:[busLine.viaBusStops firstObject]]) {
         [self.dataSource removeObjectsInArray:busLine.viaBusStops];
