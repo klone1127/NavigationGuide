@@ -38,6 +38,8 @@
 		8BA9E2651E987C4B00F7A6E2 /* StartStopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA9E2641E987C4B00F7A6E2 /* StartStopModel.m */; };
 		8BA9E2681E987C5E00F7A6E2 /* DestinationStopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA9E2671E987C5E00F7A6E2 /* DestinationStopModel.m */; };
 		8BA9E26B1E98B66300F7A6E2 /* NSMutableArray+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA9E26A1E98B66300F7A6E2 /* NSMutableArray+Common.m */; };
+		8BA9E2701E98E4E900F7A6E2 /* UIViewController+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA9E26F1E98E4E900F7A6E2 /* UIViewController+Common.m */; };
+		8BA9E2731E98ECDE00F7A6E2 /* UIImage+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA9E2721E98ECDE00F7A6E2 /* UIImage+Common.m */; };
 		CBD9C1EDF56E9D8EFEF88468 /* libPods-路线规划.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9348F6DA268F85D310C6470 /* libPods-路线规划.a */; };
 /* End PBXBuildFile section */
 
@@ -118,6 +120,11 @@
 		8BA9E2671E987C5E00F7A6E2 /* DestinationStopModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DestinationStopModel.m; sourceTree = "<group>"; };
 		8BA9E2691E98B66300F7A6E2 /* NSMutableArray+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Common.h"; sourceTree = "<group>"; };
 		8BA9E26A1E98B66300F7A6E2 /* NSMutableArray+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Common.m"; sourceTree = "<group>"; };
+		8BA9E26C1E98DC9500F7A6E2 /* Public.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Public.h; sourceTree = "<group>"; };
+		8BA9E26E1E98E4E900F7A6E2 /* UIViewController+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+Common.h"; path = "Assets.xcassets/UIViewController+Common.h"; sourceTree = "<group>"; };
+		8BA9E26F1E98E4E900F7A6E2 /* UIViewController+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+Common.m"; path = "Assets.xcassets/UIViewController+Common.m"; sourceTree = "<group>"; };
+		8BA9E2711E98ECDE00F7A6E2 /* UIImage+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Common.h"; sourceTree = "<group>"; };
+		8BA9E2721E98ECDE00F7A6E2 /* UIImage+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Common.m"; sourceTree = "<group>"; };
 		B2158DFDE25BFDF8B72B8984 /* Pods-路线规划.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-路线规划.debug.xcconfig"; path = "Pods/Target Support Files/Pods-路线规划/Pods-路线规划.debug.xcconfig"; sourceTree = "<group>"; };
 		C16EB73FBC8B5A8BB3348BF5 /* Pods-路线规划.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-路线规划.release.xcconfig"; path = "Pods/Target Support Files/Pods-路线规划/Pods-路线规划.release.xcconfig"; sourceTree = "<group>"; };
 		C9348F6DA268F85D310C6470 /* libPods-路线规划.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-路线规划.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -190,6 +197,10 @@
 				8B3070701E972D850072B35C /* NSDate+Common.m */,
 				8BA9E2691E98B66300F7A6E2 /* NSMutableArray+Common.h */,
 				8BA9E26A1E98B66300F7A6E2 /* NSMutableArray+Common.m */,
+				8BA9E26E1E98E4E900F7A6E2 /* UIViewController+Common.h */,
+				8BA9E26F1E98E4E900F7A6E2 /* UIViewController+Common.m */,
+				8BA9E2711E98ECDE00F7A6E2 /* UIImage+Common.h */,
+				8BA9E2721E98ECDE00F7A6E2 /* UIImage+Common.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -228,6 +239,7 @@
 				8B306FF71E949ACB0072B35C /* AppDelegate.m */,
 				8B3070261E94B2120072B35C /* Personal.h */,
 				7D3D98F61E954778001A16C7 /* PrefixHeader.pch */,
+				8BA9E26C1E98DC9500F7A6E2 /* Public.h */,
 				8B306FF91E949ACB0072B35C /* ViewController.h */,
 				8B306FFA1E949ACB0072B35C /* ViewController.m */,
 				8B306FFC1E949ACB0072B35C /* Main.storyboard */,
@@ -279,14 +291,11 @@
 		8B30704D1E95E84B0072B35C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				7D3D98F71E955083001A16C7 /* TransitGuideViewController.h */,
-				7D3D98F81E955083001A16C7 /* TransitGuideViewController.m */,
+				8BA9E26D1E98E21C00F7A6E2 /* BaseVC */,
 				8B3070271E94C1860072B35C /* SearchViewController.h */,
 				8B3070281E94C1860072B35C /* SearchViewController.m */,
 				7D3D98EE1E954544001A16C7 /* TransitResultViewController.h */,
 				7D3D98EF1E954544001A16C7 /* TransitResultViewController.m */,
-				8B30704E1E95E90F0072B35C /* BaseViewController.h */,
-				8B30704F1E95E90F0072B35C /* BaseViewController.m */,
 				8B3070511E95EAC30072B35C /* RouteMapDetailViewController.h */,
 				8B3070521E95EAC30072B35C /* RouteMapDetailViewController.m */,
 			);
@@ -319,6 +328,17 @@
 				8B3070691E9634990072B35C /* ReGoecode.m */,
 			);
 			name = Tools;
+			sourceTree = "<group>";
+		};
+		8BA9E26D1E98E21C00F7A6E2 /* BaseVC */ = {
+			isa = PBXGroup;
+			children = (
+				7D3D98F71E955083001A16C7 /* TransitGuideViewController.h */,
+				7D3D98F81E955083001A16C7 /* TransitGuideViewController.m */,
+				8B30704E1E95E90F0072B35C /* BaseViewController.h */,
+				8B30704F1E95E90F0072B35C /* BaseViewController.m */,
+			);
+			name = BaseVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -514,6 +534,7 @@
 				7D3D98F41E9546A2001A16C7 /* UIColor+Flat.m in Sources */,
 				8BA9E2681E987C5E00F7A6E2 /* DestinationStopModel.m in Sources */,
 				8B3070501E95E90F0072B35C /* BaseViewController.m in Sources */,
+				8BA9E2731E98ECDE00F7A6E2 /* UIImage+Common.m in Sources */,
 				8B3070531E95EAC30072B35C /* RouteMapDetailViewController.m in Sources */,
 				8B306FFB1E949ACB0072B35C /* ViewController.m in Sources */,
 				8B306FF81E949ACB0072B35C /* AppDelegate.m in Sources */,
@@ -522,6 +543,7 @@
 				8BA9E2611E98756500F7A6E2 /* DestinationStopCell.m in Sources */,
 				8BA9E2651E987C4B00F7A6E2 /* StartStopModel.m in Sources */,
 				7D3D98E91E954431001A16C7 /* TransitTableViewCell.m in Sources */,
+				8BA9E2701E98E4E900F7A6E2 /* UIViewController+Common.m in Sources */,
 				8BA9E26B1E98B66300F7A6E2 /* NSMutableArray+Common.m in Sources */,
 				8BA9E25C1E98754400F7A6E2 /* StartStopCell.m in Sources */,
 				8BA9E2561E976AEE00F7A6E2 /* StationCell.m in Sources */,

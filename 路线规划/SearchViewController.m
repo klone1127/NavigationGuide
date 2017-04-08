@@ -28,17 +28,23 @@
 @end
 
 @implementation SearchViewController
-#warning TODO - 优化点击完成后的查询操作
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     self.view.backgroundColor = [UIColor whiteColor];
-    
+    [self configNavigationBar];
     [self initInputLocationView];
-    
     self.mapSearch = [[AMapSearchAPI alloc] init];
     self.mapSearch.delegate = self;
+    
+}
+
+- (void)configNavigationBar {
+    [self removeNavigationControllerBottonLine];
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithHexCode:kSearchBarColor];
+    self.navigationItem.title = @"公交线路规划";
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil]];
     
 }
 
@@ -49,7 +55,7 @@
 }
 
 - (void)initInputLocationView {
-    self.searchView = [[SearchView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 120)];
+    self.searchView = [[SearchView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 120)];
     [self.view addSubview:_searchView];
     
     self.searchView.startLocation.delegate = self;
@@ -57,18 +63,20 @@
     self.searchView.finishLocation.returnKeyType = UIReturnKeyDone;
     self.searchView.startLocation.returnKeyType = UIReturnKeyDone;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startLocationChange:) name:@"UITextFieldTextDidEndEditingNotification" object:self.searchView.startLocation];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishLocationChange:) name:@"UITextFieldTextDidEndEditingNotification" object:self.searchView.finishLocation];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startLocationChange:) name:@"UITextFieldTextDidChangeNotification" object:self.searchView.startLocation];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishLocationChange:) name:@"UITextFieldTextDidChangeNotification" object:self.searchView.finishLocation];
 }
 
 - (void)startLocationChange:(NSNotification *)not {
     // 获取地理编码
-    [self geoWithText:self.searchView.startLocation.text];
+//    [self geoWithText:self.searchView.startLocation.text];
+    [self inputTipsSearchWithText:self.searchView.startLocation.text];
 }
 
 - (void)finishLocationChange:(NSNotification *)not {
 #warning TODO - 添加输入提示位置
 //    [self geoWithText:self.searchView.finishLocation.text];
+    [self inputTipsSearchWithText:self.searchView.finishLocation.text];
 }
 
 #pragma mark - amapSearch Delegate
@@ -105,6 +113,7 @@
 
 // 输入提示
 - (void)onInputTipsSearchDone:(AMapInputTipsSearchRequest *)request response:(AMapInputTipsSearchResponse *)response {
+    NSLog(@"----------------------");
     NSLog(@"tips request:%@, response:%@",request, response);
 }
 
@@ -150,8 +159,8 @@
 }
 
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UITextFieldTextDidEndEditingNotification" object:self.searchView.finishLocation];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UITextFieldTextDidEndEditingNotification" object:self.searchView.startLocation];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UITextFieldTextDidChangeNotification" object:self.searchView.finishLocation];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UITextFieldTextDidChangeNotification" object:self.searchView.startLocation];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -163,6 +172,15 @@
     AMapGeocodeSearchRequest *geo = [[AMapGeocodeSearchRequest alloc] init];
     geo.address = text;
     [self.mapSearch AMapGeocodeSearch:geo];
+}
+
+- (void)inputTipsSearchWithText:(NSString *)keywords {
+    AMapInputTipsSearchRequest *inputTips = [[AMapInputTipsSearchRequest alloc] init];
+    inputTips.keywords = keywords;
+#warning TODO - 城市名基于定位
+    inputTips.city = @"郑州市";
+    inputTips.cityLimit = YES;
+    [self.mapSearch AMapInputTipsSearch:inputTips];
 }
 
 #pragma mark - 发起路线规划

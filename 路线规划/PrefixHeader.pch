@@ -15,5 +15,8 @@
 #import "UIColor+Flat.h"
 #import "NSDate+Common.h"
 #import "NSMutableArray+Common.h"
+#import "UIViewController+Common.h"
+#import "UIImage+Common.h"
+#import "Public.h"
 
 #endif /* PrefixHeader_pch */

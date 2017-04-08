@@ -12,12 +12,15 @@
 #define kLineImageW     20
 #define kLineImageH     kLineImageW
 
+#define kStartViewH     40
+#define kEndViewH       kStartViewH
+
 @implementation SearchView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor blueColor];
+        self.backgroundColor = [UIColor colorWithHexCode:kSearchBarColor];
         [self loadSubviews];
     }
     return self;
@@ -40,44 +43,79 @@
     }];
     
 #pragma mark - startView
-    UIView *startView = [[UIView alloc] init];
-    [self addSubview:startView];
-    startView.backgroundColor = [UIColor whiteColor];
+    UIView *startView = [self InitBackgroundView:lineImageView y:(- 20 - 3)];
     
-    [startView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(lineImageView.mas_right).with.offset(10);
-        make.right.equalTo(self.mas_right).with.offset(-15);
-        make.height.mas_equalTo(40);
-        make.centerY.equalTo(self.mas_centerY).with.offset(-20 - 3);
-    }];
+    [self tipsLabel:startView tips:@"从"];
     
-    self.startLocation = [[UITextField alloc] init];
-    [startView addSubview:self.startLocation];
-    self.startLocation.placeholder = @"起始位置";
-    
-    [self.startLocation mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.centerY.centerX.equalTo(startView);
-    }];
+    self.startLocation = [self InitSearchTextField:startView placeHolder:@"起始位置"];
     
     
 #pragma mark - endView
-    UIView *endView = [[UIView alloc] init];
-    [self addSubview:endView];
-    endView.backgroundColor = [UIColor whiteColor];
+    UIView *endView = [self InitBackgroundView:lineImageView y:(20 + 3)];
+    [self tipsLabel:endView tips:@"到"];
     
-    [endView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(lineImageView.mas_right).with.offset(10);
-        make.right.equalTo(self.mas_right).with.offset(-15);
-        make.height.mas_equalTo(40);
-        make.centerY.equalTo(self.mas_centerY).with.offset(20 + 3);
+    self.finishLocation = [self InitSearchTextField:endView placeHolder:@"结束位置"];
+//    self.finishLocation = [[UITextField alloc] init];
+//    [endView addSubview:self.finishLocation];
+//    self.finishLocation.placeholder = @"结束位置";
+//    self.finishLocation.textColor = [UIColor colorWithHexCode:KSearchBarTextColor];
+//    self.finishLocation.backgroundColor = [UIColor colorWithHexCode:kSearchLabelColor];
+//    
+//    [self.finishLocation mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.right.centerY.centerX.equalTo(endView);
+//        make.left.mas_equalTo(kEndViewH);
+//    }];
+}
+
+- (UITextField *)InitSearchTextField:(UIView *)superView placeHolder:(NSString *)string {
+    UITextField *textField = [[UITextField alloc] init];
+    [superView addSubview:textField];
+    textField.placeholder = string;
+    textField.textColor = [UIColor colorWithHexCode:KSearchBarTextColor];
+    textField.backgroundColor = [UIColor colorWithHexCode:kSearchLabelColor];
+    
+    [textField mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.centerY.height.equalTo(superView);
+        make.left.mas_equalTo(kEndViewH);
     }];
     
-    self.finishLocation = [[UITextField alloc] init];
-    [endView addSubview:self.finishLocation];
-    self.finishLocation.placeholder = @"结束位置";
+    return textField;
+}
+
+- (UIView *)InitBackgroundView:(UIImageView *)lineImageView y:(NSInteger)y {
+    UIView *view = [[UIView alloc] init];
+    [self addSubview:view];
+    view.backgroundColor = [UIColor whiteColor];
+    view.backgroundColor = [UIColor colorWithHexCode:kSearchLabelColor];
+    [self showRoundView:view];
     
-    [self.finishLocation mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.centerY.centerX.equalTo(endView);
+    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(lineImageView.mas_right).with.offset(10);
+        make.right.equalTo(self.mas_right).with.offset(-15);
+        make.height.mas_equalTo(kStartViewH);
+        make.centerY.equalTo(self.mas_centerY).with.offset(y);
+    }];
+    
+    return view;
+}
+
+- (void)showRoundView:(UIView *)view {
+    view.layer.cornerRadius = 3.0;
+    view.layer.masksToBounds = YES;
+}
+
+- (void)tipsLabel:(UIView *)superView tips:(NSString *)tips {
+    UILabel *label = [[UILabel alloc] init];
+    [superView addSubview:label];
+    label.text = tips;
+    label.textAlignment = NSTextAlignmentCenter;
+    label.textColor = [UIColor colorWithHexCode:kSearchLabeltextColor];
+    label.backgroundColor = [UIColor colorWithHexCode:kSearchLabelColor];
+    [self showRoundView:label];
+    
+    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.bottom.equalTo(superView);
+        make.width.mas_equalTo(kStartViewH);
     }];
 }
 
