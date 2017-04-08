@@ -12,10 +12,12 @@
 #import "BusLineDetailCell.h"
 //#import "ReGoecode.h"
 #import <AMapSearchKit/AMapSearchKit.h>
+#import "StationCell.h"
 
 
-#define kWalkCellID     @"walkCell"
-#define kBusLineDetailCellID      @"busLineDetailCell"
+#define kWalkCellID                 @"walkCell"
+#define kBusLineDetailCellID        @"busLineDetailCell"
+#define kStationCellID              @"stationCell"
 
 @interface RouteMapDetailViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -68,6 +70,8 @@
 #warning TODO - 区分 公交/地铁
 //          if  ([segments.buslines firstObject].type = "地铁线路") {}
             // 添加公交到数据源
+                // 拆分公交数据为 始发和到达
+            
             [self.dataSource addObject:firstBusline];
             NSLog(@"公交/地铁 加进去了");
         }
@@ -88,6 +92,7 @@
     
     [self.detailTableView registerNib:[UINib nibWithNibName:@"WalkCell" bundle:nil] forCellReuseIdentifier:kWalkCellID];
     [self.detailTableView registerNib:[UINib nibWithNibName:@"BusLineDetailCell" bundle:nil] forCellReuseIdentifier:kBusLineDetailCellID];
+    [self.detailTableView registerNib:[UINib nibWithNibName:@"StationCell" bundle:nil] forCellReuseIdentifier:kStationCellID];
     
     self.detailTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
@@ -101,8 +106,10 @@
     
     // 根据类名区分 [self.dataSource[indexPath.row] isKindOfClass:[AMapStep class]]
     
-    if ([self.dataSource[indexPath.row] isKindOfClass:[AMapStep class]]) {
-        AMapStep *mapStep = self.dataSource[indexPath.row];
+    id currentClass = self.dataSource[indexPath.row];
+    
+    if ([currentClass isKindOfClass:[AMapStep class]]) {
+        AMapStep *mapStep = currentClass;
         
         WalkCell *cell = [tableView dequeueReusableCellWithIdentifier:kWalkCellID];
         if (!cell) {
@@ -114,8 +121,8 @@
         return cell;
     }
     
-    if ([self.dataSource[indexPath.row] isKindOfClass:[AMapBusLine class]]) {
-        AMapBusLine *busLine = self.dataSource[indexPath.row];
+    if ([currentClass isKindOfClass:[AMapBusLine class]]) {
+        AMapBusLine *busLine = currentClass;
         NSLog(@"busLine :%@", busLine.name);
         
         BusLineDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:kBusLineDetailCellID];
@@ -129,6 +136,20 @@
         [cell configBusLineDetailCell:busLine];
 #warning TODO - 点击使用 Block 封装
         [cell.showStationDetailBut addTarget:self action:@selector(ShowMoreStation:) forControlEvents:UIControlEventTouchUpInside];
+        return cell;
+        
+    }
+    if ([currentClass isKindOfClass:[AMapBusStop class]]) {
+        AMapBusStop *busStop = currentClass;
+        StationCell *cell = [tableView dequeueReusableCellWithIdentifier:kStationCellID];
+        if (!cell) {
+            NSArray *cellArray = [[NSBundle mainBundle] loadNibNamed:@"StationCell" owner:nil options:nil];
+            cell = [cellArray firstObject];
+        }
+        
+        self.detailTableView.rowHeight = cell.frame.size.height;
+        
+        cell.stationLabel.text = busStop.name;
         return cell;
         
     } else {
@@ -179,20 +200,15 @@
 //            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(busLineIndex + 1, busLine.viaBusStops.count)];
 //            [self.dataSource insertObjects:busLine.viaBusStops atIndexes:indexSet];
 #warning TODO - 改使用循环插入的方式
+            for (int i = 0; i < busLine.viaBusStops.count; i++) {
+                [self.dataSource insertObject:busLine.viaBusStops[i] atIndex:(busLineIndex + 1)];
+                busLineIndex++;
+            }
         }
         self.isClick = YES;
     }
     
-//    if (self.isClick == NO) {
-//        // 站点显示展开
-//        self.isClick = YES;
-//        if (![self.dataSource containsObject:[busLine.busStops firstObject]]) {
-//            
-//        }
-//    } else {
-//        // 站点显示关闭
-//        self.isClick = NO;
-//    }
+    [self.detailTableView reloadData];
     
     
     NSLog(@"data:%@", busLine);

@@ -28,7 +28,7 @@
 @end
 
 @implementation SearchViewController
-
+#warning TODO - 优化点击完成后的查询操作
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -61,7 +61,6 @@
 }
 
 - (void)finishLocationChange:(NSNotification *)not {
-//    NSLog(@"finish not:%@", not.userInfo);
 #warning TODO - 添加输入提示位置
 //    [self geoWithText:self.searchView.finishLocation.text];
 }
