@@ -7,6 +7,9 @@
 //
 
 #import "BaseViewController.h"
+#import <Masonry.h>
+
+#define kBarTitleLabelL         50
 
 @interface BaseViewController ()
 
@@ -17,6 +20,35 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+- (void)hideNavigationBar {
+    self.navigationController.navigationBarHidden = YES;
+}
+
+- (void)showNavigationBar {
+    self.navigationController.navigationBarHidden = NO;
+}
+
+- (UIView *)navigationBarViewWithColor:(NSString *)viewColor title:(NSString *)title {
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenSize.width, 64)];
+    view.backgroundColor = [UIColor colorWithHexCode:viewColor];
+    
+    UILabel *label = [[UILabel alloc] init];
+    [view addSubview:label];
+    label.text = title;
+    label.textColor = [UIColor whiteColor];
+    label.font = [UIFont boldSystemFontOfSize:17.0];
+    label.textAlignment = NSTextAlignmentCenter;
+    
+    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(view.mas_height);
+        make.left.equalTo(view.mas_left).with.offset(kBarTitleLabelL);
+        make.right.equalTo(view.mas_right).with.offset(-kBarTitleLabelL);
+        make.centerY.equalTo(view.mas_centerY);
+    }];
+    
+    return view;
 }
 
 - (void)didReceiveMemoryWarning {

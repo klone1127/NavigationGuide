@@ -10,4 +10,17 @@
 
 @interface BaseViewController : UIViewController
 
+- (void)hideNavigationBar;
+
+- (void)showNavigationBar;
+
+/**
+ 自定义 NavigationBar，
+
+ @param viewColor viewColor
+ @param title 标题
+ @return view
+ */
+- (UIView *)navigationBarViewWithColor:(NSString *)viewColor title:(NSString *)title;
+
 @end

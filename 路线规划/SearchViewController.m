@@ -33,7 +33,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    [self configNavigationBar];
     [self initInputLocationView];
     self.mapSearch = [[AMapSearchAPI alloc] init];
     self.mapSearch.delegate = self;
@@ -41,21 +40,21 @@
 }
 
 - (void)configNavigationBar {
-    [self removeNavigationControllerBottonLine];
-    self.navigationController.navigationBar.barTintColor = [UIColor colorWithHexCode:kSearchBarColor];
-    self.navigationItem.title = @"公交线路规划";
-    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil]];
+    UIView *barView = [self navigationBarViewWithColor:kSearchBarColor title:@"公交线路规划"];
+    [self hideNavigationBar];
+    [self.view addSubview:barView];
     
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self configNavigationBar];
     self.startCoordinate = CLLocationCoordinate2DMake(0, 0);
     self.destinationCoordinate = CLLocationCoordinate2DMake(0, 0);
 }
 
 - (void)initInputLocationView {
-    self.searchView = [[SearchView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 120)];
+    self.searchView = [[SearchView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 120)];
     [self.view addSubview:_searchView];
     
     self.searchView.startLocation.delegate = self;

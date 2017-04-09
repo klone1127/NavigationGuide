@@ -48,6 +48,8 @@
     // Do any additional setup after loading the view.
     self.dataSource = [NSMutableArray arrayWithCapacity:0];
     self.busStopsArray = [NSMutableArray arrayWithCapacity:0];
+    
+    [self showNavigationBar];
     [self initDetailTableView];
     [self initData];
     self.isClick = NO;

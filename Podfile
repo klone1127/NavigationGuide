@@ -2,6 +2,7 @@ platform :ios, '9.0'
 
 target '路线规划' do
 
+        pod 'UMengAnalytics-NO-IDFA'
 	pod 'AMapSearch'
 	pod 'AMapNavi'
 	pod 'JSONModel', 	'~> 1.7.0'

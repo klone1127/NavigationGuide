@@ -10,6 +10,7 @@
 #import "AMapFoundationKit/AMapServices.h"
 #import "Personal.h"
 #import "TransitGuideViewController.h"
+#import <UMMobClick/MobClick.h>
 
 @interface AppDelegate ()
 
@@ -23,9 +24,9 @@
     
     // 高德
     [AMapServices sharedServices].apiKey = KamapKey;
+    [self configUmeng];
     
     TransitGuideViewController *searchVC = [[TransitGuideViewController alloc] init];
-//    [[UIApplication sharedApplication].keyWindow setRootViewController:searchVC];
     [self.window setRootViewController:searchVC];
     
     return YES;
@@ -58,5 +59,10 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+
+- (void)configUmeng {
+    UMConfigInstance.appKey = kUmengKey;
+    [MobClick startWithConfigure:UMConfigInstance];
+}
 
 @end

@@ -13,5 +13,6 @@
 #define kSearchLabelColor       @"679FFF"
 #define kSearchBarColor         @"4287FF"
 #define KSearchBarTextColor     @"FFFFFF"
+#define kScreenSize             [UIScreen mainScreen].bounds.size
 
 #endif /* Public_h */
