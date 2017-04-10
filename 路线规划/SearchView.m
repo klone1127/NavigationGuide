@@ -75,6 +75,7 @@
     textField.placeholder = string;
     textField.textColor = [UIColor colorWithHexCode:KSearchBarTextColor];
     textField.backgroundColor = [UIColor colorWithHexCode:kSearchLabelColor];
+    textField.clearButtonMode = UITextFieldViewModeAlways;
     
     [textField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.centerY.height.equalTo(superView);
