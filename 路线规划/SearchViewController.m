@@ -32,6 +32,7 @@
 @property (nonatomic, strong)UITableView        *searchTipsTableView;
 @property (nonatomic, strong)NSMutableArray     *tipsArray;
 @property (nonatomic, strong)TipsEmptyView      *tipsEmptyView;
+@property (nonatomic, strong)id                 currentTextfield;
 @end
 
 @implementation SearchViewController
@@ -79,8 +80,16 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self configNavigationBar];
-    self.startCoordinate = CLLocationCoordinate2DMake(0, 0);
-    self.destinationCoordinate = CLLocationCoordinate2DMake(0, 0);
+//    self.startCoordinate = CLLocationCoordinate2DMake(0, 0);
+//    self.destinationCoordinate = CLLocationCoordinate2DMake(0, 0);
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startLocationChange:) name:@"UITextFieldTextDidChangeNotification" object:self.searchView.startLocation];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishLocationChange:) name:@"UITextFieldTextDidChangeNotification" object:self.searchView.finishLocation];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UITextFieldTextDidChangeNotification" object:self.searchView.finishLocation];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UITextFieldTextDidChangeNotification" object:self.searchView.startLocation];
 }
 
 - (void)initInputLocationView {
@@ -91,21 +100,23 @@
     self.searchView.finishLocation.delegate = self;
     self.searchView.finishLocation.returnKeyType = UIReturnKeyDone;
     self.searchView.startLocation.returnKeyType = UIReturnKeyDone;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startLocationChange:) name:@"UITextFieldTextDidChangeNotification" object:self.searchView.startLocation];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishLocationChange:) name:@"UITextFieldTextDidChangeNotification" object:self.searchView.finishLocation];
 }
 
 - (void)startLocationChange:(NSNotification *)not {
-    // 获取地理编码
-    [self geoWithText:self.searchView.startLocation.text];
     [self inputTipsSearchWithText:self.searchView.startLocation.text];
+    if ([self.searchView.startLocation.text isEqualToString:@""]) {
+        self.startCoordinate = CLLocationCoordinate2DMake(0, 0);
+    }
 }
 
 - (void)finishLocationChange:(NSNotification *)not {
 #warning TODO - 添加输入提示位置
-    [self geoWithText:self.searchView.finishLocation.text];
+//    [self geoWithText:self.searchView.finishLocation.text];
     [self inputTipsSearchWithText:self.searchView.finishLocation.text];
+    
+    if ([self.searchView.finishLocation.text isEqualToString:@""]) {
+        self.destinationCoordinate = CLLocationCoordinate2DMake(0, 0);
+    }
 }
 
 #pragma mark - tableView delegate
@@ -128,7 +139,7 @@
     if (tip.district == nil || [tip.district isEqualToString:@""]) {
         showString = [NSString stringWithFormat:@"%@", tip.name];
     } else {
-        showString = [NSString stringWithFormat:@"%@·%@", tip.name, tip.district = nil];
+        showString = [NSString stringWithFormat:@"%@·%@", tip.name, tip.district];
     }
     cell.locationName.text = showString;
     cell.location.text = tip.address;
@@ -140,6 +151,21 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    AMapTip *tip = self.tipsArray[indexPath.row];
+    UITextField *textField = (UITextField *)self.currentTextfield;
+    textField.text = tip.name;
+    if ([textField isEqual:self.searchView.startLocation]) {
+        self.startCoordinate = CLLocationCoordinate2DMake(tip.location.latitude, tip.location.longitude);
+    }
+    
+    if ([textField isEqual:self.searchView.finishLocation]) {
+        self.destinationCoordinate = CLLocationCoordinate2DMake(tip.location.latitude, tip.location.longitude);
+    }
+    
+    if ((self.startCoordinate.latitude != 0) && (self.destinationCoordinate.latitude != 0)) {
+        [self transitRouteSearchWithStartCoordinate:self.startCoordinate DestinationCoordinate:self.destinationCoordinate];
+    }
 }
 
 #pragma mark - amapSearch Delegate
@@ -157,11 +183,9 @@
     CGFloat longitude = [response.geocodes firstObject].location.longitude;
     
     if ([request.address isEqualToString:self.searchView.startLocation.text]) {
-//        NSLog(@"编码前的起始地址：%@， 响应的编码为:%@", request.address, response.geocodes);
         self.startCoordinate = CLLocationCoordinate2DMake(latitude, longitude);
         
     } else if ([request.address isEqualToString:self.searchView.finishLocation.text]) {
-//        NSLog(@"编码前的结束地址：%@， 响应的编码为:%@", request.address, response.geocodes);
         self.destinationCoordinate = CLLocationCoordinate2DMake(latitude, longitude);
     } else {
 //        NSLog(@"编码前的地址：%@， 响应的编码为:%@", request.address, response.geocodes);
@@ -177,6 +201,15 @@
 // 输入提示
 - (void)onInputTipsSearchDone:(AMapInputTipsSearchRequest *)request response:(AMapInputTipsSearchResponse *)response {
     [self.tipsArray removeAllObjects];
+    
+    if ([request.keywords isEqualToString:self.searchView.startLocation.text]) {
+        self.currentTextfield = self.searchView.startLocation;
+    }
+    
+    if ([request.keywords isEqualToString:self.searchView.finishLocation.text]) {
+        self.currentTextfield = self.searchView.finishLocation;
+    }
+    
     if (response.count == 0) {
         self.searchTipsTableView.backgroundView = self.tipsEmptyView;
     } else {
@@ -228,11 +261,6 @@
     } else {
         return NO;
     }
-}
-
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UITextFieldTextDidChangeNotification" object:self.searchView.finishLocation];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UITextFieldTextDidChangeNotification" object:self.searchView.startLocation];
 }
 
 - (void)didReceiveMemoryWarning {
