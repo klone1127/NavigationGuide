@@ -11,10 +11,16 @@
 #import <MAMapKit/MAMapKit.h>
 #import "SearchView.h"
 #import "TransitResultViewController.h"
+#import "SearchTipsCell.h"
+#import "TipsEmptyView.h"
 
-#define kSearchViewID         @"searchView"
+#define kSearchViewID           @"searchView"
+#define kInputViewY             64
+#define kInputViewH             120
+#define kSearchTipsTableViewY   kInputViewY + kInputViewH
+#define kSearchTipsCellID       @"searchTipsCell"
 
-@interface SearchViewController ()<AMapSearchDelegate, UITextFieldDelegate>
+@interface SearchViewController ()<AMapSearchDelegate, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong)AMapSearchAPI                  *mapSearch;
 
@@ -23,8 +29,9 @@
 @property (strong, nonatomic) AMapRoute         *route;  //路径规划信息
 @property (copy, nonatomic) NSArray             *routeArray;  //规划的路径数组
 @property (nonatomic, strong)SearchView         *searchView;
-
-
+@property (nonatomic, strong)UITableView        *searchTipsTableView;
+@property (nonatomic, strong)NSMutableArray     *tipsArray;
+@property (nonatomic, strong)TipsEmptyView      *tipsEmptyView;
 @end
 
 @implementation SearchViewController
@@ -33,10 +40,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
+    self.tipsArray = [NSMutableArray arrayWithCapacity:0];
     [self initInputLocationView];
+    [self initSearchTipsTableView];
+    [self initMapSearch];
+    [self configTipsEmptyView];
+    
+}
+
+- (void)initMapSearch {
     self.mapSearch = [[AMapSearchAPI alloc] init];
     self.mapSearch.delegate = self;
-    
 }
 
 - (void)configNavigationBar {
@@ -44,6 +58,22 @@
     [self hideNavigationBar];
     [self.view addSubview:barView];
     
+}
+
+- (void)configTipsEmptyView {
+    self.tipsEmptyView = [[TipsEmptyView alloc] initWithFrame:self.searchTipsTableView.bounds];
+}
+
+#warning TODO - 监听键盘高度，改变 tableview 高度
+- (void)initSearchTipsTableView {
+    self.searchTipsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kSearchTipsTableViewY, kScreenSize.width, kScreenSize.height - kInputViewY - kInputViewH) style:UITableViewStylePlain];
+    self.searchTipsTableView.delegate = self;
+    self.searchTipsTableView.dataSource = self;
+    [self.view addSubview:self.searchTipsTableView];
+    
+    self.searchTipsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    [self.searchTipsTableView registerNib:[UINib nibWithNibName:@"SearchTipsCell" bundle:nil] forCellReuseIdentifier:kSearchTipsCellID];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -54,28 +84,62 @@
 }
 
 - (void)initInputLocationView {
-    self.searchView = [[SearchView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 120)];
-    [self.view addSubview:_searchView];
+    self.searchView = [[SearchView alloc] initWithFrame:CGRectMake(0, kInputViewY, self.view.frame.size.width, kInputViewH)];
+    [self.view addSubview:self.searchView];
     
     self.searchView.startLocation.delegate = self;
     self.searchView.finishLocation.delegate = self;
     self.searchView.finishLocation.returnKeyType = UIReturnKeyDone;
     self.searchView.startLocation.returnKeyType = UIReturnKeyDone;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startLocationChange:) name:@"UITextFieldTextDidEndEditingNotification" object:self.searchView.startLocation];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishLocationChange:) name:@"UITextFieldTextDidEndEditingNotification" object:self.searchView.finishLocation];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startLocationChange:) name:@"UITextFieldTextDidChangeNotification" object:self.searchView.startLocation];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishLocationChange:) name:@"UITextFieldTextDidChangeNotification" object:self.searchView.finishLocation];
 }
 
 - (void)startLocationChange:(NSNotification *)not {
     // 获取地理编码
     [self geoWithText:self.searchView.startLocation.text];
-//    [self inputTipsSearchWithText:self.searchView.startLocation.text];
+    [self inputTipsSearchWithText:self.searchView.startLocation.text];
 }
 
 - (void)finishLocationChange:(NSNotification *)not {
 #warning TODO - 添加输入提示位置
-//    [self geoWithText:self.searchView.finishLocation.text];
-//    [self inputTipsSearchWithText:self.searchView.finishLocation.text];
+    [self geoWithText:self.searchView.finishLocation.text];
+    [self inputTipsSearchWithText:self.searchView.finishLocation.text];
+}
+
+#pragma mark - tableView delegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.tipsArray.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    AMapTip *tip = self.tipsArray[indexPath.row];
+    
+    SearchTipsCell *cell = [tableView dequeueReusableCellWithIdentifier:kSearchTipsCellID];
+    if (!cell) {
+        NSArray *cellArray = [[NSBundle mainBundle] loadNibNamed:@"SearchTipsCell" owner:nil options:nil];
+        cell = [cellArray firstObject];
+    }
+    self.searchTipsTableView.rowHeight = cell.frame.size.height;
+    
+    NSString *showString;
+    if (tip.district == nil || [tip.district isEqualToString:@""]) {
+        showString = [NSString stringWithFormat:@"%@", tip.name];
+    } else {
+        showString = [NSString stringWithFormat:@"%@·%@", tip.name, tip.district = nil];
+    }
+    cell.locationName.text = showString;
+    cell.location.text = tip.address;
+#warning TODO - 添加距离
+    cell.distanceLabel.hidden = YES;
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - amapSearch Delegate
@@ -112,6 +176,15 @@
 
 // 输入提示
 - (void)onInputTipsSearchDone:(AMapInputTipsSearchRequest *)request response:(AMapInputTipsSearchResponse *)response {
+    [self.tipsArray removeAllObjects];
+    if (response.count == 0) {
+        self.searchTipsTableView.backgroundView = self.tipsEmptyView;
+    } else {
+        self.searchTipsTableView.backgroundView = nil;
+        [self.tipsArray addObjectsFromArray:response.tips];
+    }
+    [self.searchTipsTableView reloadData];
+    
     NSLog(@"----------------------");
     NSLog(@"tips request:%@, response:%@",request, response);
 }
@@ -158,8 +231,8 @@
 }
 
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UITextFieldTextDidEndEditingNotification" object:self.searchView.finishLocation];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UITextFieldTextDidEndEditingNotification" object:self.searchView.startLocation];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UITextFieldTextDidChangeNotification" object:self.searchView.finishLocation];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UITextFieldTextDidChangeNotification" object:self.searchView.startLocation];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -29,6 +29,9 @@
 		8B3070601E9620710072B35C /* WalkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B30705E1E9620710072B35C /* WalkCell.xib */; };
 		8B30706A1E9634990072B35C /* ReGoecode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3070691E9634990072B35C /* ReGoecode.m */; };
 		8B3070711E972D850072B35C /* NSDate+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3070701E972D850072B35C /* NSDate+Common.m */; };
+		8B505EBB1E9B2D0B002776CE /* SearchTipsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B505EB91E9B2D0B002776CE /* SearchTipsCell.m */; };
+		8B505EBC1E9B2D0B002776CE /* SearchTipsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B505EBA1E9B2D0B002776CE /* SearchTipsCell.xib */; };
+		8B7A67111E9B32FA00BCC29A /* TipsEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B7A67101E9B32FA00BCC29A /* TipsEmptyView.m */; };
 		8BA9E2561E976AEE00F7A6E2 /* StationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA9E2541E976AEE00F7A6E2 /* StationCell.m */; };
 		8BA9E2571E976AEE00F7A6E2 /* StationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA9E2551E976AEE00F7A6E2 /* StationCell.xib */; };
 		8BA9E25C1E98754400F7A6E2 /* StartStopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA9E25A1E98754400F7A6E2 /* StartStopCell.m */; };
@@ -105,6 +108,11 @@
 		8B3070691E9634990072B35C /* ReGoecode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReGoecode.m; sourceTree = "<group>"; };
 		8B30706F1E972D850072B35C /* NSDate+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Common.h"; sourceTree = "<group>"; };
 		8B3070701E972D850072B35C /* NSDate+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Common.m"; sourceTree = "<group>"; };
+		8B505EB81E9B2D0B002776CE /* SearchTipsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTipsCell.h; sourceTree = "<group>"; };
+		8B505EB91E9B2D0B002776CE /* SearchTipsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTipsCell.m; sourceTree = "<group>"; };
+		8B505EBA1E9B2D0B002776CE /* SearchTipsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchTipsCell.xib; sourceTree = "<group>"; };
+		8B7A670F1E9B32FA00BCC29A /* TipsEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipsEmptyView.h; sourceTree = "<group>"; };
+		8B7A67101E9B32FA00BCC29A /* TipsEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipsEmptyView.m; sourceTree = "<group>"; };
 		8BA9E2531E976AEE00F7A6E2 /* StationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationCell.h; sourceTree = "<group>"; };
 		8BA9E2541E976AEE00F7A6E2 /* StationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationCell.m; sourceTree = "<group>"; };
 		8BA9E2551E976AEE00F7A6E2 /* StationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StationCell.xib; sourceTree = "<group>"; };
@@ -176,6 +184,7 @@
 		7D3D98E51E9543DC001A16C7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8B505EB71E9B2CC4002776CE /* TipsView */,
 				8B3070611E96218D0072B35C /* RouteMapDetail */,
 				8B30702C1E94D4200072B35C /* SearchView.h */,
 				8B30702D1E94D4200072B35C /* SearchView.m */,
@@ -330,6 +339,18 @@
 			name = Tools;
 			sourceTree = "<group>";
 		};
+		8B505EB71E9B2CC4002776CE /* TipsView */ = {
+			isa = PBXGroup;
+			children = (
+				8B505EB81E9B2D0B002776CE /* SearchTipsCell.h */,
+				8B505EB91E9B2D0B002776CE /* SearchTipsCell.m */,
+				8B505EBA1E9B2D0B002776CE /* SearchTipsCell.xib */,
+				8B7A670F1E9B32FA00BCC29A /* TipsEmptyView.h */,
+				8B7A67101E9B32FA00BCC29A /* TipsEmptyView.m */,
+			);
+			name = TipsView;
+			sourceTree = "<group>";
+		};
 		8BA9E26D1E98E21C00F7A6E2 /* BaseVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -459,6 +480,7 @@
 				8BA9E2571E976AEE00F7A6E2 /* StationCell.xib in Resources */,
 				8BA9E25D1E98754400F7A6E2 /* StartStopCell.xib in Resources */,
 				8B306FFE1E949ACB0072B35C /* Main.storyboard in Resources */,
+				8B505EBC1E9B2D0B002776CE /* SearchTipsCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -540,6 +562,7 @@
 				8B306FF81E949ACB0072B35C /* AppDelegate.m in Sources */,
 				8B3070291E94C1860072B35C /* SearchViewController.m in Sources */,
 				7D3D98F91E955083001A16C7 /* TransitGuideViewController.m in Sources */,
+				8B505EBB1E9B2D0B002776CE /* SearchTipsCell.m in Sources */,
 				8BA9E2611E98756500F7A6E2 /* DestinationStopCell.m in Sources */,
 				8BA9E2651E987C4B00F7A6E2 /* StartStopModel.m in Sources */,
 				7D3D98E91E954431001A16C7 /* TransitTableViewCell.m in Sources */,
@@ -551,6 +574,7 @@
 				8B3070561E95EC1A0072B35C /* LocationView.m in Sources */,
 				8B30702E1E94D4200072B35C /* SearchView.m in Sources */,
 				8B306FF51E949ACB0072B35C /* main.m in Sources */,
+				8B7A67111E9B32FA00BCC29A /* TipsEmptyView.m in Sources */,
 				8B30705F1E9620710072B35C /* WalkCell.m in Sources */,
 				8B3070711E972D850072B35C /* NSDate+Common.m in Sources */,
 				8B30706A1E9634990072B35C /* ReGoecode.m in Sources */,
