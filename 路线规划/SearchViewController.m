@@ -62,20 +62,20 @@
     self.searchView.finishLocation.returnKeyType = UIReturnKeyDone;
     self.searchView.startLocation.returnKeyType = UIReturnKeyDone;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startLocationChange:) name:@"UITextFieldTextDidChangeNotification" object:self.searchView.startLocation];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishLocationChange:) name:@"UITextFieldTextDidChangeNotification" object:self.searchView.finishLocation];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startLocationChange:) name:@"UITextFieldTextDidEndEditingNotification" object:self.searchView.startLocation];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishLocationChange:) name:@"UITextFieldTextDidEndEditingNotification" object:self.searchView.finishLocation];
 }
 
 - (void)startLocationChange:(NSNotification *)not {
     // 获取地理编码
-//    [self geoWithText:self.searchView.startLocation.text];
-    [self inputTipsSearchWithText:self.searchView.startLocation.text];
+    [self geoWithText:self.searchView.startLocation.text];
+//    [self inputTipsSearchWithText:self.searchView.startLocation.text];
 }
 
 - (void)finishLocationChange:(NSNotification *)not {
 #warning TODO - 添加输入提示位置
 //    [self geoWithText:self.searchView.finishLocation.text];
-    [self inputTipsSearchWithText:self.searchView.finishLocation.text];
+//    [self inputTipsSearchWithText:self.searchView.finishLocation.text];
 }
 
 #pragma mark - amapSearch Delegate
@@ -139,13 +139,13 @@
 #pragma mark - textfield Delegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if ((self.searchView.startLocation.text == nil || ![self.searchView.startLocation.text isEqualToString:@""]) && ((self.searchView.finishLocation.text == nil || ![self.searchView.finishLocation.text isEqualToString:@""]))) {
-        if (self.startCoordinate.latitude == 0) {
+        if ((self.startCoordinate.latitude == 0) && (self.destinationCoordinate.latitude == 0)) {
             [self geoWithText:self.searchView.startLocation.text];
+            [self geoWithText:self.searchView.finishLocation.text];
         } else if (self.destinationCoordinate.latitude == 0) {
             [self geoWithText:self.searchView.finishLocation.text];
-        } else if ((self.startCoordinate.latitude == 0) && (self.destinationCoordinate.latitude == 0)) {
+        } else if (self.startCoordinate.latitude == 0) {
             [self geoWithText:self.searchView.startLocation.text];
-            [self geoWithText:self.searchView.finishLocation.text];
         } else {
             // 发起线路规划的请求
             [self transitRouteSearchWithStartCoordinate:self.startCoordinate DestinationCoordinate:self.destinationCoordinate];
@@ -158,8 +158,8 @@
 }
 
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UITextFieldTextDidChangeNotification" object:self.searchView.finishLocation];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UITextFieldTextDidChangeNotification" object:self.searchView.startLocation];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UITextFieldTextDidEndEditingNotification" object:self.searchView.finishLocation];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UITextFieldTextDidEndEditingNotification" object:self.searchView.startLocation];
 }
 
 - (void)didReceiveMemoryWarning {
