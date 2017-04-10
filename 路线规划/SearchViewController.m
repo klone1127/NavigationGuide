@@ -65,7 +65,6 @@
     self.tipsEmptyView = [[TipsEmptyView alloc] initWithFrame:self.searchTipsTableView.bounds];
 }
 
-#warning TODO - 监听键盘高度，改变 tableview 高度
 - (void)initSearchTipsTableView {
     self.searchTipsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kSearchTipsTableViewY, kScreenSize.width, kScreenSize.height - kInputViewY - kInputViewH) style:UITableViewStylePlain];
     self.searchTipsTableView.delegate = self;
@@ -80,14 +79,19 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self configNavigationBar];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startLocationChange:) name:@"UITextFieldTextDidChangeNotification" object:self.searchView.startLocation];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishLocationChange:) name:@"UITextFieldTextDidChangeNotification" object:self.searchView.finishLocation];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startLocationChange:) name:UITextFieldTextDidChangeNotification object:self.searchView.startLocation];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishLocationChange:) name:UITextFieldTextDidChangeNotification object:self.searchView.finishLocation];
+    
+    // 监听键盘高度变化
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UITextFieldTextDidChangeNotification" object:self.searchView.finishLocation];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UITextFieldTextDidChangeNotification" object:self.searchView.startLocation];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:self.searchView.finishLocation];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:self.searchView.startLocation];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
 }
 
 - (void)initInputLocationView {
@@ -100,19 +104,29 @@
     self.searchView.startLocation.returnKeyType = UIReturnKeyDone;
 }
 
+- (void)keyboardShow:(NSNotification *)not {
+    NSLog(@"not:%@", not.userInfo);
+    
+    CGRect keyBoardFrame = [[not.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat animationDuration = [NSString stringWithFormat:@"%@", [not.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey]].floatValue;
+    
+    [self changeTableViewHeight:-keyBoardFrame.size.height animationDuration:animationDuration];
+}
+
+- (void)changeTableViewHeight:(CGFloat)height animationDuration:(CGFloat)time {
+    [UIView animateWithDuration:time animations:^{
+        self.searchTipsTableView.frame = CGRectMake(0, kSearchTipsTableViewY, kScreenSize.width, kScreenSize.height - kInputViewY - kInputViewH + height);
+    }];
+}
+
 - (void)startLocationChange:(NSNotification *)not {
     [self inputTipsSearchWithText:self.searchView.startLocation.text];
-    [self.searchView isStartLocationEmpty:^{
-       self.startCoordinate = CLLocationCoordinate2DMake(0, 0);
-    }];
+    self.startCoordinate = CLLocationCoordinate2DMake(0, 0);
 }
 
 - (void)finishLocationChange:(NSNotification *)not {
     [self inputTipsSearchWithText:self.searchView.finishLocation.text];
-    
-    [self.searchView isFinshLocationEmpty:^{
-        self.destinationCoordinate = CLLocationCoordinate2DMake(0, 0);
-    }];
+    self.destinationCoordinate = CLLocationCoordinate2DMake(0, 0);
 }
 
 #pragma mark - tableView delegate

@@ -64,15 +64,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x8def;&#x7ebf;&#x89c4;&#x5212;/SearchViewController.m"
-            timestampString = "513502293.151165"
+            timestampString = "513506234.358365"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
+            startingLineNumber = "199"
+            endingLineNumber = "199"
             landmarkName = "-onGeocodeSearchDone:response:"
             landmarkType = "7">
          </BreakpointContent>
@@ -80,15 +80,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x8def;&#x7ebf;&#x89c4;&#x5212;/SearchViewController.m"
-            timestampString = "513502293.151165"
+            timestampString = "513506234.358365"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -96,15 +96,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x8def;&#x7ebf;&#x89c4;&#x5212;/SearchViewController.m"
-            timestampString = "513502293.151165"
+            timestampString = "513506234.358365"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -112,15 +112,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x8def;&#x7ebf;&#x89c4;&#x5212;/SearchViewController.m"
-            timestampString = "513502293.151165"
+            timestampString = "513506234.358365"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "189"
-            endingLineNumber = "189"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
             landmarkName = "-onInputTipsSearchDone:response:"
             landmarkType = "7">
          </BreakpointContent>
