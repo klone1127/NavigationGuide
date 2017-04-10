@@ -733,6 +733,7 @@
 			baseConfigurationReference = B2158DFDE25BFDF8B72B8984 /* Pods-路线规划.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 9B2M6PYX58;
 				INFOPLIST_FILE = "路线规划/Info.plist";
@@ -747,6 +748,7 @@
 			baseConfigurationReference = C16EB73FBC8B5A8BB3348BF5 /* Pods-路线规划.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 9B2M6PYX58;
 				INFOPLIST_FILE = "路线规划/Info.plist";
