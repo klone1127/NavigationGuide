@@ -49,11 +49,16 @@
     self.dataSource = [NSMutableArray arrayWithCapacity:0];
     self.busStopsArray = [NSMutableArray arrayWithCapacity:0];
     
-    [self showNavigationBar];
+    [self configNavigationItem];
     [self initDetailTableView];
     [self initData];
     self.isClick = NO;
     
+}
+
+- (void)configNavigationItem {
+    self.navigationItem.title = @"路线详情";
+    [self showNavigationBar];
 }
 
 - (void)initData {

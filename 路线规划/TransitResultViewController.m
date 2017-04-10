@@ -25,13 +25,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithHexCode:@"F1F5F6"];
-    [self showNavigationBar];
+    [self configNavigationItem];
     
     [self initTableView];
-    
-    for (int i = 0; i < self.transitArray.count; i++) {
-        NSLog(@"data:%@", self.transitArray[i]);
-    }
+}
+
+- (void)configNavigationItem {
+    self.navigationItem.title = @"可乘线路";
+    [self showNavigationBar];
 }
 
 - (void)initTableView {

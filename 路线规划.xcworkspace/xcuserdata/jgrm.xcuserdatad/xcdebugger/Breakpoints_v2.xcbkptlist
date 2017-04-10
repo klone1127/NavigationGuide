@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x8def;&#x7ebf;&#x89c4;&#x5212;/RouteMapDetailViewController.m"
-            timestampString = "513327681.275387"
+            timestampString = "513500442.048907"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
             landmarkName = "-ShowMoreStation:"
             landmarkType = "7">
          </BreakpointContent>
@@ -52,12 +52,76 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x8def;&#x7ebf;&#x89c4;&#x5212;/RouteMapDetailViewController.m"
-            timestampString = "513332269.500063"
+            timestampString = "513500442.048907"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
             landmarkName = "-ShowMoreStation:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x8def;&#x7ebf;&#x89c4;&#x5212;/SearchViewController.m"
+            timestampString = "513506234.358365"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "199"
+            endingLineNumber = "199"
+            landmarkName = "-onGeocodeSearchDone:response:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x8def;&#x7ebf;&#x89c4;&#x5212;/SearchViewController.m"
+            timestampString = "513506234.358365"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x8def;&#x7ebf;&#x89c4;&#x5212;/SearchViewController.m"
+            timestampString = "513506234.358365"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x8def;&#x7ebf;&#x89c4;&#x5212;/SearchViewController.m"
+            timestampString = "513506234.358365"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
+            landmarkName = "-onInputTipsSearchDone:response:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

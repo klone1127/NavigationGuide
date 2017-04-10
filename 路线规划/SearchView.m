@@ -55,16 +55,18 @@
     [self tipsLabel:endView tips:@"到"];
     
     self.finishLocation = [self InitSearchTextField:endView placeHolder:@"结束位置"];
-//    self.finishLocation = [[UITextField alloc] init];
-//    [endView addSubview:self.finishLocation];
-//    self.finishLocation.placeholder = @"结束位置";
-//    self.finishLocation.textColor = [UIColor colorWithHexCode:KSearchBarTextColor];
-//    self.finishLocation.backgroundColor = [UIColor colorWithHexCode:kSearchLabelColor];
-//    
-//    [self.finishLocation mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.right.centerY.centerX.equalTo(endView);
-//        make.left.mas_equalTo(kEndViewH);
-//    }];
+}
+
+- (void)isFinshLocationEmpty:(void (^)())excuteBlock {
+    if ([self.finishLocation.text isEqualToString:@""]) {
+        excuteBlock();
+    }
+}
+
+- (void)isStartLocationEmpty:(void (^)())excuteBlock {
+    if ([self.startLocation.text isEqualToString:@""]) {
+        excuteBlock();
+    }
 }
 
 - (UITextField *)InitSearchTextField:(UIView *)superView placeHolder:(NSString *)string {
