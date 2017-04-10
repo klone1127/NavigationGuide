@@ -80,8 +80,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self configNavigationBar];
-//    self.startCoordinate = CLLocationCoordinate2DMake(0, 0);
-//    self.destinationCoordinate = CLLocationCoordinate2DMake(0, 0);
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startLocationChange:) name:@"UITextFieldTextDidChangeNotification" object:self.searchView.startLocation];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishLocationChange:) name:@"UITextFieldTextDidChangeNotification" object:self.searchView.finishLocation];
 }
@@ -104,19 +102,17 @@
 
 - (void)startLocationChange:(NSNotification *)not {
     [self inputTipsSearchWithText:self.searchView.startLocation.text];
-    if ([self.searchView.startLocation.text isEqualToString:@""]) {
-        self.startCoordinate = CLLocationCoordinate2DMake(0, 0);
-    }
+    [self.searchView isStartLocationEmpty:^{
+       self.startCoordinate = CLLocationCoordinate2DMake(0, 0);
+    }];
 }
 
 - (void)finishLocationChange:(NSNotification *)not {
-#warning TODO - 添加输入提示位置
-//    [self geoWithText:self.searchView.finishLocation.text];
     [self inputTipsSearchWithText:self.searchView.finishLocation.text];
     
-    if ([self.searchView.finishLocation.text isEqualToString:@""]) {
+    [self.searchView isFinshLocationEmpty:^{
         self.destinationCoordinate = CLLocationCoordinate2DMake(0, 0);
-    }
+    }];
 }
 
 #pragma mark - tableView delegate
@@ -134,18 +130,7 @@
         cell = [cellArray firstObject];
     }
     self.searchTipsTableView.rowHeight = cell.frame.size.height;
-    
-    NSString *showString;
-    if (tip.district == nil || [tip.district isEqualToString:@""]) {
-        showString = [NSString stringWithFormat:@"%@", tip.name];
-    } else {
-        showString = [NSString stringWithFormat:@"%@·%@", tip.name, tip.district];
-    }
-    cell.locationName.text = showString;
-    cell.location.text = tip.address;
-#warning TODO - 添加距离
-    cell.distanceLabel.hidden = YES;
-    
+    [cell configSearchTipsCell:tip];
     return cell;
 }
 
@@ -155,6 +140,7 @@
     AMapTip *tip = self.tipsArray[indexPath.row];
     UITextField *textField = (UITextField *)self.currentTextfield;
     textField.text = tip.name;
+    
     if ([textField isEqual:self.searchView.startLocation]) {
         self.startCoordinate = CLLocationCoordinate2DMake(tip.location.latitude, tip.location.longitude);
     }
@@ -184,7 +170,6 @@
     
     if ([request.address isEqualToString:self.searchView.startLocation.text]) {
         self.startCoordinate = CLLocationCoordinate2DMake(latitude, longitude);
-        
     } else if ([request.address isEqualToString:self.searchView.finishLocation.text]) {
         self.destinationCoordinate = CLLocationCoordinate2DMake(latitude, longitude);
     } else {
@@ -215,11 +200,23 @@
     } else {
         self.searchTipsTableView.backgroundView = nil;
         [self.tipsArray addObjectsFromArray:response.tips];
+        
+        [self removeNoLocationCoordinateObject];
     }
     [self.searchTipsTableView reloadData];
     
     NSLog(@"----------------------");
     NSLog(@"tips request:%@, response:%@",request, response);
+}
+
+// 输入提示有时会给出坐标为空的地点，从数组中去除
+- (void)removeNoLocationCoordinateObject {
+    [self.tipsArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        AMapTip *tip = obj;
+        if (tip.location.latitude == 0) {
+            [self.tipsArray removeObject:tip];
+        }
+    }];
 }
 
 #pragma mark - 线路规划

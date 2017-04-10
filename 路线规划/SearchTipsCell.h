@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AMapSearchKit/AMapSearchKit.h>
 
 @interface SearchTipsCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *locationName;
 @property (weak, nonatomic) IBOutlet UILabel *location;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
+
+- (void)configSearchTipsCell:(AMapTip *)tip;
 
 @end

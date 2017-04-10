@@ -12,4 +12,19 @@
 @property (nonatomic, strong)UITextField *startLocation;
 @property (nonatomic, strong)UITextField *finishLocation;
 
+
+/**
+ finishLocation 输入是否为空
+
+ @param excuteBlock 可执行代码
+ */
+- (void)isFinshLocationEmpty:(void(^)())excuteBlock;
+
+/**
+ startLocation 输入是否为空
+ 
+ @param excuteBlock 可执行代码
+ */
+- (void)isStartLocationEmpty:(void(^)())excuteBlock;
+
 @end
