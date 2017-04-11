@@ -23,7 +23,7 @@ typedef NS_OPTIONS(NSUInteger, AMapGeoFenceActiveAction)
 };
 
 
-///地理围栏管理类（since v2.3.0）
+///地理围栏管理类（since 2.3.0）
 @interface AMapGeoFenceManager : NSObject
 
 
@@ -124,7 +124,7 @@ typedef NS_OPTIONS(NSUInteger, AMapGeoFenceActiveAction)
 
 
 
-///地理围栏代理协议（since v2.3.0）,该协议定义了获取地理围栏相关回调方法，包括添加、状态改变等。
+///地理围栏代理协议（since 2.3.0）,该协议定义了获取地理围栏相关回调方法，包括添加、状态改变等。
 @protocol AMapGeoFenceManagerDelegate <NSObject>
 
 @optional
