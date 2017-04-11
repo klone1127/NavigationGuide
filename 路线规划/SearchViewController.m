@@ -8,6 +8,7 @@
 
 #import "SearchViewController.h"
 #import "AMapSearchKit/AMapSearchKit.h"
+#import <AMapLocationKit/AMapLocationKit.h>
 #import <MAMapKit/MAMapKit.h>
 #import "SearchView.h"
 #import "TransitResultViewController.h"
@@ -20,7 +21,7 @@
 #define kSearchTipsTableViewY   kInputViewY + kInputViewH
 #define kSearchTipsCellID       @"searchTipsCell"
 
-@interface SearchViewController ()<AMapSearchDelegate, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface SearchViewController ()<AMapSearchDelegate, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, AMapLocationManagerDelegate>
 
 @property (nonatomic, strong)AMapSearchAPI                  *mapSearch;
 
@@ -33,6 +34,7 @@
 @property (nonatomic, strong)NSMutableArray     *tipsArray;
 @property (nonatomic, strong)TipsEmptyView      *tipsEmptyView;
 @property (nonatomic, strong)id                 currentTextfield;
+@property (nonatomic, strong)AMapLocationManager    *locationManager;
 @end
 
 @implementation SearchViewController
@@ -46,12 +48,29 @@
     [self initSearchTipsTableView];
     [self initMapSearch];
     [self configTipsEmptyView];
-    
+    [self getCurrentLocation];
 }
 
 - (void)initMapSearch {
     self.mapSearch = [[AMapSearchAPI alloc] init];
     self.mapSearch.delegate = self;
+}
+
+// 定位
+- (void)getCurrentLocation {
+    self.locationManager = [[AMapLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    self.locationManager.distanceFilter = 10;
+    self.locationManager.locatingWithReGeocode = YES; // 返回逆地理信息(仅限国内)
+    
+    [self.locationManager setPausesLocationUpdatesAutomatically:NO];
+    if ([UIDevice currentDevice].systemVersion.floatValue >= 9) {
+        self.locationManager.allowsBackgroundLocationUpdates = YES;
+    }
+    
+    // 持续返回逆地理编码信息
+    [self.locationManager setLocatingWithReGeocode:YES];
+    [self.locationManager startUpdatingLocation];
 }
 
 - (void)configNavigationBar {
@@ -195,6 +214,19 @@
         [self transitRouteSearchWithStartCoordinate:self.startCoordinate DestinationCoordinate:self.destinationCoordinate];
     }
     
+}
+
+#pragma mark - 定位 delegate
+- (void)amapLocationManager:(AMapLocationManager *)manager didUpdateLocation:(CLLocation *)location reGeocode:(AMapLocationReGeocode *)reGeocode {
+    // 初始位置默认显示 -> 我的位置
+    NSLog(@"location:%@, \n reGeocode:%@", location, reGeocode);
+}
+- (void)amapLocationManager:(AMapLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+    NSLog(@"定位权限改变！！！");
+}
+
+- (void)amapLocationManager:(AMapLocationManager *)manager didFailWithError:(NSError *)error {
+    NSLog(@"locationManager error:%@", error);
 }
 
 // 输入提示

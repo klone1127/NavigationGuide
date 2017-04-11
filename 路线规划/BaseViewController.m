@@ -34,6 +34,31 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenSize.width, 64)];
     view.backgroundColor = [UIColor colorWithHexCode:viewColor];
     
+    UIImageView *locationImageView = [[UIImageView alloc] init];
+    locationImageView.image = [UIImage imageNamed:@"地址"];
+    [view addSubview:locationImageView];
+    [locationImageView setContentMode:UIViewContentModeScaleAspectFit];
+    
+    [locationImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.width.mas_offset(20);
+        make.left.mas_equalTo(11);
+        make.centerY.equalTo(view.mas_centerY);
+    }];
+    
+    self.locationButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [view addSubview:self.locationButton];
+    [self.locationButton setTitle:@"未知城市" forState:UIControlStateNormal];
+    [self.locationButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.locationButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    self.locationButton.titleLabel.font = [UIFont systemFontOfSize:13.0];
+    
+    [self.locationButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(20);
+        make.left.equalTo(locationImageView.mas_right);
+        make.width.mas_equalTo(80);
+        make.centerY.equalTo(view.mas_centerY);
+    }];
+    
     UILabel *label = [[UILabel alloc] init];
     [view addSubview:label];
     label.text = title;

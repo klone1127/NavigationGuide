@@ -10,6 +10,8 @@
 
 @interface BaseViewController : UIViewController
 
+@property (nonatomic, strong)UIButton       *locationButton;
+
 - (void)hideNavigationBar;
 
 - (void)showNavigationBar;
