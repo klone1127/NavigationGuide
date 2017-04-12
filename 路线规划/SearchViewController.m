@@ -69,6 +69,9 @@
         self.locationManager.allowsBackgroundLocationUpdates = YES;
     }
     
+}
+
+-(void)startLocation {
     // 持续返回逆地理编码信息
     [self.locationManager setLocatingWithReGeocode:YES];
     [self.locationManager startUpdatingLocation];
@@ -99,7 +102,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self configNavigationBar];
-    
+    [self startLocation];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startLocationChange:) name:UITextFieldTextDidChangeNotification object:self.searchView.startLocation];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishLocationChange:) name:UITextFieldTextDidChangeNotification object:self.searchView.finishLocation];
     
@@ -227,6 +230,7 @@
 }
 - (void)amapLocationManager:(AMapLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
 #warning todo - 权限改变要做的事情(提醒/初始位置变更)
+    [self showNoAuthorizedTips:status];
     NSLog(@"定位权限改变！！！");
 }
 
@@ -308,6 +312,24 @@
         return YES;
     } else {
         return NO;
+    }
+}
+
+- (void)showNoAuthorizedTips:(CLAuthorizationStatus)status {
+    if ( status != kCLAuthorizationStatusAuthorizedAlways || status != kCLAuthorizationStatusAuthorizedWhenInUse) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"您还没有授权使用定位" message:@"请前往设置授权" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"好的"
+                                                                style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * _Nonnull action) {
+#warning todo - 改为跳转？
+                                                              }];
+            
+        
+        [alertController addAction:cancelAction];
+        [alertController addAction:defaultAction];
+        [self presentViewController:alertController animated:YES completion:nil];
     }
 }
 
