@@ -49,7 +49,7 @@
     [self initSearchTipsTableView];
     [self initMapSearch];
     [self configTipsEmptyView];
-    [self getCurrentLocation];
+    [self initLocationManager];
 }
 
 - (void)initMapSearch {
@@ -58,7 +58,7 @@
 }
 
 // 定位
-- (void)getCurrentLocation {
+- (void)initLocationManager {
     self.locationManager = [[AMapLocationManager alloc] init];
     self.locationManager.delegate = self;
     self.locationManager.distanceFilter = 10;
