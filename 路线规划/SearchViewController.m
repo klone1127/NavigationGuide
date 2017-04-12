@@ -35,6 +35,7 @@
 @property (nonatomic, strong)TipsEmptyView      *tipsEmptyView;
 @property (nonatomic, strong)id                 currentTextfield;
 @property (nonatomic, strong)AMapLocationManager    *locationManager;
+@property (nonatomic, copy)NSString             *currentCity;
 @end
 
 @implementation SearchViewController
@@ -219,9 +220,13 @@
 #pragma mark - 定位 delegate
 - (void)amapLocationManager:(AMapLocationManager *)manager didUpdateLocation:(CLLocation *)location reGeocode:(AMapLocationReGeocode *)reGeocode {
     // 初始位置默认显示 -> 我的位置
+    [self showStartLocation:reGeocode location:location];
+    self.currentCity = reGeocode.city;
+    [self.locationButton setTitle:reGeocode.city forState:UIControlStateNormal];
     NSLog(@"location:%@, \n reGeocode:%@", location, reGeocode);
 }
 - (void)amapLocationManager:(AMapLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+#warning todo - 权限改变要做的事情(提醒/初始位置变更)
     NSLog(@"定位权限改变！！！");
 }
 
@@ -311,6 +316,29 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)showStartLocation:(AMapLocationReGeocode *)reGeocode location:(CLLocation *)location {
+    if (![self.searchView.startLocation isFirstResponder]) {
+        NSString *start = [self currentLocation:reGeocode];
+        self.searchView.startLocation.text = start;
+        self.startCoordinate = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
+    }
+}
+
+- (NSString *)currentLocation:(AMapLocationReGeocode *)reGeocode {
+    NSString *start;
+    if (reGeocode.city) {
+        start = [NSString stringWithFormat:@"%@%@%@%@", reGeocode.city, reGeocode.district, reGeocode.street, reGeocode.number];
+        if (reGeocode.AOIName) {
+            start = [NSString stringWithFormat:@"%@%@%@",reGeocode.city, reGeocode.district, reGeocode.AOIName ];
+        }
+        if (reGeocode.POIName) {
+            start = reGeocode.POIName;
+        }
+        
+    }
+    return [NSString stringWithFormat:@"(当前位置)%@", start];
+}
+
 - (void)geoWithText:(NSString *)text {
     AMapGeocodeSearchRequest *geo = [[AMapGeocodeSearchRequest alloc] init];
     geo.address = text;
@@ -320,8 +348,7 @@
 - (void)inputTipsSearchWithText:(NSString *)keywords {
     AMapInputTipsSearchRequest *inputTips = [[AMapInputTipsSearchRequest alloc] init];
     inputTips.keywords = keywords;
-#warning TODO - 城市名基于定位
-    inputTips.city = @"郑州市";
+    inputTips.city = self.currentCity;
     inputTips.cityLimit = YES;
     [self.mapSearch AMapInputTipsSearch:inputTips];
 }
@@ -332,8 +359,8 @@
 
     navi.nightflag = YES;
     navi.requireExtension = YES;
-    navi.city = @"郑州市";
-    navi.destinationCity = @"郑州市";
+    navi.city = self.currentCity;
+    navi.destinationCity = self.currentCity;
     /* 出发点. */
     navi.origin = [AMapGeoPoint locationWithLatitude:startCoordinate.latitude
                                            longitude:startCoordinate.longitude];
