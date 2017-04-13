@@ -316,7 +316,7 @@
 }
 
 - (void)showNoAuthorizedTips:(CLAuthorizationStatus)status {
-    if ( status != kCLAuthorizationStatusAuthorizedAlways || status != kCLAuthorizationStatusAuthorizedWhenInUse) {
+    if ( status == kCLAuthorizationStatusNotDetermined || status == kCLAuthorizationStatusRestricted || status == kCLAuthorizationStatusDenied) {
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"您还没有授权使用定位" message:@"请前往设置授权" preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
