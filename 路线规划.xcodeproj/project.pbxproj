@@ -375,6 +375,7 @@
 				8B306FEE1E949ACB0072B35C /* Resources */,
 				4858682D73EC842697245A33 /* [CP] Embed Pods Frameworks */,
 				7CA3F159AD930A2E797EA421 /* [CP] Copy Pods Resources */,
+				8BBBA6E51E9F0D920061CEEC /* Custom Warning */,
 			);
 			buildRules = (
 			);
@@ -550,6 +551,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-路线规划/Pods-路线规划-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		8BBBA6E51E9F0D920061CEEC /* Custom Warning */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Custom Warning";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "TAGS=\"TODO:|FIXME:\"\necho \"searching ${SRCROOT} for ${TAGS}\"\nfind \"${SRCROOT}\" \\( -name \"*.h\" -or -name \"*.m\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 

@@ -229,7 +229,6 @@
     NSLog(@"location:%@, \n reGeocode:%@", location, reGeocode);
 }
 - (void)amapLocationManager:(AMapLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
-#warning todo - 权限改变要做的事情(提醒/初始位置变更)
     [self showNoAuthorizedTips:status];
     NSLog(@"定位权限改变！！！");
 }
@@ -323,7 +322,7 @@
         UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"好的"
                                                                 style:UIAlertActionStyleDefault
                                                               handler:^(UIAlertAction * _Nonnull action) {
-#warning todo - 改为跳转？
+// TODO: 改为跳转？
                                                               }];
             
         

@@ -13,7 +13,7 @@
 
 @property (nonatomic, copy)NSString                   *arrivalStop;
 @property (nonatomic, copy)NSString<Optional>         *otherStop;
-#warning TODO - 添加其他可乘路线
+// TODO: 添加其他可乘路线
 
 
 /**
