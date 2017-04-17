@@ -53,7 +53,7 @@
     [self initDetailTableView];
     [self initData];
     self.isClick = NO;
-    
+#warning todo - headerView footerView 不悬浮，显示规划路线在地图上
 }
 
 - (void)configNavigationItem {
