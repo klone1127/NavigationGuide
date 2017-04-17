@@ -18,7 +18,7 @@
 - (void)configStartStopCellWithModel:(StartStopModel *)model {
     self.ShowStaionLabel.text = model.staion;
     self.StartStopLabel.text = model.departureStop;
-#warning TODO - busTime 使用 attributedText
+// TODO: - busTime 使用 attributedText
     self.busTimeLabel.text = model.busTime;
     self.StopsCountLabel.text = [NSString stringWithFormat:@"%@站", model.stopCount];
     [self showDetailButton:[model.stopCount integerValue]];
