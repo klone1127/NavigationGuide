@@ -25,7 +25,7 @@
     [self currentTransport:model.type];
 }
 
-#warning TODO - 升级为整体换肤(类似高德公交和地铁显示)
+// TODO: - 升级为整体换肤(类似高德公交和地铁显示)
 - (void)currentTransport:(NSString *)type {
     if ([type isEqualToString:@"地铁线路"]) {
         [self showRailwayStationView];
