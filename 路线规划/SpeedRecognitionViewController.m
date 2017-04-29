@@ -10,6 +10,9 @@
 
 @interface SpeedRecognitionViewController ()
 
+@property (nonatomic, strong)UILabel        *textLabel;
+@property (nonatomic, strong)UIButton       *operationButton;
+
 @end
 
 @implementation SpeedRecognitionViewController
@@ -18,9 +21,36 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     // Do any additional setup after loading the view.
-    NSArray *vcArray = self.navigationController.viewControllers;
-    NSLog(@"VCs:%@", vcArray);
     [self configNavigationBar];
+    [self setupTextLabel];
+    [self setupSpeedRecognitionButton];
+}
+
+- (void)setupTextLabel {
+    CGFloat x = 5;
+    self.textLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, 64 + x, kScreenSize.width - 2*x, 200)];
+    [self.view addSubview:self.textLabel];
+    self.textLabel.layer.borderColor = [UIColor cyanColor].CGColor;
+    self.textLabel.layer.borderWidth = 1;
+    self.textLabel.layer.masksToBounds = YES;
+    self.textLabel.layer.cornerRadius = 5.0;
+    // TODO: 添加占位符
+}
+
+- (void)setupSpeedRecognitionButton {
+    self.operationButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [self.view addSubview:self.operationButton];
+    CGFloat h = 150;
+    CGFloat w = h;
+    CGFloat x = kScreenSize.width / 2 - w / 2;
+    CGFloat y = CGRectGetMaxY(self.textLabel.frame) + 100;
+    self.operationButton.frame = CGRectMake(x, y, w, h);
+    self.operationButton.backgroundColor = [UIColor colorWithHexCode:kMainColor];
+    [self.operationButton setTitle:@"开始" forState:UIControlStateNormal];
+    self.operationButton.titleLabel.font = [UIFont systemFontOfSize:25.0];
+    [self.operationButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.operationButton.layer.cornerRadius = h / 2.0;
+    self.operationButton.layer.masksToBounds = YES;
 }
 
 - (void)configNavigationBar {
