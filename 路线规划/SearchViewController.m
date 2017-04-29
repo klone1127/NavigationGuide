@@ -14,6 +14,7 @@
 #import "TransitResultViewController.h"
 #import "SearchTipsCell.h"
 #import "TipsEmptyView.h"
+#import "SpeedRecognitionViewController.h"
 
 #define kSearchViewID           @"searchView"
 #define kInputViewY             64
@@ -79,6 +80,7 @@
 
 - (void)configNavigationBar {
     UIView *barView = [self navigationBarViewWithColor:kSearchBarColor title:@"公交线路规划"];
+    [self.speedButton addTarget:self action:@selector(showSpeedRecognitionVIew) forControlEvents:UIControlEventTouchUpInside];
     [self hideNavigationBar];
     [self.view addSubview:barView];
     
@@ -394,6 +396,11 @@
 
 
     [self.mapSearch AMapTransitRouteSearch:navi];
+}
+
+- (void)showSpeedRecognitionVIew {
+    SpeedRecognitionViewController *srVC = [[SpeedRecognitionViewController alloc] init];
+    [self.navigationController pushViewController:srVC animated:YES];
 }
 
 /*

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D0A73CE1EB5440B00EE9092 /* SpeedRecognitionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0A73CD1EB5440B00EE9092 /* SpeedRecognitionViewController.m */; };
 		7D3D98E91E954431001A16C7 /* TransitTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3D98E71E954431001A16C7 /* TransitTableViewCell.m */; };
 		7D3D98EA1E954431001A16C7 /* TransitTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D3D98E81E954431001A16C7 /* TransitTableViewCell.xib */; };
 		7D3D98F01E954544001A16C7 /* TransitResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3D98EF1E954544001A16C7 /* TransitResultViewController.m */; };
@@ -64,6 +65,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7D0A73CC1EB5440B00EE9092 /* SpeedRecognitionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeedRecognitionViewController.h; sourceTree = "<group>"; };
+		7D0A73CD1EB5440B00EE9092 /* SpeedRecognitionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeedRecognitionViewController.m; sourceTree = "<group>"; };
 		7D3D98E61E954431001A16C7 /* TransitTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransitTableViewCell.h; sourceTree = "<group>"; };
 		7D3D98E71E954431001A16C7 /* TransitTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransitTableViewCell.m; sourceTree = "<group>"; };
 		7D3D98E81E954431001A16C7 /* TransitTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransitTableViewCell.xib; sourceTree = "<group>"; };
@@ -307,6 +310,8 @@
 				7D3D98EF1E954544001A16C7 /* TransitResultViewController.m */,
 				8B3070511E95EAC30072B35C /* RouteMapDetailViewController.h */,
 				8B3070521E95EAC30072B35C /* RouteMapDetailViewController.m */,
+				7D0A73CC1EB5440B00EE9092 /* SpeedRecognitionViewController.h */,
+				7D0A73CD1EB5440B00EE9092 /* SpeedRecognitionViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -579,6 +584,7 @@
 				8BA9E2731E98ECDE00F7A6E2 /* UIImage+Common.m in Sources */,
 				8B3070531E95EAC30072B35C /* RouteMapDetailViewController.m in Sources */,
 				8B306FFB1E949ACB0072B35C /* ViewController.m in Sources */,
+				7D0A73CE1EB5440B00EE9092 /* SpeedRecognitionViewController.m in Sources */,
 				8B306FF81E949ACB0072B35C /* AppDelegate.m in Sources */,
 				8B3070291E94C1860072B35C /* SearchViewController.m in Sources */,
 				7D3D98F91E955083001A16C7 /* TransitGuideViewController.m in Sources */,
