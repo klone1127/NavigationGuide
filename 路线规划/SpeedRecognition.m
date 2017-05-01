@@ -100,8 +100,9 @@
     [self.audioEngine prepare];
     NSError *error;
     [self.audioEngine startAndReturnError:&error];
-    NSLog(@"startAndReturnError:%@", error);
-    
+    if (error) {
+        NSLog(@"startAndReturnError:%@", error);
+    }
     
 }
 
