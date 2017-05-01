@@ -7,6 +7,7 @@
 //
 
 #import "SpeedRecognitionViewController.h"
+#import "SpeedRecognition.h"
 
 @interface SpeedRecognitionViewController ()
 
@@ -51,6 +52,14 @@
     [self.operationButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.operationButton.layer.cornerRadius = h / 2.0;
     self.operationButton.layer.masksToBounds = YES;
+    [self.operationButton addTarget:self action:@selector(operationButtonHandle:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)operationButtonHandle:(UIButton *)sender {
+    NSLog(@"操作");
+    SpeedRecognition *recognition = [[SpeedRecognition alloc] init];
+    [recognition startRecording];
+    
 }
 
 - (void)configNavigationBar {

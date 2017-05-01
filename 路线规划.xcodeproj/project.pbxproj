@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7D0A73CE1EB5440B00EE9092 /* SpeedRecognitionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0A73CD1EB5440B00EE9092 /* SpeedRecognitionViewController.m */; };
+		7D0A73D11EB5A22C00EE9092 /* SpeedRecognition.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0A73D01EB5A22C00EE9092 /* SpeedRecognition.m */; };
 		7D3D98E91E954431001A16C7 /* TransitTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3D98E71E954431001A16C7 /* TransitTableViewCell.m */; };
 		7D3D98EA1E954431001A16C7 /* TransitTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D3D98E81E954431001A16C7 /* TransitTableViewCell.xib */; };
 		7D3D98F01E954544001A16C7 /* TransitResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3D98EF1E954544001A16C7 /* TransitResultViewController.m */; };
@@ -67,6 +68,8 @@
 /* Begin PBXFileReference section */
 		7D0A73CC1EB5440B00EE9092 /* SpeedRecognitionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeedRecognitionViewController.h; sourceTree = "<group>"; };
 		7D0A73CD1EB5440B00EE9092 /* SpeedRecognitionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeedRecognitionViewController.m; sourceTree = "<group>"; };
+		7D0A73CF1EB5A22C00EE9092 /* SpeedRecognition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeedRecognition.h; sourceTree = "<group>"; };
+		7D0A73D01EB5A22C00EE9092 /* SpeedRecognition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeedRecognition.m; sourceTree = "<group>"; };
 		7D3D98E61E954431001A16C7 /* TransitTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransitTableViewCell.h; sourceTree = "<group>"; };
 		7D3D98E71E954431001A16C7 /* TransitTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransitTableViewCell.m; sourceTree = "<group>"; };
 		7D3D98E81E954431001A16C7 /* TransitTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransitTableViewCell.xib; sourceTree = "<group>"; };
@@ -340,6 +343,8 @@
 			children = (
 				8B3070681E9634990072B35C /* ReGoecode.h */,
 				8B3070691E9634990072B35C /* ReGoecode.m */,
+				7D0A73CF1EB5A22C00EE9092 /* SpeedRecognition.h */,
+				7D0A73D01EB5A22C00EE9092 /* SpeedRecognition.m */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -594,6 +599,7 @@
 				7D3D98E91E954431001A16C7 /* TransitTableViewCell.m in Sources */,
 				8BA9E2701E98E4E900F7A6E2 /* UIViewController+Common.m in Sources */,
 				8BA9E26B1E98B66300F7A6E2 /* NSMutableArray+Common.m in Sources */,
+				7D0A73D11EB5A22C00EE9092 /* SpeedRecognition.m in Sources */,
 				8BA9E25C1E98754400F7A6E2 /* StartStopCell.m in Sources */,
 				8BA9E2561E976AEE00F7A6E2 /* StationCell.m in Sources */,
 				7D3D98F01E954544001A16C7 /* TransitResultViewController.m in Sources */,
