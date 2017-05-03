@@ -24,7 +24,7 @@
     }
     self.locationName.text = showString;
     self.location.text = tip.address;
-    // TODO: - 添加距离
+#warning TODO - 添加距离
     self.distanceLabel.hidden = YES;
 }
 

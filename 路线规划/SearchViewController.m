@@ -329,9 +329,6 @@
         [alertController addAction:cancelAction];
         [alertController addAction:defaultAction];
         [self presentViewController:alertController animated:YES completion:nil];
-    } else {
-        // 重新定位
-        [self startLocation];
     }
 }
 
