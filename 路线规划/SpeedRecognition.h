@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <Speech/Speech.h>
 
-@interface SpeedRecognition : NSObject<SFSpeechRecognizerDelegate>
+@interface SpeedRecognition : NSObject<SFSpeechRecognizerDelegate, SFSpeechRecognitionTaskDelegate>
 
 @property (nonatomic, strong)SFSpeechRecognizer                     *speechRecognizer;
 @property (nonatomic, strong)SFSpeechAudioBufferRecognitionRequest  *recognitionRequest;

@@ -228,7 +228,7 @@
     [self showStartLocation:reGeocode location:location];
     self.currentCity = reGeocode.city;
     [self.locationButton setTitle:reGeocode.city forState:UIControlStateNormal];
-    NSLog(@"location:%@, \n reGeocode:%@", location, reGeocode);
+//    NSLog(@"location:%@, \n reGeocode:%@", location, reGeocode);
 }
 - (void)amapLocationManager:(AMapLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     [self showNoAuthorizedTips:status];

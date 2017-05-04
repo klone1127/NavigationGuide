@@ -11,8 +11,9 @@
 
 @interface SpeedRecognitionViewController ()
 
-@property (nonatomic, strong)UILabel        *textLabel;
-@property (nonatomic, strong)UIButton       *operationButton;
+@property (nonatomic, strong)UILabel            *textLabel;
+@property (nonatomic, strong)UIButton           *operationButton;
+@property (nonatomic, strong)SpeedRecognition   *recognition;
 
 @end
 
@@ -56,9 +57,17 @@
 }
 
 - (void)operationButtonHandle:(UIButton *)sender {
-    NSLog(@"操作");
-    SpeedRecognition *recognition = [[SpeedRecognition alloc] init];
-    [recognition startRecording];
+    
+    if ([self.recognition.audioEngine isRunning]) {
+        [self.recognition.audioEngine stop];
+        [self.recognition.recognitionRequest endAudio];
+        NSLog(@"停止操作");
+    } else {
+        self.recognition = nil;
+        self.recognition = [[SpeedRecognition alloc] init];
+        [self.recognition startRecording];
+        NSLog(@"开始操作");
+    }
     
 }
 

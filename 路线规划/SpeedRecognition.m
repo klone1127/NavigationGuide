@@ -72,10 +72,13 @@
     
     self.recognitionRequest.shouldReportPartialResults = YES;
     
+    [self.speechRecognizer recognitionTaskWithRequest:self.recognitionRequest delegate:self];
+    
     self.recognitionTask = [self.speechRecognizer recognitionTaskWithRequest:self.recognitionRequest resultHandler:^(SFSpeechRecognitionResult * _Nullable result, NSError * _Nullable error) {
         BOOL isFinal = NO;
         
-        if (!result) {
+        NSLog(@"识别结果 result:%@", result);
+        if (result) {
             NSLog(@"识别出的文字：%@",result.bestTranscription.formattedString);
             isFinal = result.isFinal;
         }
@@ -104,10 +107,19 @@
         NSLog(@"startAndReturnError:%@", error);
     }
     
+    NSLog(@"正在听...");
+    
 }
+
+#pragma mark - delegate
 
 - (void)speechRecognizer:(SFSpeechRecognizer *)speechRecognizer availabilityDidChange:(BOOL)available {
     NSLog(@"开始啦要");
 }
+
+- (void)speechRecognitionDidDetectSpeech:(SFSpeechRecognitionTask *)task {
+    NSLog(@"任务状态:%ld", task.state);
+}
+
 
 @end
