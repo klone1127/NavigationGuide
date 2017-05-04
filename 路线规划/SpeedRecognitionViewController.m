@@ -9,7 +9,7 @@
 #import "SpeedRecognitionViewController.h"
 #import "SpeedRecognition.h"
 
-@interface SpeedRecognitionViewController ()
+@interface SpeedRecognitionViewController ()<SpeechRecognizerResultDelegate>
 
 @property (nonatomic, strong)UILabel            *textLabel;
 @property (nonatomic, strong)UIButton           *operationButton;
@@ -61,10 +61,14 @@
     if ([self.recognition.audioEngine isRunning]) {
         [self.recognition.audioEngine stop];
         [self.recognition.recognitionRequest endAudio];
+        self.recognition.recognitionTask = nil;
+//        self.recognition.speechRecofnizerResultDelegate = nil;
         NSLog(@"停止操作");
+        [self.operationButton setTitle:@"开始" forState:UIControlStateNormal];
     } else {
         self.recognition = nil;
         self.recognition = [[SpeedRecognition alloc] init];
+        self.recognition.speechRecofnizerResultDelegate = self;
         [self.recognition startRecording];
         NSLog(@"开始操作");
     }
@@ -74,6 +78,33 @@
 - (void)configNavigationBar {
     UIView *view = [self navigationBarViewWithBackButton:kSearchBarColor];
     [self.view addSubview:view];
+}
+
+#pragma mark - SpeechRecognizerDelegate
+- (void)speechRecognizerStart {
+    [self.operationButton setTitle:@"正在听..." forState:UIControlStateNormal];
+}
+
+- (void)speechRecognizerSuccess:(SFSpeechRecognitionResult *)result {
+    // 显示识别结果
+    NSLog(@"result:%@", result);
+    self.textLabel.text = result.bestTranscription.formattedString;
+}
+
+- (void)speechRecognizerFailure:(NSError *)error {
+    
+    
+    id errorString = [error.userInfo objectForKey:@"NSLocalizedDescription"];
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"识别错误" message:errorString preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    
+    [alert addAction:alertAction];
+    [self presentViewController:alert animated:YES completion:nil];
+    
+    [self.operationButton setTitle:@"开始" forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning {

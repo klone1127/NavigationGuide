@@ -81,6 +81,7 @@
         if (result) {
             NSLog(@"识别出的文字：%@",result.bestTranscription.formattedString);
             isFinal = result.isFinal;
+            [self.speechRecofnizerResultDelegate speechRecognizerSuccess:result];
         }
         
         if (error != nil || isFinal) {
@@ -89,6 +90,8 @@
             
             self.recognitionRequest = nil;
             self.recognitionTask = nil;
+            
+            [self.speechRecofnizerResultDelegate speechRecognizerFailure:error];
             
             // 录制按钮改为可用状态， 更改 title
         }
@@ -108,6 +111,7 @@
     }
     
     NSLog(@"正在听...");
+    [self.speechRecofnizerResultDelegate speechRecognizerStart];
     
 }
 
