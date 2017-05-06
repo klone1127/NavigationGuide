@@ -14,6 +14,7 @@
 #import "TransitResultViewController.h"
 #import "SearchTipsCell.h"
 #import "TipsEmptyView.h"
+#import "SpeedRecognitionViewController.h"
 
 #define kSearchViewID           @"searchView"
 #define kInputViewY             64
@@ -21,7 +22,7 @@
 #define kSearchTipsTableViewY   kInputViewY + kInputViewH
 #define kSearchTipsCellID       @"searchTipsCell"
 
-@interface SearchViewController ()<AMapSearchDelegate, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, AMapLocationManagerDelegate>
+@interface SearchViewController ()<AMapSearchDelegate, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, AMapLocationManagerDelegate, RecognizerStringDelegate>
 
 @property (nonatomic, strong)AMapSearchAPI                  *mapSearch;
 
@@ -36,6 +37,7 @@
 @property (nonatomic, strong)id                 currentTextfield;
 @property (nonatomic, strong)AMapLocationManager    *locationManager;
 @property (nonatomic, copy)NSString             *currentCity;
+@property (nonatomic, copy)NSString             *recognitionString;
 @end
 
 @implementation SearchViewController
@@ -79,6 +81,7 @@
 
 - (void)configNavigationBar {
     UIView *barView = [self navigationBarViewWithColor:kSearchBarColor title:@"公交线路规划"];
+    [self.speedButton addTarget:self action:@selector(showSpeedRecognitionVIew) forControlEvents:UIControlEventTouchUpInside];
     [self hideNavigationBar];
     [self.view addSubview:barView];
     
@@ -149,6 +152,7 @@
 
 - (void)finishLocationChange:(NSNotification *)not {
     [self inputTipsSearchWithText:self.searchView.finishLocation.text];
+    self.recognitionString = nil;
     self.destinationCoordinate = CLLocationCoordinate2DMake(0, 0);
 }
 
@@ -182,7 +186,12 @@
         self.startCoordinate = CLLocationCoordinate2DMake(tip.location.latitude, tip.location.longitude);
     }
     
-    if ([textField isEqual:self.searchView.finishLocation]) {
+    if ([textField isEqual:self.searchView.finishLocation] || [tip.name isEqual:self.recognitionString]) {
+        self.destinationCoordinate = CLLocationCoordinate2DMake(tip.location.latitude, tip.location.longitude);
+    }
+    
+    if (self.recognitionString) {
+       self.searchView.finishLocation.text = self.recognitionString;
         self.destinationCoordinate = CLLocationCoordinate2DMake(tip.location.latitude, tip.location.longitude);
     }
     
@@ -226,7 +235,7 @@
     [self showStartLocation:reGeocode location:location];
     self.currentCity = reGeocode.city;
     [self.locationButton setTitle:reGeocode.city forState:UIControlStateNormal];
-    NSLog(@"location:%@, \n reGeocode:%@", location, reGeocode);
+//    NSLog(@"location:%@, \n reGeocode:%@", location, reGeocode);
 }
 - (void)amapLocationManager:(AMapLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     [self showNoAuthorizedTips:status];
@@ -391,6 +400,18 @@
 
 
     [self.mapSearch AMapTransitRouteSearch:navi];
+}
+
+- (void)recognizerString:(NSString *)string {
+    [self inputTipsSearchWithText:string];
+    self.destinationCoordinate = CLLocationCoordinate2DMake(0, 0);
+    self.recognitionString = string;
+}
+
+- (void)showSpeedRecognitionVIew {
+    SpeedRecognitionViewController *srVC = [[SpeedRecognitionViewController alloc] init];
+    srVC.recognizerStringDelegate = self;
+    [self.navigationController pushViewController:srVC animated:YES];
 }
 
 /*

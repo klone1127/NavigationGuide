@@ -11,6 +11,7 @@
 @interface BaseViewController : UIViewController
 
 @property (nonatomic, strong)UIButton       *locationButton;
+@property (nonatomic, strong)UIButton       *speedButton;
 
 - (void)hideNavigationBar;
 
@@ -24,5 +25,31 @@
  @return view
  */
 - (UIView *)navigationBarViewWithColor:(NSString *)viewColor title:(NSString *)title;
+
+/**
+ 自定义 NavigationBar
+
+ @param viewColor 颜色
+ @return
+ */
+- (UIView *)navigationBarView:(NSString *)viewColor;
+
+/**
+ 带返回按钮
+
+ @param viewColor 颜色
+ */
+- (UIView *)navigationBarViewWithBackButton:(NSString *)viewColor;
+
+/**
+ 隐藏语音识别按钮
+ */
+- (void)hideSpeedButton;
+
+
+/**
+ 显示语音识别按钮
+ */
+- (void)showSpeedButton;
 
 @end

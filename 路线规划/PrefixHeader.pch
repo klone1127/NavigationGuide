@@ -18,5 +18,6 @@
 #import "UIViewController+Common.h"
 #import "UIImage+Common.h"
 #import "Public.h"
+#import "UIAlertController+Common.h"
 
 #endif /* PrefixHeader_pch */

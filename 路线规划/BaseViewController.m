@@ -10,6 +10,7 @@
 #import <Masonry.h>
 
 #define kBarTitleLabelL         50
+#define kLeft                   11
 
 @interface BaseViewController ()
 
@@ -31,8 +32,7 @@
 }
 
 - (UIView *)navigationBarViewWithColor:(NSString *)viewColor title:(NSString *)title {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenSize.width, 64)];
-    view.backgroundColor = [UIColor colorWithHexCode:viewColor];
+    UIView *view = [self navigationBarView:viewColor];
     
     UIImageView *locationImageView = [[UIImageView alloc] init];
     locationImageView.image = [UIImage imageNamed:@"地址"];
@@ -41,7 +41,7 @@
     
     [locationImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.width.mas_offset(20);
-        make.left.mas_equalTo(11);
+        make.left.mas_equalTo(kLeft);
         make.centerY.equalTo(view.mas_centerY);
     }];
     
@@ -73,12 +73,74 @@
         make.centerY.equalTo(view.mas_centerY);
     }];
     
+    [self setupSpeedButtonWithSuperView:view];
+    
     return view;
+}
+
+- (UIView *)navigationBarView:(NSString *)viewColor {
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenSize.width, 64)];
+    view.backgroundColor = [UIColor colorWithHexCode:viewColor];
+    
+    return view;
+}
+
+- (UIView *)navigationBarViewWithBackButton:(NSString *)viewColor {
+    UIView *view = [self navigationBarView:viewColor];
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+    [view addSubview:button];
+    [button setTitle:@"返回" forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont systemFontOfSize:19.0];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(backVC) forControlEvents:UIControlEventTouchUpInside];
+    
+    [button mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(view.mas_left);
+        make.height.mas_equalTo(view.mas_height);
+        make.centerY.equalTo(view.mas_centerY);
+        make.width.mas_equalTo(80);
+    }];
+    
+    return view;
+}
+
+- (void)setupSpeedButtonWithSuperView:(UIView *)view {
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+    [button setTitle:@"语音识别" forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    self.speedButton = button;
+    [view addSubview:self.speedButton];
+    
+    [self.speedButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(view.mas_right).with.offset(-kLeft);
+        make.height.mas_equalTo(20);
+        make.width.mas_equalTo(80);
+        make.centerY.equalTo(view.mas_centerY);
+    }];
+    
+}
+
+- (void)hideSpeedButton {
+    self.speedButton.hidden = YES;
+}
+
+- (void)showSpeedButton {
+    self.speedButton.hidden = NO;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)backVC {
+    if (self.navigationController == nil) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 /*
