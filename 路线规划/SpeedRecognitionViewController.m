@@ -32,11 +32,14 @@
     CGFloat x = 5;
     self.textLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, 64 + x, kScreenSize.width - 2*x, 200)];
     [self.view addSubview:self.textLabel];
+    self.textLabel.numberOfLines = 0;
+    self.textLabel.textAlignment = NSTextAlignmentCenter;
     self.textLabel.layer.borderColor = [UIColor cyanColor].CGColor;
     self.textLabel.layer.borderWidth = 1;
     self.textLabel.layer.masksToBounds = YES;
     self.textLabel.layer.cornerRadius = 5.0;
-    // TODO: 添加占位符
+    self.textLabel.text = @"请说出你要去地方";
+    self.textLabel.textColor = [UIColor lightGrayColor];
 }
 
 - (void)setupSpeedRecognitionButton {
@@ -61,12 +64,12 @@
     if ([self.recognition.audioEngine isRunning]) {
         [self.recognition.audioEngine stop];
         [self.recognition.recognitionRequest endAudio];
-        self.recognition.recognitionTask = nil;
-//        self.recognition.speechRecofnizerResultDelegate = nil;
         NSLog(@"停止操作");
         [self.operationButton setTitle:@"开始" forState:UIControlStateNormal];
     } else {
         self.recognition = nil;
+        self.recognition.recognitionRequest = nil;
+        self.recognition.recognitionTask = nil;
         self.recognition = [[SpeedRecognition alloc] init];
         self.recognition.speechRecofnizerResultDelegate = self;
         [self.recognition startRecording];
@@ -89,22 +92,18 @@
     // 显示识别结果
     NSLog(@"result:%@", result);
     self.textLabel.text = result.bestTranscription.formattedString;
+    self.textLabel.textColor = [UIColor blackColor];
+    [self.recognizerStringDelegate recognizerString:result.bestTranscription.formattedString];
 }
 
 - (void)speechRecognizerFailure:(NSError *)error {
-    
-    
+    NSLog(@"speedRec Error:%@", error);
     id errorString = [error.userInfo objectForKey:@"NSLocalizedDescription"];
+    if (errorString) {
+        [UIAlertController alertWithTitle:errorString message:@"" controller:self];
+        [self.operationButton setTitle:@"开始" forState:UIControlStateNormal];
+    }
     
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"识别错误" message:errorString preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
-    
-    [alert addAction:alertAction];
-    [self presentViewController:alert animated:YES completion:nil];
-    
-    [self.operationButton setTitle:@"开始" forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -9,6 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
+@protocol RecognizerStringDelegate <NSObject>
+
+- (void)recognizerString:(NSString *)string;
+
+@end
+
 @interface SpeedRecognitionViewController : BaseViewController
+
+@property (nonatomic, weak)id<RecognizerStringDelegate>     recognizerStringDelegate;
 
 @end
