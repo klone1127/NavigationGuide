@@ -15,5 +15,7 @@
 #define KSearchBarTextColor     @"FFFFFF"
 #define kMainColor              kSearchBarColor
 #define kScreenSize             [UIScreen mainScreen].bounds.size
+#define WS(weakSelf)            __weak typeof(self)weakSelf = self;
+#define SS(strongSelf)          __strong typeof(weakSelf)strongSelf = weakSelf;
 
 #endif /* Public_h */

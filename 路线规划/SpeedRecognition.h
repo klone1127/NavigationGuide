@@ -28,6 +28,15 @@
 @property (nonatomic, strong)AVAudioEngine                          *audioEngine;
 @property (nonatomic, weak)id <SpeechRecognizerResultDelegate>      speechRecofnizerResultDelegate;
 
+
+/**
+ 开始
+ */
 - (void)startRecording;
+
+/**
+ 结束
+ */
+- (void)stopRecording;
 
 @end

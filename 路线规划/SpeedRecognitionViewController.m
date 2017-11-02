@@ -26,6 +26,9 @@
     [self configNavigationBar];
     [self setupTextLabel];
     [self setupSpeedRecognitionButton];
+    
+    self.recognition = [[SpeedRecognition alloc] init];
+    self.recognition.speechRecofnizerResultDelegate = self;
 }
 
 - (void)setupTextLabel {
@@ -62,16 +65,10 @@
 - (void)operationButtonHandle:(UIButton *)sender {
     
     if ([self.recognition.audioEngine isRunning]) {
-        [self.recognition.audioEngine stop];
-        [self.recognition.recognitionRequest endAudio];
+        [self.recognition stopRecording];
         NSLog(@"停止操作");
         [self.operationButton setTitle:@"开始" forState:UIControlStateNormal];
     } else {
-        self.recognition = nil;
-        self.recognition.recognitionRequest = nil;
-        self.recognition.recognitionTask = nil;
-        self.recognition = [[SpeedRecognition alloc] init];
-        self.recognition.speechRecofnizerResultDelegate = self;
         [self.recognition startRecording];
         NSLog(@"开始操作");
     }
