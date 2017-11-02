@@ -163,26 +163,6 @@
     
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-//    return 40.0;
-//}
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-//    return 40.0;
-//}
-
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-//    LocationView *headeView = [[LocationView alloc] initWithFrame:CGRectMake(0, 0, self.detailTableView.frame.size.width, 40)];
-//    [headeView originLocation:self.originLocation];
-//    return headeView;
-//}
-
-//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-//    LocationView *footerView = [[LocationView alloc] initWithFrame:CGRectMake(0, 0, self.detailTableView.frame.size.width, 40)];
-//    [footerView destinationLocation:self.destinationLocation];
-//    return footerView;
-//}
-
 - (void)ShowMoreStation:(UIButton *)sender {
 //    BusLineDetailCell
     UITableViewCell *cell = (UITableViewCell *)sender.superview.superview;

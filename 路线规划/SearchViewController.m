@@ -378,8 +378,6 @@
 - (void)inputTipsSearchWithText:(NSString *)keywords {
     AMapInputTipsSearchRequest *inputTips = [[AMapInputTipsSearchRequest alloc] init];
     inputTips.keywords = keywords;
-    inputTips.city = self.currentCity;
-    inputTips.cityLimit = YES;
     [self.mapSearch AMapInputTipsSearch:inputTips];
 }
 
