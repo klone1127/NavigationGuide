@@ -26,6 +26,7 @@ PODS:
     - AMapFoundation-NO-IDFA (~> 1.2)
   - JSONModel (1.7.0)
   - Masonry (1.0.2)
+  - pop (1.0.10)
   - UMengAnalytics-NO-IDFA (4.2.5)
 
 DEPENDENCIES:
@@ -35,7 +36,17 @@ DEPENDENCIES:
   - AMapSearch-NO-IDFA
   - JSONModel (~> 1.7.0)
   - Masonry (~> 1.0.2)
+  - pop (from `https://github.com/facebook/pop.git`)
   - UMengAnalytics-NO-IDFA
+
+EXTERNAL SOURCES:
+  pop:
+    :git: https://github.com/facebook/pop.git
+
+CHECKOUT OPTIONS:
+  pop:
+    :commit: 2a9440a3ded796625f088a861b6401e63e93f1b6
+    :git: https://github.com/facebook/pop.git
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -46,8 +57,9 @@ SPEC CHECKSUMS:
   AMapSearch-NO-IDFA: c14f82f9f06533b033da001c94077c50d48cee25
   JSONModel: 840bc0fcffb24b8454d2c026bf26fea454b8e98d
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
+  pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
 
-PODFILE CHECKSUM: bbe207ef23e8108377ac34b4250675222ee16af7
+PODFILE CHECKSUM: 19955d450588a6f4304413a51b5d5e8089ac341a
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.3.1
