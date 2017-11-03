@@ -15,6 +15,7 @@
 #import "SearchTipsCell.h"
 #import "TipsEmptyView.h"
 #import "SpeedRecognitionViewController.h"
+#import "AppDelegate.h"
 
 #define kSearchViewID           @"searchView"
 #define kInputViewY             64
@@ -404,12 +405,23 @@
     [self inputTipsSearchWithText:string];
     self.destinationCoordinate = CLLocationCoordinate2DMake(0, 0);
     self.recognitionString = string;
+    
+    if ([self.searchView.startLocation isFirstResponder]) {
+        self.searchView.startLocation.text = string;
+    } else {
+        self.searchView.finishLocation.text = string;
+    }
 }
+
 
 - (void)showSpeedRecognitionVIew {
     SpeedRecognitionViewController *srVC = [[SpeedRecognitionViewController alloc] init];
     srVC.recognizerStringDelegate = self;
-    [self.navigationController pushViewController:srVC animated:YES];
+    self.definesPresentationContext = YES;
+    srVC.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.0f];
+    srVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    [self presentViewController:srVC animated:YES completion:^{
+    }];
 }
 
 /*

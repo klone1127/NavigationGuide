@@ -10,4 +10,13 @@
 
 @interface NSString (Common)
 
+
+/**
+ 显示  22:39
+
+ @param string e.g 2239
+ @return 22:39
+ */
++ (NSString *)showTime:(NSString *)string;
+
 @end

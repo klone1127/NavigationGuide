@@ -8,12 +8,15 @@
 
 #import "SpeedRecognitionViewController.h"
 #import "SpeedRecognition.h"
+#import <Masonry.h>
+
+static void *RecognizerResultString = &RecognizerResultString;
 
 @interface SpeedRecognitionViewController ()<SpeechRecognizerResultDelegate>
 
-@property (nonatomic, strong)UILabel            *textLabel;
 @property (nonatomic, strong)UIButton           *operationButton;
 @property (nonatomic, strong)SpeedRecognition   *recognition;
+@property (nonatomic, strong)UIView             *backgroundView;
 
 @end
 
@@ -21,44 +24,48 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
     // Do any additional setup after loading the view.
-    [self configNavigationBar];
-    [self setupTextLabel];
+    [self halfView];
     [self setupSpeedRecognitionButton];
     
     self.recognition = [[SpeedRecognition alloc] init];
     self.recognition.speechRecofnizerResultDelegate = self;
 }
 
-- (void)setupTextLabel {
-    CGFloat x = 5;
-    self.textLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, 64 + x, kScreenSize.width - 2*x, 200)];
-    [self.view addSubview:self.textLabel];
-    self.textLabel.numberOfLines = 0;
-    self.textLabel.textAlignment = NSTextAlignmentCenter;
-    self.textLabel.layer.borderColor = [UIColor cyanColor].CGColor;
-    self.textLabel.layer.borderWidth = 1;
-    self.textLabel.layer.masksToBounds = YES;
-    self.textLabel.layer.cornerRadius = 5.0;
-    self.textLabel.text = @"请说出你要去地方";
-    self.textLabel.textColor = [UIColor lightGrayColor];
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.recognition stopRecording];
 }
 
+// 半屏的 View
+- (void)halfView {
+    self.backgroundView = [[UIView alloc] init];
+    [self.view addSubview:self.backgroundView];
+    
+    [self.backgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(self.view);
+        make.top.equalTo(self.view.mas_centerY);
+    }];
+}
+
+// 开始按钮
 - (void)setupSpeedRecognitionButton {
     self.operationButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [self.view addSubview:self.operationButton];
-    CGFloat h = 150;
-    CGFloat w = h;
-    CGFloat x = kScreenSize.width / 2 - w / 2;
-    CGFloat y = CGRectGetMaxY(self.textLabel.frame) + 100;
-    self.operationButton.frame = CGRectMake(x, y, w, h);
+    [self.backgroundView addSubview:self.operationButton];
+    
+    CGFloat h = 80.0;
+    [self.operationButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.width.mas_equalTo(h);
+        make.center.equalTo(self.backgroundView);
+    }];
+    
     self.operationButton.backgroundColor = [UIColor colorWithHexCode:kMainColor];
     [self.operationButton setTitle:@"开始" forState:UIControlStateNormal];
     self.operationButton.titleLabel.font = [UIFont systemFontOfSize:25.0];
     [self.operationButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.operationButton.layer.cornerRadius = h / 2.0;
     self.operationButton.layer.masksToBounds = YES;
+    self.operationButton.alpha = 0.8;
     [self.operationButton addTarget:self action:@selector(operationButtonHandle:) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -75,21 +82,14 @@
     
 }
 
-- (void)configNavigationBar {
-    UIView *view = [self navigationBarViewWithBackButton:kSearchBarColor];
-    [self.view addSubview:view];
-}
-
 #pragma mark - SpeechRecognizerDelegate
 - (void)speechRecognizerStart {
-    [self.operationButton setTitle:@"正在听..." forState:UIControlStateNormal];
+    [self.operationButton setTitle:@"停止" forState:UIControlStateNormal];
 }
 
 - (void)speechRecognizerSuccess:(SFSpeechRecognitionResult *)result {
     // 显示识别结果
     NSLog(@"result:%@", result);
-    self.textLabel.text = result.bestTranscription.formattedString;
-    self.textLabel.textColor = [UIColor blackColor];
     [self.recognizerStringDelegate recognizerString:result.bestTranscription.formattedString];
 }
 
@@ -101,6 +101,12 @@
         [self.operationButton setTitle:@"开始" forState:UIControlStateNormal];
     }
     
+}
+
+#pragma mark - 触摸返回
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self dismissViewControllerAnimated:YES completion:^{
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

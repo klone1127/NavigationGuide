@@ -10,4 +10,14 @@
 
 @implementation NSString (Common)
 
++ (NSString *)showTime:(NSString *)string {
+    if (string.length == 4) {
+        NSMutableString *tempString = [NSMutableString stringWithString:string];
+        [tempString insertString:@":" atIndex:2];
+        return tempString;
+    }
+    
+    return @"";
+}
+
 @end
