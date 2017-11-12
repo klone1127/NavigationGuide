@@ -9,6 +9,7 @@
 #import "SpeedRecognitionViewController.h"
 #import "SpeedRecognition.h"
 #import <Masonry.h>
+#import <POP.h>
 
 static void *RecognizerResultString = &RecognizerResultString;
 
@@ -67,6 +68,32 @@ static void *RecognizerResultString = &RecognizerResultString;
     self.operationButton.layer.masksToBounds = YES;
     self.operationButton.alpha = 0.8;
     [self.operationButton addTarget:self action:@selector(operationButtonHandle:) forControlEvents:UIControlEventTouchUpInside];
+    [self animationBtn];
+}
+
+- (void)animationBtn {
+    [self.operationButton.layer pop_removeAllAnimations];
+    POPBasicAnimation *animation = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
+    static BOOL ani = YES;
+    if (ani) {
+        animation.toValue = [NSValue valueWithCGPoint:CGPointMake(1.0, 1.0)];
+    } else {
+        animation.toValue = [NSValue valueWithCGPoint:CGPointMake(1.5, 1.5)];
+    }
+    
+    ani = !ani;
+    animation.completionBlock = ^(POPAnimation *anim, BOOL finished) {
+        if (finished) {
+            [self animationBtn];
+        }
+    };
+    
+    [self.operationButton.layer pop_addAnimation:animation forKey:@"Animation"];
+}
+
+- (void)animationTest {
+    [self.operationButton pop_animationKeys];
+    
 }
 
 - (void)operationButtonHandle:(UIButton *)sender {

@@ -16,6 +16,7 @@
 		7D3D98F01E954544001A16C7 /* TransitResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3D98EF1E954544001A16C7 /* TransitResultViewController.m */; };
 		7D3D98F41E9546A2001A16C7 /* UIColor+Flat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3D98F31E9546A2001A16C7 /* UIColor+Flat.m */; };
 		7D3D98F91E955083001A16C7 /* TransitGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3D98F81E955083001A16C7 /* TransitGuideViewController.m */; };
+		7D61FC471FB8831B00D1A1BF /* MapSearchInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D61FC461FB8831B00D1A1BF /* MapSearchInitializer.m */; };
 		8B306FF51E949ACB0072B35C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B306FF41E949ACB0072B35C /* main.m */; };
 		8B306FF81E949ACB0072B35C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B306FF71E949ACB0072B35C /* AppDelegate.m */; };
 		8B306FFB1E949ACB0072B35C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B306FFA1E949ACB0072B35C /* ViewController.m */; };
@@ -86,6 +87,8 @@
 		7D3D98F61E954778001A16C7 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		7D3D98F71E955083001A16C7 /* TransitGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransitGuideViewController.h; sourceTree = "<group>"; };
 		7D3D98F81E955083001A16C7 /* TransitGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransitGuideViewController.m; sourceTree = "<group>"; };
+		7D61FC451FB8831B00D1A1BF /* MapSearchInitializer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapSearchInitializer.h; sourceTree = "<group>"; };
+		7D61FC461FB8831B00D1A1BF /* MapSearchInitializer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapSearchInitializer.m; sourceTree = "<group>"; };
 		8B306FF01E949ACB0072B35C /* 路线规划.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "路线规划.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B306FF41E949ACB0072B35C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8B306FF61E949ACB0072B35C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -97,10 +100,10 @@
 		8B3070021E949ACB0072B35C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8B3070041E949ACB0072B35C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B3070091E949ACB0072B35C /* 路线规划Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "路线规划Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8B30700D1E949ACB0072B35C /* ____Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ____Tests.m; sourceTree = "<group>"; };
+		8B30700D1E949ACB0072B35C /* ____Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "____Tests.m"; sourceTree = "<group>"; };
 		8B30700F1E949ACB0072B35C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B3070141E949ACB0072B35C /* 路线规划UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "路线规划UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8B3070181E949ACB0072B35C /* ____UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ____UITests.m; sourceTree = "<group>"; };
+		8B3070181E949ACB0072B35C /* ____UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "____UITests.m"; sourceTree = "<group>"; };
 		8B30701A1E949ACB0072B35C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B3070261E94B2120072B35C /* Personal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Personal.h; sourceTree = "<group>"; };
 		8B3070271E94C1860072B35C /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
@@ -332,6 +335,8 @@
 				8B3070521E95EAC30072B35C /* RouteMapDetailViewController.m */,
 				7D0A73CC1EB5440B00EE9092 /* SpeedRecognitionViewController.h */,
 				7D0A73CD1EB5440B00EE9092 /* SpeedRecognitionViewController.m */,
+				7D61FC451FB8831B00D1A1BF /* MapSearchInitializer.h */,
+				7D61FC461FB8831B00D1A1BF /* MapSearchInitializer.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -629,6 +634,7 @@
 				8BA9E25C1E98754400F7A6E2 /* StartStopCell.m in Sources */,
 				8BA9E2561E976AEE00F7A6E2 /* StationCell.m in Sources */,
 				7D3D98F01E954544001A16C7 /* TransitResultViewController.m in Sources */,
+				7D61FC471FB8831B00D1A1BF /* MapSearchInitializer.m in Sources */,
 				8B3070561E95EC1A0072B35C /* LocationView.m in Sources */,
 				8B30702E1E94D4200072B35C /* SearchView.m in Sources */,
 				8B306FF51E949ACB0072B35C /* main.m in Sources */,

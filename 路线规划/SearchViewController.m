@@ -7,7 +7,7 @@
 //
 
 #import "SearchViewController.h"
-#import "AMapSearchKit/AMapSearchKit.h"
+#import "MapSearchInitializer.h"
 #import <AMapLocationKit/AMapLocationKit.h>
 #import <MAMapKit/MAMapKit.h>
 #import "SearchView.h"
@@ -17,15 +17,13 @@
 #import "SpeedRecognitionViewController.h"
 #import "AppDelegate.h"
 
-#define kSearchViewID           @"searchView"
-#define kInputViewY             64
-#define kInputViewH             120
-#define kSearchTipsTableViewY   kInputViewY + kInputViewH
-#define kSearchTipsCellID       @"searchTipsCell"
+static NSString *kSearchViewID = @"searchView";
+static CGFloat  kInputViewY = 64;
+static CGFloat  kInputViewH = 120;
+static CGFloat  kSearchTipsTableViewY = 64 + 120;
+static NSString *kSearchTipsCellID = @"searchTipsCell";
 
-@interface SearchViewController ()<AMapSearchDelegate, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, AMapLocationManagerDelegate, RecognizerStringDelegate>
-
-@property (nonatomic, strong)AMapSearchAPI                  *mapSearch;
+@interface SearchViewController ()<UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, AMapLocationManagerDelegate, RecognizerStringDelegate>
 
 @property (assign, nonatomic) CLLocationCoordinate2D startCoordinate; //起始点经纬度
 @property (assign, nonatomic) CLLocationCoordinate2D destinationCoordinate; //终点经纬度
@@ -39,6 +37,7 @@
 @property (nonatomic, strong)AMapLocationManager    *locationManager;
 @property (nonatomic, copy)NSString             *currentCity;
 @property (nonatomic, copy)NSString             *recognitionString;
+@property (nonatomic, strong) MapSearchInitializer   *mapSearchInitializer;
 @end
 
 @implementation SearchViewController
@@ -56,8 +55,63 @@
 }
 
 - (void)initMapSearch {
-    self.mapSearch = [[AMapSearchAPI alloc] init];
-    self.mapSearch.delegate = self;
+    self.mapSearchInitializer = [[MapSearchInitializer alloc] init];
+    WS(weakSelf)
+    // 地理编码查询回调
+    self.mapSearchInitializer.geocodeSearchDoneBlock = ^(AMapGeocodeSearchRequest *request, CGFloat latitude, CGFloat longitude) {
+        if ([request.address isEqualToString:weakSelf.searchView.startLocation.text]) {
+            weakSelf.startCoordinate = CLLocationCoordinate2DMake(latitude, longitude);
+        } else if ([request.address isEqualToString:weakSelf.searchView.finishLocation.text]) {
+            weakSelf.destinationCoordinate = CLLocationCoordinate2DMake(latitude, longitude);
+        } else {
+    //        NSLog(@"编码前的地址：%@， 响应的编码为:%@", request.address, response.geocodes);
+        }
+    
+        if ((weakSelf.startCoordinate.latitude != 0) && (weakSelf.destinationCoordinate.latitude != 0)) {
+            // 发起线路规划的请求
+            [weakSelf transitRouteSearchWithStartCoordinate:weakSelf.startCoordinate DestinationCoordinate:weakSelf.destinationCoordinate];
+        }
+    };
+    
+    // 输入提示查询回调
+    self.mapSearchInitializer.inputTipsSearchDoneBlock = ^(AMapInputTipsSearchRequest *request, AMapInputTipsSearchResponse *response) {
+        [weakSelf.tipsArray removeAllObjects];
+    
+        if ([request.keywords isEqualToString:weakSelf.searchView.startLocation.text]) {
+            weakSelf.currentTextfield = weakSelf.searchView.startLocation;
+        }
+    
+        if ([request.keywords isEqualToString:weakSelf.searchView.finishLocation.text]) {
+            weakSelf.currentTextfield = weakSelf.searchView.finishLocation;
+        }
+    
+        if (response.count == 0) {
+            weakSelf.searchTipsTableView.backgroundView = weakSelf.tipsEmptyView;
+        } else {
+            weakSelf.searchTipsTableView.backgroundView = nil;
+            [weakSelf.tipsArray addObjectsFromArray:response.tips];
+    
+            [weakSelf removeNoLocationCoordinateObject];
+        }
+        [weakSelf.searchTipsTableView reloadData];
+    };
+    
+    // 路径规划查询回调
+    self.mapSearchInitializer.routeSearchDoneBlock = ^(AMapRouteSearchResponse *response) {
+        // 解析数据
+        weakSelf.route = nil;
+        weakSelf.routeArray = nil;
+        weakSelf.route = response.route;
+        weakSelf.routeArray = response.route.transits;
+    
+        TransitResultViewController *TRVC = [[TransitResultViewController alloc] init];
+        TRVC.routerCount = response.count;
+        TRVC.route = weakSelf.route;
+        TRVC.originLocation = weakSelf.searchView.startLocation.text;
+        TRVC.destinationLocation = weakSelf.searchView.finishLocation.text;
+        TRVC.transitArray = [NSMutableArray arrayWithArray:response.route.transits];
+        [weakSelf.navigationController pushViewController:TRVC animated:YES];
+    };
 }
 
 // 定位
@@ -201,35 +255,6 @@
     }
 }
 
-#pragma mark - amapSearch Delegate
-- (void)AMapSearchRequest:(id)request didFailWithError:(NSError *)error {
-    NSLog(@"search request:%@, error:%@", request, error);
-}
-
-- (void)onGeocodeSearchDone:(AMapGeocodeSearchRequest *)request response:(AMapGeocodeSearchResponse *)response {
-    // 在这里进行 线路规划的请求工作， 在点击 完成的时候也会获取一次编码（如果有编码不存在）
-    if ([response.geocodes firstObject].location.latitude == 0) {
-        return;
-    }
-    
-    CGFloat latitude = [response.geocodes firstObject].location.latitude;
-    CGFloat longitude = [response.geocodes firstObject].location.longitude;
-    
-    if ([request.address isEqualToString:self.searchView.startLocation.text]) {
-        self.startCoordinate = CLLocationCoordinate2DMake(latitude, longitude);
-    } else if ([request.address isEqualToString:self.searchView.finishLocation.text]) {
-        self.destinationCoordinate = CLLocationCoordinate2DMake(latitude, longitude);
-    } else {
-//        NSLog(@"编码前的地址：%@， 响应的编码为:%@", request.address, response.geocodes);
-    }
-    
-    if ((self.startCoordinate.latitude != 0) && (self.destinationCoordinate.latitude != 0)) {
-        // 发起线路规划的请求
-        [self transitRouteSearchWithStartCoordinate:self.startCoordinate DestinationCoordinate:self.destinationCoordinate];
-    }
-    
-}
-
 #pragma mark - 定位 delegate
 - (void)amapLocationManager:(AMapLocationManager *)manager didUpdateLocation:(CLLocation *)location reGeocode:(AMapLocationReGeocode *)reGeocode {
     // 初始位置默认显示 -> 我的位置
@@ -247,32 +272,6 @@
     NSLog(@"locationManager error:%@", error);
 }
 
-// 输入提示
-- (void)onInputTipsSearchDone:(AMapInputTipsSearchRequest *)request response:(AMapInputTipsSearchResponse *)response {
-    [self.tipsArray removeAllObjects];
-    
-    if ([request.keywords isEqualToString:self.searchView.startLocation.text]) {
-        self.currentTextfield = self.searchView.startLocation;
-    }
-    
-    if ([request.keywords isEqualToString:self.searchView.finishLocation.text]) {
-        self.currentTextfield = self.searchView.finishLocation;
-    }
-    
-    if (response.count == 0) {
-        self.searchTipsTableView.backgroundView = self.tipsEmptyView;
-    } else {
-        self.searchTipsTableView.backgroundView = nil;
-        [self.tipsArray addObjectsFromArray:response.tips];
-        
-        [self removeNoLocationCoordinateObject];
-    }
-    [self.searchTipsTableView reloadData];
-    
-    NSLog(@"----------------------");
-    NSLog(@"tips request:%@, response:%@",request, response);
-}
-
 // 输入提示有时会给出坐标为空的地点，从数组中去除
 - (void)removeNoLocationCoordinateObject {
     [self.tipsArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -281,26 +280,6 @@
             [self.tipsArray removeObject:tip];
         }
     }];
-}
-
-#pragma mark - 线路规划
-- (void)onRouteSearchDone:(AMapRouteSearchBaseRequest *)request response:(AMapRouteSearchResponse *)response {
-    NSLog(@"routeSearchDone request:%@, response:%@", request, response);
-    if (response.count == 0) { return; }
-
-    // 解析数据
-    self.route = nil;
-    self.routeArray = nil;
-    self.route = response.route;
-    self.routeArray = response.route.transits;
-
-    TransitResultViewController *TRVC = [[TransitResultViewController alloc] init];
-    TRVC.routerCount = response.count;
-    TRVC.route = self.route;
-    TRVC.originLocation = self.searchView.startLocation.text;
-    TRVC.destinationLocation = self.searchView.finishLocation.text;
-    TRVC.transitArray = [NSMutableArray arrayWithArray:response.route.transits];
-    [self.navigationController pushViewController:TRVC animated:YES];
 }
 
 #pragma mark - textfield Delegate
@@ -373,13 +352,13 @@
 - (void)geoWithText:(NSString *)text {
     AMapGeocodeSearchRequest *geo = [[AMapGeocodeSearchRequest alloc] init];
     geo.address = text;
-    [self.mapSearch AMapGeocodeSearch:geo];
+    [self.mapSearchInitializer mapGeocodeSearch:geo];
 }
 
 - (void)inputTipsSearchWithText:(NSString *)keywords {
     AMapInputTipsSearchRequest *inputTips = [[AMapInputTipsSearchRequest alloc] init];
     inputTips.keywords = keywords;
-    [self.mapSearch AMapInputTipsSearch:inputTips];
+    [self.mapSearchInitializer mapInputTipsSearch:inputTips];
 }
 
 #pragma mark - 发起路线规划
@@ -398,7 +377,7 @@
                                                 longitude:destinationCoordinate.longitude];
 
 
-    [self.mapSearch AMapTransitRouteSearch:navi];
+    [self.mapSearchInitializer mapTransitRouteSearch:navi];
 }
 
 - (void)recognizerString:(NSString *)string {
