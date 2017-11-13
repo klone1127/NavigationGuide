@@ -27,4 +27,8 @@
  */
 - (void)isStartLocationEmpty:(void(^)())excuteBlock;
 
+- (BOOL)matchStartLocation:(NSString *)string;
+
+- (BOOL)matchFinishLocation:(NSString *)string;
+
 @end

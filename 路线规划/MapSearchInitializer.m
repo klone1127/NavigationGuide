@@ -71,4 +71,22 @@
     [self.mapSearch AMapTransitRouteSearch:mapTransitRouteSearchRequest];
 }
 
+// 发起线路规划
+- (void)transitRouteSearchWithStartCoordinate:(CLLocationCoordinate2D)startCoordinate DestinationCoordinate:(CLLocationCoordinate2D)destinationCoordinate configurationBlock:(void(^)(AMapTransitRouteSearchRequest *request))configuration {
+    AMapTransitRouteSearchRequest *navi = [[AMapTransitRouteSearchRequest alloc] init];
+    
+    navi.nightflag = YES;
+    navi.requireExtension = YES;
+    configuration(navi);
+    /* 出发点. */
+    navi.origin = [AMapGeoPoint locationWithLatitude:startCoordinate.latitude
+                                           longitude:startCoordinate.longitude];
+    /* 目的地. */
+    navi.destination = [AMapGeoPoint locationWithLatitude:destinationCoordinate.latitude
+                                                longitude:destinationCoordinate.longitude];
+    
+    
+    [self mapTransitRouteSearch:navi];
+}
+
 @end

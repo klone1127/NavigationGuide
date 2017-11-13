@@ -17,6 +17,7 @@
 		7D3D98F41E9546A2001A16C7 /* UIColor+Flat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3D98F31E9546A2001A16C7 /* UIColor+Flat.m */; };
 		7D3D98F91E955083001A16C7 /* TransitGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3D98F81E955083001A16C7 /* TransitGuideViewController.m */; };
 		7D61FC471FB8831B00D1A1BF /* MapSearchInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D61FC461FB8831B00D1A1BF /* MapSearchInitializer.m */; };
+		7D61FC4A1FB89D6100D1A1BF /* LocationManagerInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D61FC491FB89D6100D1A1BF /* LocationManagerInitializer.m */; };
 		8B306FF51E949ACB0072B35C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B306FF41E949ACB0072B35C /* main.m */; };
 		8B306FF81E949ACB0072B35C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B306FF71E949ACB0072B35C /* AppDelegate.m */; };
 		8B306FFB1E949ACB0072B35C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B306FFA1E949ACB0072B35C /* ViewController.m */; };
@@ -89,6 +90,8 @@
 		7D3D98F81E955083001A16C7 /* TransitGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransitGuideViewController.m; sourceTree = "<group>"; };
 		7D61FC451FB8831B00D1A1BF /* MapSearchInitializer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapSearchInitializer.h; sourceTree = "<group>"; };
 		7D61FC461FB8831B00D1A1BF /* MapSearchInitializer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapSearchInitializer.m; sourceTree = "<group>"; };
+		7D61FC481FB89D6100D1A1BF /* LocationManagerInitializer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationManagerInitializer.h; sourceTree = "<group>"; };
+		7D61FC491FB89D6100D1A1BF /* LocationManagerInitializer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationManagerInitializer.m; sourceTree = "<group>"; };
 		8B306FF01E949ACB0072B35C /* 路线规划.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "路线规划.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B306FF41E949ACB0072B35C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8B306FF61E949ACB0072B35C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -335,8 +338,6 @@
 				8B3070521E95EAC30072B35C /* RouteMapDetailViewController.m */,
 				7D0A73CC1EB5440B00EE9092 /* SpeedRecognitionViewController.h */,
 				7D0A73CD1EB5440B00EE9092 /* SpeedRecognitionViewController.m */,
-				7D61FC451FB8831B00D1A1BF /* MapSearchInitializer.h */,
-				7D61FC461FB8831B00D1A1BF /* MapSearchInitializer.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -363,11 +364,15 @@
 		8B3070671E9634750072B35C /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				7D61FC451FB8831B00D1A1BF /* MapSearchInitializer.h */,
+				7D61FC461FB8831B00D1A1BF /* MapSearchInitializer.m */,
 				7D2FB8DA1FAB635B009AD38F /* Category */,
 				8B3070681E9634990072B35C /* ReGoecode.h */,
 				8B3070691E9634990072B35C /* ReGoecode.m */,
 				7D0A73CF1EB5A22C00EE9092 /* SpeedRecognition.h */,
 				7D0A73D01EB5A22C00EE9092 /* SpeedRecognition.m */,
+				7D61FC481FB89D6100D1A1BF /* LocationManagerInitializer.h */,
+				7D61FC491FB89D6100D1A1BF /* LocationManagerInitializer.m */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -620,6 +625,7 @@
 				8B3070531E95EAC30072B35C /* RouteMapDetailViewController.m in Sources */,
 				8B306FFB1E949ACB0072B35C /* ViewController.m in Sources */,
 				7D0A73CE1EB5440B00EE9092 /* SpeedRecognitionViewController.m in Sources */,
+				7D61FC4A1FB89D6100D1A1BF /* LocationManagerInitializer.m in Sources */,
 				8B306FF81E949ACB0072B35C /* AppDelegate.m in Sources */,
 				8B3070291E94C1860072B35C /* SearchViewController.m in Sources */,
 				7D2FB8DD1FAB6375009AD38F /* NSString+Common.m in Sources */,

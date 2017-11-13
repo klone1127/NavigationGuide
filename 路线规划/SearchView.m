@@ -122,4 +122,12 @@
     }];
 }
 
+- (BOOL)matchStartLocation:(NSString *)string  {
+    return [string isEqualToString:self.startLocation.text];
+}
+
+- (BOOL)matchFinishLocation:(NSString *)string  {
+    return [string isEqualToString:self.finishLocation.text];
+}
+
 @end

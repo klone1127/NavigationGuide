@@ -30,4 +30,14 @@ typedef void(^onRouteSearchDoneBlock)(AMapRouteSearchResponse *response);
 // 公交路径规划查询接口
 - (void)mapTransitRouteSearch:(AMapTransitRouteSearchRequest *)mapTransitRouteSearchRequest;
 
+
+/**
+ 发起线路规划
+
+ @param startCoordinate 起点
+ @param destinationCoordinate 终点
+ @param configuration 配置
+ */
+- (void)transitRouteSearchWithStartCoordinate:(CLLocationCoordinate2D)startCoordinate DestinationCoordinate:(CLLocationCoordinate2D)destinationCoordinate configurationBlock:(void(^)(AMapTransitRouteSearchRequest *request))configuration;
+
 @end

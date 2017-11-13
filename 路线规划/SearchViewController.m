@@ -8,7 +8,7 @@
 
 #import "SearchViewController.h"
 #import "MapSearchInitializer.h"
-#import <AMapLocationKit/AMapLocationKit.h>
+#import "LocationManagerInitializer.h"
 #import <MAMapKit/MAMapKit.h>
 #import "SearchView.h"
 #import "TransitResultViewController.h"
@@ -23,7 +23,7 @@ static CGFloat  kInputViewH = 120;
 static CGFloat  kSearchTipsTableViewY = 64 + 120;
 static NSString *kSearchTipsCellID = @"searchTipsCell";
 
-@interface SearchViewController ()<UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, AMapLocationManagerDelegate, RecognizerStringDelegate>
+@interface SearchViewController ()<UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, RecognizerStringDelegate>
 
 @property (assign, nonatomic) CLLocationCoordinate2D startCoordinate; //起始点经纬度
 @property (assign, nonatomic) CLLocationCoordinate2D destinationCoordinate; //终点经纬度
@@ -34,10 +34,10 @@ static NSString *kSearchTipsCellID = @"searchTipsCell";
 @property (nonatomic, strong)NSMutableArray     *tipsArray;
 @property (nonatomic, strong)TipsEmptyView      *tipsEmptyView;
 @property (nonatomic, strong)id                 currentTextfield;
-@property (nonatomic, strong)AMapLocationManager    *locationManager;
 @property (nonatomic, copy)NSString             *currentCity;
 @property (nonatomic, copy)NSString             *recognitionString;
 @property (nonatomic, strong) MapSearchInitializer   *mapSearchInitializer;
+@property (nonatomic, strong) LocationManagerInitializer *locationManagerInitializer;
 @end
 
 @implementation SearchViewController
@@ -59,17 +59,12 @@ static NSString *kSearchTipsCellID = @"searchTipsCell";
     WS(weakSelf)
     // 地理编码查询回调
     self.mapSearchInitializer.geocodeSearchDoneBlock = ^(AMapGeocodeSearchRequest *request, CGFloat latitude, CGFloat longitude) {
-        if ([request.address isEqualToString:weakSelf.searchView.startLocation.text]) {
-            weakSelf.startCoordinate = CLLocationCoordinate2DMake(latitude, longitude);
-        } else if ([request.address isEqualToString:weakSelf.searchView.finishLocation.text]) {
-            weakSelf.destinationCoordinate = CLLocationCoordinate2DMake(latitude, longitude);
-        } else {
-    //        NSLog(@"编码前的地址：%@， 响应的编码为:%@", request.address, response.geocodes);
-        }
+        [weakSelf getLocationCoordinate2D:request latitude:latitude longitude:longitude];
     
         if ((weakSelf.startCoordinate.latitude != 0) && (weakSelf.destinationCoordinate.latitude != 0)) {
             // 发起线路规划的请求
             [weakSelf transitRouteSearchWithStartCoordinate:weakSelf.startCoordinate DestinationCoordinate:weakSelf.destinationCoordinate];
+            
         }
     };
     
@@ -77,11 +72,11 @@ static NSString *kSearchTipsCellID = @"searchTipsCell";
     self.mapSearchInitializer.inputTipsSearchDoneBlock = ^(AMapInputTipsSearchRequest *request, AMapInputTipsSearchResponse *response) {
         [weakSelf.tipsArray removeAllObjects];
     
-        if ([request.keywords isEqualToString:weakSelf.searchView.startLocation.text]) {
+        if ([weakSelf.searchView matchStartLocation:request.keywords]) {
             weakSelf.currentTextfield = weakSelf.searchView.startLocation;
         }
     
-        if ([request.keywords isEqualToString:weakSelf.searchView.finishLocation.text]) {
+        if ([weakSelf.searchView matchFinishLocation:request.keywords]) {
             weakSelf.currentTextfield = weakSelf.searchView.finishLocation;
         }
     
@@ -98,40 +93,19 @@ static NSString *kSearchTipsCellID = @"searchTipsCell";
     
     // 路径规划查询回调
     self.mapSearchInitializer.routeSearchDoneBlock = ^(AMapRouteSearchResponse *response) {
-        // 解析数据
-        weakSelf.route = nil;
-        weakSelf.routeArray = nil;
-        weakSelf.route = response.route;
-        weakSelf.routeArray = response.route.transits;
-    
-        TransitResultViewController *TRVC = [[TransitResultViewController alloc] init];
-        TRVC.routerCount = response.count;
-        TRVC.route = weakSelf.route;
-        TRVC.originLocation = weakSelf.searchView.startLocation.text;
-        TRVC.destinationLocation = weakSelf.searchView.finishLocation.text;
-        TRVC.transitArray = [NSMutableArray arrayWithArray:response.route.transits];
-        [weakSelf.navigationController pushViewController:TRVC animated:YES];
+        [weakSelf pushToResultVC:response];
     };
 }
 
 // 定位
 - (void)initLocationManager {
-    self.locationManager = [[AMapLocationManager alloc] init];
-    self.locationManager.delegate = self;
-    self.locationManager.distanceFilter = 10;
-    self.locationManager.locatingWithReGeocode = YES; // 返回逆地理信息(仅限国内)
-    
-    [self.locationManager setPausesLocationUpdatesAutomatically:NO];
-    if ([UIDevice currentDevice].systemVersion.floatValue >= 9) {
-        self.locationManager.allowsBackgroundLocationUpdates = YES;
-    }
-    
-}
-
--(void)startLocation {
-    // 持续返回逆地理编码信息
-    [self.locationManager setLocatingWithReGeocode:YES];
-    [self.locationManager startUpdatingLocation];
+    self.locationManagerInitializer = [[LocationManagerInitializer alloc] init];
+    WS(weakSelf)
+    self.locationManagerInitializer.locationManagerBlock = ^(CLLocation *location, AMapLocationReGeocode *reGeocode) {
+        [weakSelf showStartLocation:reGeocode location:location];
+        weakSelf.currentCity = reGeocode.city;
+        [weakSelf.locationButton setTitle:reGeocode.city forState:UIControlStateNormal];
+    };
 }
 
 - (void)configNavigationBar {
@@ -160,7 +134,7 @@ static NSString *kSearchTipsCellID = @"searchTipsCell";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self configNavigationBar];
-    [self startLocation];
+    [self.locationManagerInitializer startLocation];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startLocationChange:) name:UITextFieldTextDidChangeNotification object:self.searchView.startLocation];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishLocationChange:) name:UITextFieldTextDidChangeNotification object:self.searchView.finishLocation];
     
@@ -255,23 +229,6 @@ static NSString *kSearchTipsCellID = @"searchTipsCell";
     }
 }
 
-#pragma mark - 定位 delegate
-- (void)amapLocationManager:(AMapLocationManager *)manager didUpdateLocation:(CLLocation *)location reGeocode:(AMapLocationReGeocode *)reGeocode {
-    // 初始位置默认显示 -> 我的位置
-    [self showStartLocation:reGeocode location:location];
-    self.currentCity = reGeocode.city;
-    [self.locationButton setTitle:reGeocode.city forState:UIControlStateNormal];
-//    NSLog(@"location:%@, \n reGeocode:%@", location, reGeocode);
-}
-- (void)amapLocationManager:(AMapLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
-    [self showNoAuthorizedTips:status];
-    NSLog(@"定位权限改变！！！");
-}
-
-- (void)amapLocationManager:(AMapLocationManager *)manager didFailWithError:(NSError *)error {
-    NSLog(@"locationManager error:%@", error);
-}
-
 // 输入提示有时会给出坐标为空的地点，从数组中去除
 - (void)removeNoLocationCoordinateObject {
     [self.tipsArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -300,24 +257,6 @@ static NSString *kSearchTipsCellID = @"searchTipsCell";
         return YES;
     } else {
         return NO;
-    }
-}
-
-- (void)showNoAuthorizedTips:(CLAuthorizationStatus)status {
-    if ( status == kCLAuthorizationStatusNotDetermined || status == kCLAuthorizationStatusRestricted || status == kCLAuthorizationStatusDenied) {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"您还没有授权使用定位" message:@"请前往设置授权" preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-        UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"好的"
-                                                                style:UIAlertActionStyleDefault
-                                                              handler:^(UIAlertAction * _Nonnull action) {
-// TODO: 改为跳转？
-                                                              }];
-            
-        
-        [alertController addAction:cancelAction];
-        [alertController addAction:defaultAction];
-        [self presentViewController:alertController animated:YES completion:nil];
     }
 }
 
@@ -363,21 +302,11 @@ static NSString *kSearchTipsCellID = @"searchTipsCell";
 
 #pragma mark - 发起路线规划
 - (void)transitRouteSearchWithStartCoordinate:(CLLocationCoordinate2D)startCoordinate DestinationCoordinate:(CLLocationCoordinate2D)destinationCoordinate {
-    AMapTransitRouteSearchRequest *navi = [[AMapTransitRouteSearchRequest alloc] init];
-
-    navi.nightflag = YES;
-    navi.requireExtension = YES;
-    navi.city = self.currentCity;
-    navi.destinationCity = self.currentCity;
-    /* 出发点. */
-    navi.origin = [AMapGeoPoint locationWithLatitude:startCoordinate.latitude
-                                           longitude:startCoordinate.longitude];
-    /* 目的地. */
-    navi.destination = [AMapGeoPoint locationWithLatitude:destinationCoordinate.latitude
-                                                longitude:destinationCoordinate.longitude];
-
-
-    [self.mapSearchInitializer mapTransitRouteSearch:navi];
+    WS(weakSelf)
+    [self.mapSearchInitializer transitRouteSearchWithStartCoordinate:startCoordinate DestinationCoordinate:destinationCoordinate configurationBlock:^(AMapTransitRouteSearchRequest *request) {
+        request.city = weakSelf.currentCity;
+        request.destinationCity = weakSelf.currentCity;
+    }];
 }
 
 - (void)recognizerString:(NSString *)string {
@@ -392,7 +321,6 @@ static NSString *kSearchTipsCellID = @"searchTipsCell";
     }
 }
 
-
 - (void)showSpeedRecognitionVIew {
     SpeedRecognitionViewController *srVC = [[SpeedRecognitionViewController alloc] init];
     srVC.recognizerStringDelegate = self;
@@ -401,6 +329,32 @@ static NSString *kSearchTipsCellID = @"searchTipsCell";
     srVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     [self presentViewController:srVC animated:YES completion:^{
     }];
+}
+
+- (void)pushToResultVC:(AMapRouteSearchResponse *)response {
+    // 解析数据
+    self.route = nil;
+    self.routeArray = nil;
+    self.route = response.route;
+    self.routeArray = response.route.transits;
+    
+    TransitResultViewController *TRVC = [[TransitResultViewController alloc] init];
+    TRVC.routerCount = response.count;
+    TRVC.route = self.route;
+    TRVC.originLocation = self.searchView.startLocation.text;
+    TRVC.destinationLocation = self.searchView.finishLocation.text;
+    TRVC.transitArray = [NSMutableArray arrayWithArray:response.route.transits];
+    [self.navigationController pushViewController:TRVC animated:YES];
+}
+
+- (void)getLocationCoordinate2D:(AMapGeocodeSearchRequest *)request latitude:(double)latitude longitude:(double)longitude {
+    if ([self.searchView matchStartLocation:request.address]) {
+        self.startCoordinate = CLLocationCoordinate2DMake(latitude, longitude);
+    } else if ([self.searchView matchFinishLocation:request.address]) {
+        self.destinationCoordinate = CLLocationCoordinate2DMake(latitude, longitude);
+    } else {
+        //        NSLog(@"编码前的地址：%@， 响应的编码为:%@", request.address, response.geocodes);
+    }
 }
 
 /*
