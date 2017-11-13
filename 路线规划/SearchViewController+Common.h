@@ -8,6 +8,8 @@
 
 #import "SearchViewController.h"
 
-@interface SearchViewController (Common)
+@interface SearchViewController (Common)<UITableViewDelegate, UITableViewDataSource>
+
+- (void)setDelegate:(UITableView *)tableView;
 
 @end
