@@ -7,35 +7,24 @@
 //
 
 #import "SearchViewController.h"
-#import "MapSearchInitializer.h"
 #import "LocationManagerInitializer.h"
 #import <MAMapKit/MAMapKit.h>
-#import "SearchView.h"
 #import "TransitResultViewController.h"
-#import "SearchTipsCell.h"
 #import "TipsEmptyView.h"
 #import "SpeedRecognitionViewController.h"
-#import "AppDelegate.h"
+#import "SearchViewController+Common.h"
 
 static NSString *kSearchViewID = @"searchView";
 static CGFloat  kInputViewY = 64;
 static CGFloat  kInputViewH = 120;
 static CGFloat  kSearchTipsTableViewY = 64 + 120;
-static NSString *kSearchTipsCellID = @"searchTipsCell";
 
-@interface SearchViewController ()<UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, RecognizerStringDelegate>
+@interface SearchViewController ()<UITextFieldDelegate, RecognizerStringDelegate>
 
-@property (assign, nonatomic) CLLocationCoordinate2D startCoordinate; //起始点经纬度
-@property (assign, nonatomic) CLLocationCoordinate2D destinationCoordinate; //终点经纬度
 @property (strong, nonatomic) AMapRoute         *route;  //路径规划信息
 @property (copy, nonatomic) NSArray             *routeArray;  //规划的路径数组
-@property (nonatomic, strong)SearchView         *searchView;
-@property (nonatomic, strong)UITableView        *searchTipsTableView;
-@property (nonatomic, strong)NSMutableArray     *tipsArray;
 @property (nonatomic, strong)TipsEmptyView      *tipsEmptyView;
-@property (nonatomic, strong)id                 currentTextfield;
 @property (nonatomic, copy)NSString             *currentCity;
-@property (nonatomic, copy)NSString             *recognitionString;
 @property (nonatomic, strong) MapSearchInitializer   *mapSearchInitializer;
 @property (nonatomic, strong) LocationManagerInitializer *locationManagerInitializer;
 @end
@@ -122,13 +111,11 @@ static NSString *kSearchTipsCellID = @"searchTipsCell";
 
 - (void)initSearchTipsTableView {
     self.searchTipsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kSearchTipsTableViewY + kStatusBarFrame.size.height, kScreenSize.width, kScreenSize.height - kInputViewY - kInputViewH) style:UITableViewStylePlain];
-    self.searchTipsTableView.delegate = self;
-    self.searchTipsTableView.dataSource = self;
     [self.view addSubview:self.searchTipsTableView];
-    
+    [self setDelegate:self.searchTipsTableView];
     self.searchTipsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
-    [self.searchTipsTableView registerNib:[UINib nibWithNibName:@"SearchTipsCell" bundle:nil] forCellReuseIdentifier:kSearchTipsCellID];
+    [self.searchTipsTableView registerNib:[UINib nibWithNibName:@"SearchTipsCell" bundle:nil] forCellReuseIdentifier:@"searchTipsCell"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -183,50 +170,6 @@ static NSString *kSearchTipsCellID = @"searchTipsCell";
     [self inputTipsSearchWithText:self.searchView.finishLocation.text];
     self.recognitionString = nil;
     self.destinationCoordinate = CLLocationCoordinate2DMake(0, 0);
-}
-
-#pragma mark - tableView delegate
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.tipsArray.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    AMapTip *tip = self.tipsArray[indexPath.row];
-    
-    SearchTipsCell *cell = [tableView dequeueReusableCellWithIdentifier:kSearchTipsCellID];
-    if (!cell) {
-        NSArray *cellArray = [[NSBundle mainBundle] loadNibNamed:@"SearchTipsCell" owner:nil options:nil];
-        cell = [cellArray firstObject];
-    }
-    self.searchTipsTableView.rowHeight = cell.frame.size.height;
-    [cell configSearchTipsCell:tip];
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    AMapTip *tip = self.tipsArray[indexPath.row];
-    UITextField *textField = (UITextField *)self.currentTextfield;
-    textField.text = tip.name;
-    
-    if ([textField isEqual:self.searchView.startLocation]) {
-        self.startCoordinate = CLLocationCoordinate2DMake(tip.location.latitude, tip.location.longitude);
-    }
-    
-    if ([textField isEqual:self.searchView.finishLocation] || [tip.name isEqual:self.recognitionString]) {
-        self.destinationCoordinate = CLLocationCoordinate2DMake(tip.location.latitude, tip.location.longitude);
-    }
-    
-    if (self.recognitionString) {
-       self.searchView.finishLocation.text = self.recognitionString;
-        self.destinationCoordinate = CLLocationCoordinate2DMake(tip.location.latitude, tip.location.longitude);
-    }
-    
-    if ((self.startCoordinate.latitude != 0) && (self.destinationCoordinate.latitude != 0)) {
-        [self transitRouteSearchWithStartCoordinate:self.startCoordinate DestinationCoordinate:self.destinationCoordinate];
-    }
 }
 
 // 输入提示有时会给出坐标为空的地点，从数组中去除

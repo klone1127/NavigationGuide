@@ -1,0 +1,13 @@
+//
+//  SearchViewController+Common.m
+//  路线规划
+//
+//  Created by CF on 13/11/2017.
+//  Copyright © 2017 klone1127. All rights reserved.
+//
+
+#import "SearchViewController+Common.h"
+
+@implementation SearchViewController (Common)
+
+@end
