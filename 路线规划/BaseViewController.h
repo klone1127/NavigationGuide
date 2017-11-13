@@ -17,6 +17,8 @@
 
 - (void)showNavigationBar;
 
+- (void)setStatusBarBackgroundColor:(UIColor *)color;
+
 /**
  自定义 NavigationBar，
 

@@ -33,6 +33,7 @@
 - (void)configNavigationItem {
     self.navigationItem.title = @"可乘线路";
     [self showNavigationBar];
+    [self setStatusBarBackgroundColor:[UIColor colorWithHexCode:@"F3F5F4"]];
 }
 
 - (void)initTableView {

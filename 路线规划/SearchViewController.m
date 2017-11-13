@@ -113,7 +113,7 @@ static NSString *kSearchTipsCellID = @"searchTipsCell";
     [self.speedButton addTarget:self action:@selector(showSpeedRecognitionVIew) forControlEvents:UIControlEventTouchUpInside];
     [self hideNavigationBar];
     [self.view addSubview:barView];
-    
+    [self setStatusBarBackgroundColor:[UIColor colorWithHexCode:kSearchBarColor]];
 }
 
 - (void)configTipsEmptyView {
@@ -121,7 +121,7 @@ static NSString *kSearchTipsCellID = @"searchTipsCell";
 }
 
 - (void)initSearchTipsTableView {
-    self.searchTipsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kSearchTipsTableViewY, kScreenSize.width, kScreenSize.height - kInputViewY - kInputViewH) style:UITableViewStylePlain];
+    self.searchTipsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kSearchTipsTableViewY + kStatusBarFrame.size.height, kScreenSize.width, kScreenSize.height - kInputViewY - kInputViewH) style:UITableViewStylePlain];
     self.searchTipsTableView.delegate = self;
     self.searchTipsTableView.dataSource = self;
     [self.view addSubview:self.searchTipsTableView];
@@ -150,7 +150,7 @@ static NSString *kSearchTipsCellID = @"searchTipsCell";
 }
 
 - (void)initInputLocationView {
-    self.searchView = [[SearchView alloc] initWithFrame:CGRectMake(0, kInputViewY, self.view.frame.size.width, kInputViewH)];
+    self.searchView = [[SearchView alloc] initWithFrame:CGRectMake(0, kInputViewY + kStatusBarFrame.size.height, self.view.frame.size.width, kInputViewH)];
     [self.view addSubview:self.searchView];
     
     self.searchView.startLocation.delegate = self;
@@ -170,7 +170,7 @@ static NSString *kSearchTipsCellID = @"searchTipsCell";
 
 - (void)changeTableViewHeight:(CGFloat)height animationDuration:(CGFloat)time {
     [UIView animateWithDuration:time animations:^{
-        self.searchTipsTableView.frame = CGRectMake(0, kSearchTipsTableViewY, kScreenSize.width, kScreenSize.height - kInputViewY - kInputViewH + height);
+        self.searchTipsTableView.frame = CGRectMake(0, kSearchTipsTableViewY + kStatusBarFrame.size.height, kScreenSize.width, kScreenSize.height - kInputViewY - kInputViewH + height);
     }];
 }
 

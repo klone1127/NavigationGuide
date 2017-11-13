@@ -78,8 +78,16 @@
     return view;
 }
 
+//设置状态栏颜色
+- (void)setStatusBarBackgroundColor:(UIColor *)color {
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+        statusBar.backgroundColor = color;
+    }
+}
+
 - (UIView *)navigationBarView:(NSString *)viewColor {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenSize.width, 64)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight([UIApplication sharedApplication].statusBarFrame), kScreenSize.width, 64.0)];
     view.backgroundColor = [UIColor colorWithHexCode:viewColor];
     
     return view;

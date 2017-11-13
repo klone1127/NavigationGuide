@@ -9,11 +9,9 @@
 #import "SearchView.h"
 #import "Masonry.h"
 
-#define kLineImageW     20
-#define kLineImageH     kLineImageW
-
-#define kStartViewH     40
-#define kEndViewH       kStartViewH
+static CGFloat kLineImageW = 20;
+static CGFloat kStartViewH = 40;
+static CGFloat kEndViewH   = 40;
 
 @implementation SearchView
 

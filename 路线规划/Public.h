@@ -17,5 +17,6 @@
 #define kScreenSize             [UIScreen mainScreen].bounds.size
 #define WS(weakSelf)            __weak typeof(self)weakSelf = self;
 #define SS(strongSelf)          __strong typeof(weakSelf)strongSelf = weakSelf;
+#define kStatusBarFrame         [UIApplication sharedApplication].statusBarFrame
 
 #endif /* Public_h */
