@@ -54,4 +54,12 @@
  */
 - (void)showSpeedButton;
 
+
+/**
+ 去除 scrollView 顶部的自适应
+
+ @param scrollView
+ */
+- (void)disabledScrollViewAutolayout:(UIScrollView *)scrollView;
+
 @end

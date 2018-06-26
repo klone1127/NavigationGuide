@@ -41,6 +41,7 @@ static CGFloat  kSearchTipsTableViewY = 64 + 120;
     [self initMapSearch];
     [self configTipsEmptyView];
     [self initLocationManager];
+    [self disabledScrollViewAutolayout:self.searchTipsTableView];
 }
 
 - (void)initMapSearch {
@@ -127,6 +128,13 @@ static CGFloat  kSearchTipsTableViewY = 64 + 120;
     
     // 监听键盘高度变化
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    
+    NSLog(@"%@", [statusBar performSelector:NSSelectorFromString(@"recursiveDescription")]);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

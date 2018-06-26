@@ -151,6 +151,14 @@
     }
 }
 
+- (void)disabledScrollViewAutolayout:(UIScrollView *)scrollView {
+    if (@available(iOS 11, *)) {
+        scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+}
+
 /*
 #pragma mark - Navigation
 
