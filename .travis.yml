@@ -3,4 +3,6 @@ language: objective-c
 xcode_workspace: 路线规划.xcworkspace
 xcode_scheme: 路线规划
 
-script: set -o pipefail && xcodebuild test -workspace 路线规划.xcworkspace -scheme 路线规划|xcpretty
+script: 
+  - set -o pipefail 
+  - travis_retry xcodebuild -workspace 路线规划.xcworkspace -scheme 路线规划 -destination "platform=iOS Simulator,name=iPhone X" build-for-testing test | xcpretty
