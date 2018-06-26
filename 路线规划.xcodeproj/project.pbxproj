@@ -476,7 +476,7 @@
 				TargetAttributes = {
 					8B306FEF1E949ACB0072B35C = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 9B2M6PYX58;
+						DevelopmentTeam = TBSUACPT52;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -812,7 +812,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 9B2M6PYX58;
+				DEVELOPMENT_TEAM = TBSUACPT52;
 				INFOPLIST_FILE = "路线规划/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -828,7 +828,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 9B2M6PYX58;
+				DEVELOPMENT_TEAM = TBSUACPT52;
 				INFOPLIST_FILE = "路线规划/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
