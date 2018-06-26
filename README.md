@@ -1,4 +1,4 @@
-# NavigationGuide [![Build Status](https://travis-ci.org/klone1127/NavigationGuide.svg?branch=master)](https://travis-ci.org/klone1127/NavigationGuide)
+# NavigationGuide [![Build Status](https://travis-ci.com/klone1127/NavigationGuide.svg?branch=master)](https://travis-ci.com/klone1127/NavigationGuide)
 集成高德规划乘车路线
 
 ### 功能介绍
