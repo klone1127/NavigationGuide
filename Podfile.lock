@@ -1,43 +1,55 @@
 PODS:
-  - AFNetworking (3.1.0):
-    - AFNetworking/NSURLSession (= 3.1.0)
-    - AFNetworking/Reachability (= 3.1.0)
-    - AFNetworking/Security (= 3.1.0)
-    - AFNetworking/Serialization (= 3.1.0)
-    - AFNetworking/UIKit (= 3.1.0)
-  - AFNetworking/NSURLSession (3.1.0):
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.1.0)
-  - AFNetworking/Security (3.1.0)
-  - AFNetworking/Serialization (3.1.0)
-  - AFNetworking/UIKit (3.1.0):
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
-  - AMap3DMap-NO-IDFA (4.6.1):
-    - AMapFoundation-NO-IDFA (~> 1.3)
-  - AMapFoundation-NO-IDFA (1.3.4)
-  - AMapLocation-NO-IDFA (2.3.1):
-    - AMapFoundation-NO-IDFA (~> 1.3)
-  - AMapNavi-NO-IDFA (2.3.0):
-    - AMap3DMap-NO-IDFA (~> 4.2)
-    - AMapFoundation-NO-IDFA (~> 1.2)
-  - AMapSearch-NO-IDFA (4.5.0):
-    - AMapFoundation-NO-IDFA (~> 1.2)
-  - JSONModel (1.7.0)
-  - Masonry (1.0.2)
-  - pop (1.0.10)
+  - AMap3DMap-NO-IDFA (6.8.1):
+    - AMapFoundation-NO-IDFA (~> 1.5)
+  - AMapFoundation-NO-IDFA (1.5.6)
+  - AMapLocation-NO-IDFA (2.6.2):
+    - AMapFoundation-NO-IDFA (~> 1.4)
+  - AMapNavi-NO-IDFA (6.7.0):
+    - AMap3DMap-NO-IDFA (~> 6.7)
+    - AMapFoundation-NO-IDFA (~> 1.5)
+  - AMapSearch-NO-IDFA (6.6.0):
+    - AMapFoundation-NO-IDFA (~> 1.4)
+  - JSONModel (1.8.0)
+  - Masonry (1.1.0)
+  - pop (1.0.11)
   - UMengAnalytics-NO-IDFA (4.2.5)
 
 DEPENDENCIES:
-  - AFNetworking (~> 3.1.0)
+  - AFNetworking
   - AMapLocation-NO-IDFA
   - AMapNavi-NO-IDFA
   - AMapSearch-NO-IDFA
-  - JSONModel (~> 1.7.0)
-  - Masonry (~> 1.0.2)
+  - JSONModel
+  - Masonry
   - pop (from `https://github.com/facebook/pop.git`)
   - UMengAnalytics-NO-IDFA
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - AMap3DMap-NO-IDFA
+    - AMapFoundation-NO-IDFA
+    - AMapLocation-NO-IDFA
+    - AMapNavi-NO-IDFA
+    - AMapSearch-NO-IDFA
+    - JSONModel
+    - Masonry
+    - UMengAnalytics-NO-IDFA
 
 EXTERNAL SOURCES:
   pop:
@@ -45,21 +57,21 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   pop:
-    :commit: 2a9440a3ded796625f088a861b6401e63e93f1b6
+    :commit: 87d1f8b74cdaa4699d7a9f6be1ff5202014c581f
     :git: https://github.com/facebook/pop.git
 
 SPEC CHECKSUMS:
-  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  AMap3DMap-NO-IDFA: 4a1efafcebe244f80e923931c2f35e3929197283
-  AMapFoundation-NO-IDFA: 56b42e67233c8a883cfd448d94c4cb7380080741
-  AMapLocation-NO-IDFA: 7df5ab4b618d96665551afb0c6426f79db72a4a6
-  AMapNavi-NO-IDFA: a54f35c1c1e3e0ba14cf1139a7c7a6e8ff832fae
-  AMapSearch-NO-IDFA: c14f82f9f06533b033da001c94077c50d48cee25
-  JSONModel: 840bc0fcffb24b8454d2c026bf26fea454b8e98d
-  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
-  pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  AMap3DMap-NO-IDFA: c2e5a2d22535c1f55b92298acd211e3479639b77
+  AMapFoundation-NO-IDFA: 40d723b352992d0f95abe2976f0c0ecda3c3ffc3
+  AMapLocation-NO-IDFA: d7792c8c516f415e186f1bc25946f1a58ca6a583
+  AMapNavi-NO-IDFA: ad1bdff5c62864469662c91a4c3d0a2f8b1335eb
+  AMapSearch-NO-IDFA: 07651afae010f7acda12beb1f2c0f45d29069e75
+  JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  pop: ae3ae187018759968252242e175c21f7f9be5dd2
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
 
-PODFILE CHECKSUM: 19955d450588a6f4304413a51b5d5e8089ac341a
+PODFILE CHECKSUM: 5c1274101d5d9b0340fdd1377aca59601f568c45
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.6.1

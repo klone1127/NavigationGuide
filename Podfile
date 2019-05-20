@@ -5,9 +5,9 @@ target '路线规划' do
     pod 'UMengAnalytics-NO-IDFA'
 	pod 'AMapSearch-NO-IDFA'
 	pod 'AMapNavi-NO-IDFA'
-	pod 'JSONModel', 	'~> 1.7.0'
-	pod 'Masonry', 		'~> 1.0.2'
-	pod 'AFNetworking', '~> 3.1.0'
+	pod 'JSONModel'
+	pod 'Masonry'
+	pod 'AFNetworking'
     pod 'AMapLocation-NO-IDFA' #无IDFA版定位 SDK
     pod 'pop', :git => 'https://github.com/facebook/pop.git'
 end

@@ -52,6 +52,10 @@
     NSLog(@"locationManager error:%@", error);
 }
 
+- (void)amapLocationManager:(AMapLocationManager *)manager doRequireLocationAuth:(CLLocationManager *)locationManager {
+    [locationManager requestAlwaysAuthorization];
+}
+
 /**
  授权提示
 

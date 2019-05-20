@@ -1,1 +1,0 @@
-../../../../AMapLocation-NO-IDFA/AMapLocationKit.framework/Headers/AMapGeoFenceRegionObj.h

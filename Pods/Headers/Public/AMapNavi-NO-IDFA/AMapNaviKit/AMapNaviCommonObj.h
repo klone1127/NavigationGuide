@@ -1,1 +1,0 @@
-../../../../AMapNavi-NO-IDFA/AMapNaviKit.framework/Headers/AMapNaviCommonObj.h

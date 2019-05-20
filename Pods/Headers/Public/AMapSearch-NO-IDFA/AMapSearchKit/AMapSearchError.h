@@ -1,1 +1,0 @@
-../../../../AMapSearch-NO-IDFA/AMapSearchKit.framework/Headers/AMapSearchError.h
