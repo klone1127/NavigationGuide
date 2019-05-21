@@ -11,7 +11,7 @@
 #import <MAMapKit/MAMapKit.h>
 #import "TransitResultViewController.h"
 #import "TipsEmptyView.h"
-#import "SpeedRecognitionViewController.h"
+#import "SpeechRecognitionViewController.h"
 #import "SearchViewController+Common.h"
 
 static NSString *kSearchViewID = @"searchView";
@@ -100,7 +100,7 @@ static CGFloat  kSearchTipsTableViewY = 64 + 120;
 
 - (void)configNavigationBar {
     UIView *barView = [self navigationBarViewWithColor:kSearchBarColor title:@"公交线路规划"];
-    [self.speedButton addTarget:self action:@selector(showSpeedRecognitionVIew) forControlEvents:UIControlEventTouchUpInside];
+    [self.speechButton addTarget:self action:@selector(showSpeechRecognitionVIew) forControlEvents:UIControlEventTouchUpInside];
     [self hideNavigationBar];
     [self.view addSubview:barView];
     [self setStatusBarBackgroundColor:[UIColor colorWithHexCode:kSearchBarColor]];
@@ -272,8 +272,8 @@ static CGFloat  kSearchTipsTableViewY = 64 + 120;
     }
 }
 
-- (void)showSpeedRecognitionVIew {
-    SpeedRecognitionViewController *srVC = [[SpeedRecognitionViewController alloc] init];
+- (void)showSpeechRecognitionVIew {
+    SpeechRecognitionViewController *srVC = [[SpeechRecognitionViewController alloc] init];
     srVC.recognizerStringDelegate = self;
     self.definesPresentationContext = YES;
     srVC.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.0f];

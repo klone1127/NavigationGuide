@@ -1,27 +1,27 @@
 //
-//  SpeedRecognitionViewController.m
+//  SpeechRecognitionViewController.m
 //  路线规划
 //
 //  Created by CF on 2017/4/30.
 //  Copyright © 2017年 klone1127. All rights reserved.
 //
 
-#import "SpeedRecognitionViewController.h"
-#import "SpeedRecognition.h"
+#import "SpeechRecognitionViewController.h"
+#import "SpeechRecognition.h"
 #import <Masonry.h>
 #import <POP.h>
 
 static void *RecognizerResultString = &RecognizerResultString;
 
-@interface SpeedRecognitionViewController ()<SpeechRecognizerResultDelegate>
+@interface SpeechRecognitionViewController ()<SpeechRecognizerResultDelegate>
 
 @property (nonatomic, strong)UIButton           *operationButton;
-@property (nonatomic, strong)SpeedRecognition   *recognition;
+@property (nonatomic, strong)SpeechRecognition   *recognition;
 @property (nonatomic, strong)UIView             *backgroundView;
 
 @end
 
-@implementation SpeedRecognitionViewController
+@implementation SpeechRecognitionViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,7 +29,7 @@ static void *RecognizerResultString = &RecognizerResultString;
     [self halfView];
     [self setupSpeedRecognitionButton];
     
-    self.recognition = [[SpeedRecognition alloc] init];
+    self.recognition = [[SpeechRecognition alloc] init];
     self.recognition.speechRecofnizerResultDelegate = self;
 }
 

@@ -11,7 +11,7 @@
 @interface BaseViewController : UIViewController
 
 @property (nonatomic, strong)UIButton       *locationButton;
-@property (nonatomic, strong)UIButton       *speedButton;
+@property (nonatomic, strong)UIButton       *speechButton;
 
 - (void)hideNavigationBar;
 
@@ -46,13 +46,13 @@
 /**
  隐藏语音识别按钮
  */
-- (void)hideSpeedButton;
+- (void)hideSpeechButton;
 
 
 /**
  显示语音识别按钮
  */
-- (void)showSpeedButton;
+- (void)showSpeechButton;
 
 
 /**

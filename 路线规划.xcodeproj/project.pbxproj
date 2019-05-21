@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7D0A73CE1EB5440B00EE9092 /* SpeedRecognitionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0A73CD1EB5440B00EE9092 /* SpeedRecognitionViewController.m */; };
-		7D0A73D11EB5A22C00EE9092 /* SpeedRecognition.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0A73D01EB5A22C00EE9092 /* SpeedRecognition.m */; };
+		7D0A73CE1EB5440B00EE9092 /* SpeechRecognitionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0A73CD1EB5440B00EE9092 /* SpeechRecognitionViewController.m */; };
+		7D0A73D11EB5A22C00EE9092 /* SpeechRecognition.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0A73D01EB5A22C00EE9092 /* SpeechRecognition.m */; };
 		7D0A73D41EBDC5E900EE9092 /* UIAlertController+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0A73D31EBDC5E900EE9092 /* UIAlertController+Common.m */; };
 		7D2FB8DD1FAB6375009AD38F /* NSString+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2FB8DC1FAB6375009AD38F /* NSString+Common.m */; };
 		7D3D98E91E954431001A16C7 /* TransitTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3D98E71E954431001A16C7 /* TransitTableViewCell.m */; };
@@ -71,10 +71,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7D0A73CC1EB5440B00EE9092 /* SpeedRecognitionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeedRecognitionViewController.h; sourceTree = "<group>"; };
-		7D0A73CD1EB5440B00EE9092 /* SpeedRecognitionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeedRecognitionViewController.m; sourceTree = "<group>"; };
-		7D0A73CF1EB5A22C00EE9092 /* SpeedRecognition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeedRecognition.h; sourceTree = "<group>"; };
-		7D0A73D01EB5A22C00EE9092 /* SpeedRecognition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeedRecognition.m; sourceTree = "<group>"; };
+		7D0A73CC1EB5440B00EE9092 /* SpeechRecognitionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechRecognitionViewController.h; sourceTree = "<group>"; };
+		7D0A73CD1EB5440B00EE9092 /* SpeechRecognitionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechRecognitionViewController.m; sourceTree = "<group>"; };
+		7D0A73CF1EB5A22C00EE9092 /* SpeechRecognition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechRecognition.h; sourceTree = "<group>"; };
+		7D0A73D01EB5A22C00EE9092 /* SpeechRecognition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechRecognition.m; sourceTree = "<group>"; };
 		7D0A73D21EBDC5E900EE9092 /* UIAlertController+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+Common.h"; sourceTree = "<group>"; };
 		7D0A73D31EBDC5E900EE9092 /* UIAlertController+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+Common.m"; sourceTree = "<group>"; };
 		7D2FB8DB1FAB6375009AD38F /* NSString+Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Common.h"; sourceTree = "<group>"; };
@@ -339,8 +339,8 @@
 				7D3D98EF1E954544001A16C7 /* TransitResultViewController.m */,
 				8B3070511E95EAC30072B35C /* RouteMapDetailViewController.h */,
 				8B3070521E95EAC30072B35C /* RouteMapDetailViewController.m */,
-				7D0A73CC1EB5440B00EE9092 /* SpeedRecognitionViewController.h */,
-				7D0A73CD1EB5440B00EE9092 /* SpeedRecognitionViewController.m */,
+				7D0A73CC1EB5440B00EE9092 /* SpeechRecognitionViewController.h */,
+				7D0A73CD1EB5440B00EE9092 /* SpeechRecognitionViewController.m */,
 				7D61FC4B1FB99FF000D1A1BF /* SearchViewController+Common.h */,
 				7D61FC4C1FB99FF000D1A1BF /* SearchViewController+Common.m */,
 			);
@@ -374,8 +374,8 @@
 				7D2FB8DA1FAB635B009AD38F /* Category */,
 				8B3070681E9634990072B35C /* ReGoecode.h */,
 				8B3070691E9634990072B35C /* ReGoecode.m */,
-				7D0A73CF1EB5A22C00EE9092 /* SpeedRecognition.h */,
-				7D0A73D01EB5A22C00EE9092 /* SpeedRecognition.m */,
+				7D0A73CF1EB5A22C00EE9092 /* SpeechRecognition.h */,
+				7D0A73D01EB5A22C00EE9092 /* SpeechRecognition.m */,
 				7D61FC481FB89D6100D1A1BF /* LocationManagerInitializer.h */,
 				7D61FC491FB89D6100D1A1BF /* LocationManagerInitializer.m */,
 			);
@@ -616,7 +616,7 @@
 				8BA9E2731E98ECDE00F7A6E2 /* UIImage+Common.m in Sources */,
 				8B3070531E95EAC30072B35C /* RouteMapDetailViewController.m in Sources */,
 				8B306FFB1E949ACB0072B35C /* ViewController.m in Sources */,
-				7D0A73CE1EB5440B00EE9092 /* SpeedRecognitionViewController.m in Sources */,
+				7D0A73CE1EB5440B00EE9092 /* SpeechRecognitionViewController.m in Sources */,
 				7D61FC4A1FB89D6100D1A1BF /* LocationManagerInitializer.m in Sources */,
 				8B306FF81E949ACB0072B35C /* AppDelegate.m in Sources */,
 				8B3070291E94C1860072B35C /* SearchViewController.m in Sources */,
@@ -628,7 +628,7 @@
 				7D3D98E91E954431001A16C7 /* TransitTableViewCell.m in Sources */,
 				8BA9E2701E98E4E900F7A6E2 /* UIViewController+Common.m in Sources */,
 				8BA9E26B1E98B66300F7A6E2 /* NSMutableArray+Common.m in Sources */,
-				7D0A73D11EB5A22C00EE9092 /* SpeedRecognition.m in Sources */,
+				7D0A73D11EB5A22C00EE9092 /* SpeechRecognition.m in Sources */,
 				8BA9E25C1E98754400F7A6E2 /* StartStopCell.m in Sources */,
 				8BA9E2561E976AEE00F7A6E2 /* StationCell.m in Sources */,
 				7D3D98F01E954544001A16C7 /* TransitResultViewController.m in Sources */,

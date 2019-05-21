@@ -1,5 +1,5 @@
 //
-//  SpeedRecognitionViewController.h
+//  SpeechRecognitionViewController.h
 //  路线规划
 //
 //  Created by CF on 2017/4/30.
@@ -15,7 +15,7 @@
 
 @end
 
-@interface SpeedRecognitionViewController : BaseViewController
+@interface SpeechRecognitionViewController : BaseViewController
 
 @property (nonatomic, weak)id<RecognizerStringDelegate>     recognizerStringDelegate;
 

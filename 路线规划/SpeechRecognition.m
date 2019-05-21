@@ -1,14 +1,14 @@
 //
-//  SpeedRecognition.m
+//  SpeechRecognition.m
 //  路线规划
 //
 //  Created by CF on 2017/4/30.
 //  Copyright © 2017年 klone1127. All rights reserved.
 //
 
-#import "SpeedRecognition.h"
+#import "SpeechRecognition.h"
 
-@implementation SpeedRecognition
+@implementation SpeechRecognition
 
 - (instancetype)init
 {

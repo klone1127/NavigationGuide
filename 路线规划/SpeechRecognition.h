@@ -1,5 +1,5 @@
 //
-//  SpeedRecognition.h
+//  SpeechRecognition.h
 //  路线规划
 //
 //  Created by CF on 2017/4/30.
@@ -20,7 +20,7 @@
 @end
 
 
-@interface SpeedRecognition : NSObject<SFSpeechRecognizerDelegate, SFSpeechRecognitionTaskDelegate>
+@interface SpeechRecognition : NSObject<SFSpeechRecognizerDelegate, SFSpeechRecognitionTaskDelegate>
 
 @property (nonatomic, strong)SFSpeechRecognizer                     *speechRecognizer;
 @property (nonatomic, strong)SFSpeechAudioBufferRecognitionRequest  *recognitionRequest;

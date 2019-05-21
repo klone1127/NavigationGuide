@@ -73,7 +73,7 @@
         make.centerY.equalTo(view.mas_centerY);
     }];
     
-    [self setupSpeedButtonWithSuperView:view];
+    [self setupSpeechButtonWithSuperView:view];
     
     return view;
 }
@@ -113,15 +113,15 @@
     return view;
 }
 
-- (void)setupSpeedButtonWithSuperView:(UIView *)view {
+- (void)setupSpeechButtonWithSuperView:(UIView *)view {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
     [button setTitle:@"语音识别" forState:UIControlStateNormal];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
-    self.speedButton = button;
-    [view addSubview:self.speedButton];
+    self.speechButton = button;
+    [view addSubview:self.speechButton];
     
-    [self.speedButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.speechButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(view.mas_right).with.offset(-kLeft);
         make.height.mas_equalTo(20);
         make.width.mas_equalTo(80);
@@ -130,12 +130,12 @@
     
 }
 
-- (void)hideSpeedButton {
-    self.speedButton.hidden = YES;
+- (void)hideSpeechButton {
+    self.speechButton.hidden = YES;
 }
 
-- (void)showSpeedButton {
-    self.speedButton.hidden = NO;
+- (void)showSpeechButton {
+    self.speechButton.hidden = NO;
 }
 
 - (void)didReceiveMemoryWarning {
