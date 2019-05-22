@@ -23,7 +23,7 @@
     [self checkAuthorization];
 }
 
-- (void)initSpeepRecognizerWithLocale:(NSLocale *)locale {
+- (void)initSpeechRecognizerWithLocale:(NSLocale *)locale {
     if (self.speechRecognizer) {
         return;
     }
@@ -117,7 +117,7 @@
         }
         
     }];
-    
+     
 }
 
 - (void)stopRecording {
@@ -141,7 +141,7 @@
     }
     
     NSLocale *locale = [NSLocale localeWithLocaleIdentifier:@"zh-CN"];
-    [self initSpeepRecognizerWithLocale:locale];
+    [self initSpeechRecognizerWithLocale:locale];
     [self initAudioEngine];
     [self initAudioSession];
     [self createSpeechAudioBufferRecognitionRequest];
